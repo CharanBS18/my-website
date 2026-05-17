@@ -4,10 +4,11 @@
 			"path": "."
 		},
 		{
-			"path": "../certificsstes"
+			"path": "../certificate"
 		}
 	],
 	"settings": {
-		"liveServer.settings.multiRootWorkspaceName": "my"
+		"liveServer.settings.multiRootWorkspaceName": "my",
+		"liveServer.settings.port": 5501
 	}
 }

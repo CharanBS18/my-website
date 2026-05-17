@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script>
         tailwind.config = {
@@ -39,70 +43,102 @@
         }
     </script>
     <style>
-        body { background: linear-gradient(to bottom, #A9C9E1 0%, #F5F5F0 25%, #FAF9F1 100%); color: #313035; overflow-x: hidden; position: relative; }
-        .material-symbols-outlined { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        body {
+            background: linear-gradient(to bottom, #A9C9E1 0%, #F5F5F0 25%, #FAF9F1 100%);
+            color: #313035;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
         /* Smooth, subtle shadow typical of Framer templates */
-        .framer-shadow { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04); }
+        .framer-shadow {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+
         .framer-card {
             background-color: #ffffff;
             border-radius: 2rem;
             border: 1px solid #f1efe6;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+
         @keyframes float-slow {
-            0%, 100% { transform: translateY(0) rotate(0); }
-            50% { transform: translateY(-20px) rotate(4deg); }
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(4deg);
+            }
         }
     </style>
 </head>
+
 <body class="font-body selection:bg-accent-sky/30 selection:text-text-main text-text-main leading-relaxed relative">
 
-    
+
 
     <!-- Navbar Callbaba Style -->
     <header class="fixed top-0 left-0 right-0 z-50 flex justify-center items-center w-full px-4 pt-6">
-        <nav class="bg-white/40 backdrop-blur-3xl backdrop-saturate-150 rounded-full w-full max-w-5xl px-6 py-4 flex items-center justify-between shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/60">
+        <nav
+            class="bg-white/40 backdrop-blur-3xl backdrop-saturate-150 rounded-full w-full max-w-5xl px-6 py-4 flex items-center justify-between shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/60">
             <span class="text-xl font-bold tracking-tight text-text-main">CHARAN.BS</span>
-            
+
             <div class="hidden md:flex items-center gap-8">
-                <a class="text-text-muted hover:text-text-main transition-colors font-semibold tracking-tight text-sm" href="#about">About</a>
-                <a class="text-text-muted hover:text-text-main transition-colors font-semibold tracking-tight text-sm" href="#work">Projects</a>
-                <a class="text-text-muted hover:text-text-main transition-colors font-semibold tracking-tight text-sm" href="#certificates">Certificates</a>
-                <a class="text-text-muted hover:text-text-main transition-colors font-semibold tracking-tight text-sm" href="https://github.com/CharanBS18?tab=repositories" target="_blank">Repositories</a>
+                <a class="text-text-muted hover:text-text-main transition-colors font-semibold tracking-tight text-sm"
+                    href="#about">About</a>
+                <a class="text-text-muted hover:text-text-main transition-colors font-semibold tracking-tight text-sm"
+                    href="#work">Projects</a>
+                <a class="text-text-muted hover:text-text-main transition-colors font-semibold tracking-tight text-sm"
+                    href="#certificates">Certificates</a>
+                <a class="text-text-muted hover:text-text-main transition-colors font-semibold tracking-tight text-sm"
+                    href="https://github.com/CharanBS18?tab=repositories" target="_blank">Repositories</a>
             </div>
-            
-            <a href="#contact" class="bg-text-main text-white px-6 py-2.5 rounded-full font-semibold text-sm hover:scale-105 transition-transform duration-300 shadow-sm">
+
+            <a href="#contact"
+                class="bg-text-main text-white px-6 py-2.5 rounded-full font-semibold text-sm hover:scale-105 transition-transform duration-300 shadow-sm">
                 Get in touch
             </a>
         </nav>
     </header>
 
     <main class="w-full max-w-7xl mx-auto px-4 sm:px-6 mt-32 space-y-8 pb-32">
-        
+
         <!-- Hero Section -->
         <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch min-h-[70vh]">
             <div class="framer-card p-10 lg:p-16 flex flex-col justify-center shadow-sm">
-                <div class="inline-block px-4 py-1.5 rounded-full bg-accent-sky/20 text-accent-blue text-xs font-bold tracking-wide uppercase self-start mb-8">
+                <div
+                    class="inline-block px-4 py-1.5 rounded-full bg-accent-sky/20 text-accent-blue text-xs font-bold tracking-wide uppercase self-start mb-8">
                     Available for work
                 </div>
-                <h1 class="font-headline text-5xl lg:text-7xl font-extrabold tracking-tight leading-[1.05] text-text-main mb-6">
+                <h1
+                    class="font-headline text-5xl lg:text-7xl font-extrabold tracking-tight leading-[1.05] text-text-main mb-6">
                     Building the future, one line of code at a time.
                 </h1>
                 <p class="text-text-muted text-lg md:text-xl max-w-lg leading-relaxed font-medium mb-10">
                     I'm a Developer focusing on AI-Driven Applications, thoughtful UI/UX, and robust data systems.
                 </p>
                 <div class="flex flex-wrap gap-4">
-                    <a href="#work" class="bg-accent-blue text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-opacity-90 hover:-translate-y-1 transition-all shadow-sm">
+                    <a href="#work"
+                        class="bg-accent-blue text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-opacity-90 hover:-translate-y-1 transition-all shadow-sm">
                         View my work
                     </a>
-                    <a href="#about" class="px-8 py-4 rounded-full border border-border text-text-main font-bold text-lg hover:bg-[#faf9f1] transition-all">
+                    <a href="#about"
+                        class="px-8 py-4 rounded-full border border-border text-text-main font-bold text-lg hover:bg-[#faf9f1] transition-all">
                         Learn more
                     </a>
                 </div>
             </div>
-            
+
             <div class="framer-card overflow-hidden p-0 relative shadow-sm min-h-[400px]">
-                <img src="char.png" alt="Charan BS" class="w-full h-full object-cover rounded-[2rem] saturate-150 transition-transform hover:scale-105 duration-1000" />
+                <img src="char.png" alt="Charan BS"
+                    class="w-full h-full object-cover rounded-[2rem] saturate-150 transition-transform hover:scale-105 duration-1000" />
             </div>
         </section>
 
@@ -110,103 +146,152 @@
         <section class="framer-card p-10 lg:p-16 shadow-sm" id="about">
             <div class="max-w-3xl mx-auto text-center mb-16">
                 <!-- Callbaba headers -->
-                <h2 class="font-headline text-4xl lg:text-5xl font-extrabold tracking-tight text-text-main mb-6">Open Source Footprint</h2>
-                <p class="text-lg text-text-muted font-medium">My open-source contributions and activity metrics generated directly from my GitHub profile.</p>
+                <h2 class="font-headline text-4xl lg:text-5xl font-extrabold tracking-tight text-text-main mb-6">Open
+                    Source Footprint</h2>
+                <p class="text-lg text-text-muted font-medium">My open-source contributions and activity metrics
+                    generated directly from my GitHub profile.</p>
             </div>
-            
+
             <div class="flex flex-col xl:flex-row gap-6 justify-center items-center mb-10">
-                <img src="https://github-readme-stats.vercel.app/api?username=CharanBS18&show_icons=true&title_color=313035&icon_color=4976a4&text_color=66646b&bg_color=faf9f1&hide_border=true" alt="GitHub Stats" class="w-full xl:w-1/2 object-contain bg-[#faf9f1] p-2 rounded-[2rem] border border-black/5" />
-                <img src="https://github-readme-streak-stats.herokuapp.com/?user=CharanBS18&theme=default&background=faf9f1&border=00000000&stroke=4976a4&ring=a0c8ff&fire=4976a4&currStreakNum=313035&currStreakLabel=4976a4&sideNums=313035&sideLabels=66646b&dates=66646b&hide_border=true" alt="GitHub Streak" class="w-full xl:w-1/2 object-contain bg-[#faf9f1] p-2 rounded-[2rem] border border-black/5" />
+                <img src="https://github-readme-stats.vercel.app/api?username=CharanBS18&show_icons=true&title_color=313035&icon_color=4976a4&text_color=66646b&bg_color=faf9f1&hide_border=true"
+                    alt="GitHub Stats"
+                    class="w-full xl:w-1/2 object-contain bg-[#faf9f1] p-2 rounded-[2rem] border border-black/5" />
+                <img src="https://github-readme-streak-stats.herokuapp.com/?user=CharanBS18&theme=default&background=faf9f1&border=00000000&stroke=4976a4&ring=a0c8ff&fire=4976a4&currStreakNum=313035&currStreakLabel=4976a4&sideNums=313035&sideLabels=66646b&dates=66646b&hide_border=true"
+                    alt="GitHub Streak"
+                    class="w-full xl:w-1/2 object-contain bg-[#faf9f1] p-2 rounded-[2rem] border border-black/5" />
             </div>
             <div class="w-full flex justify-center bg-[#faf9f1] p-8 rounded-[2rem] border border-black/5">
-                <img src="https://ghchart.rshah.org/4976a4/CharanBS18" alt="GitHub Contributions Graph" class="w-full opacity-90 hover:opacity-100 transition-all mix-blend-multiply" />
+                <img src="https://ghchart.rshah.org/4976a4/CharanBS18" alt="GitHub Contributions Graph"
+                    class="w-full opacity-90 hover:opacity-100 transition-all mix-blend-multiply" />
             </div>
         </section>
 
         <!-- Projects Grid Section -->
         <section id="work" class="framer-card p-10 lg:p-16 border-none shadow-sm bg-[#faf9f1]">
             <div class="max-w-3xl mx-auto text-center mb-16">
-                <h2 class="font-headline text-4xl lg:text-5xl font-extrabold tracking-tight text-text-main mb-6">Selected Works</h2>
-                <p class="text-lg text-text-muted font-medium">A curated collection of my deployed applications, showcasing full-stack capabilities.</p>
+                <h2 class="font-headline text-4xl lg:text-5xl font-extrabold tracking-tight text-text-main mb-6">
+                    Selected Works</h2>
+                <p class="text-lg text-text-muted font-medium">A curated collection of my deployed applications,
+                    showcasing full-stack capabilities.</p>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Project 1 -->
-                <a href="https://planthealthrag-fsggg4j6desaboqkfomqeb.streamlit.app" target="_blank" class="bg-white rounded-[2rem] p-6 hover:-translate-y-2 hover:shadow-lg transition-all border border-border flex flex-col h-full group framer-shadow">
-                    <div class="w-full aspect-video rounded-3xl bg-[#faf9f1] overflow-hidden relative mb-8 shrink-0 flex items-center justify-center group-hover:bg-accent-sky/20 transition-colors">
-                        <span class="material-symbols-outlined text-accent-blue text-5xl group-hover:scale-110 transition-transform duration-500">psychiatry</span>
+                <a href="https://planthealthrag-fsggg4j6desaboqkfomqeb.streamlit.app" target="_blank"
+                    class="bg-white rounded-[2rem] p-6 hover:-translate-y-2 hover:shadow-lg transition-all border border-border flex flex-col h-full group framer-shadow">
+                    <div
+                        class="w-full aspect-video rounded-3xl bg-[#faf9f1] overflow-hidden relative mb-8 shrink-0 flex items-center justify-center group-hover:bg-accent-sky/20 transition-colors">
+                        <span
+                            class="material-symbols-outlined text-accent-blue text-5xl group-hover:scale-110 transition-transform duration-500">psychiatry</span>
                     </div>
                     <div class="flex flex-col flex-1 px-2">
                         <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-xl font-bold text-text-main tracking-tight group-hover:text-accent-blue transition-colors">Plant Health RAG</h3>
-                            <span class="material-symbols-outlined text-border group-hover:text-accent-blue transition-colors">arrow_outward</span>
+                            <h3
+                                class="text-xl font-bold text-text-main tracking-tight group-hover:text-accent-blue transition-colors">
+                                Plant Health RAG</h3>
+                            <span
+                                class="material-symbols-outlined text-border group-hover:text-accent-blue transition-colors">arrow_outward</span>
                         </div>
-                        <p class="text-text-muted font-medium mb-6 text-sm">An AI-powered Streamlit application using Retrieval-Augmented Generation to diagnose plant diseases.</p>
+                        <p class="text-text-muted font-medium mb-6 text-sm">An AI-powered Streamlit application using
+                            Retrieval-Augmented Generation to diagnose plant diseases.</p>
                         <div class="flex gap-2 flex-wrap mt-auto">
-                            <span class="px-3 py-1 bg-[#faf9f1] text-[10px] font-bold uppercase tracking-wider rounded-lg text-text-muted">Python</span>
-                            <span class="px-3 py-1 bg-[#faf9f1] text-[10px] font-bold uppercase tracking-wider rounded-lg text-text-muted">Streamlit</span>
+                            <span
+                                class="px-3 py-1 bg-[#faf9f1] text-[10px] font-bold uppercase tracking-wider rounded-lg text-text-muted">Python</span>
+                            <span
+                                class="px-3 py-1 bg-[#faf9f1] text-[10px] font-bold uppercase tracking-wider rounded-lg text-text-muted">Streamlit</span>
                         </div>
                     </div>
                 </a>
-                
+
                 <!-- Project 2 -->
-                <a href="https://charanbs18.github.io/EV-project-PPT/" target="_blank" class="bg-white rounded-[2rem] p-6 hover:-translate-y-2 hover:shadow-lg transition-all border border-border flex flex-col h-full group framer-shadow">
-                    <div class="w-full aspect-video rounded-3xl bg-[#faf9f1] overflow-hidden relative mb-8 shrink-0 flex items-center justify-center group-hover:bg-accent-sky/20 transition-colors">
-                        <span class="material-symbols-outlined text-accent-blue text-5xl group-hover:scale-110 transition-transform duration-500">electric_car</span>
+                <a href="https://charanbs18.github.io/EV-project-PPT/" target="_blank"
+                    class="bg-white rounded-[2rem] p-6 hover:-translate-y-2 hover:shadow-lg transition-all border border-border flex flex-col h-full group framer-shadow">
+                    <div
+                        class="w-full aspect-video rounded-3xl bg-[#faf9f1] overflow-hidden relative mb-8 shrink-0 flex items-center justify-center group-hover:bg-accent-sky/20 transition-colors">
+                        <span
+                            class="material-symbols-outlined text-accent-blue text-5xl group-hover:scale-110 transition-transform duration-500">electric_car</span>
                     </div>
                     <div class="flex flex-col flex-1 px-2">
                         <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-xl font-bold text-text-main tracking-tight group-hover:text-accent-blue transition-colors">Lumina Volt EV</h3>
-                            <span class="material-symbols-outlined text-border group-hover:text-accent-blue transition-colors">arrow_outward</span>
+                            <h3
+                                class="text-xl font-bold text-text-main tracking-tight group-hover:text-accent-blue transition-colors">
+                                Lumina Volt EV</h3>
+                            <span
+                                class="material-symbols-outlined text-border group-hover:text-accent-blue transition-colors">arrow_outward</span>
                         </div>
-                        <p class="text-text-muted font-medium mb-6 text-sm">A modern Electric Vehicle charging station finder featuring 3D pathing and a premium UI.</p>
+                        <p class="text-text-muted font-medium mb-6 text-sm">A modern Electric Vehicle charging station
+                            finder featuring 3D pathing and a premium UI.</p>
                         <div class="flex gap-2 flex-wrap mt-auto">
-                            <span class="px-3 py-1 bg-[#faf9f1] text-[10px] font-bold uppercase tracking-wider rounded-lg text-text-muted">3D Pathing</span>
-                            <span class="px-3 py-1 bg-[#faf9f1] text-[10px] font-bold uppercase tracking-wider rounded-lg text-text-muted">WebGL</span>
+                            <span
+                                class="px-3 py-1 bg-[#faf9f1] text-[10px] font-bold uppercase tracking-wider rounded-lg text-text-muted">3D
+                                Pathing</span>
+                            <span
+                                class="px-3 py-1 bg-[#faf9f1] text-[10px] font-bold uppercase tracking-wider rounded-lg text-text-muted">WebGL</span>
                         </div>
                     </div>
                 </a>
 
                 <!-- Project 3 -->
-                <a href="https://charanbs18.github.io/carwebsite/" target="_blank" class="bg-white rounded-[2rem] p-6 hover:-translate-y-2 hover:shadow-lg transition-all border border-border flex flex-col h-full group framer-shadow">
-                    <div class="w-full aspect-video rounded-3xl bg-[#faf9f1] overflow-hidden relative mb-8 shrink-0 flex items-center justify-center group-hover:bg-accent-sky/20 transition-colors">
-                        <span class="material-symbols-outlined text-accent-blue text-5xl group-hover:scale-110 transition-transform duration-500">3d_rotation</span>
+                <a href="https://charanbs18.github.io/carwebsite/" target="_blank"
+                    class="bg-white rounded-[2rem] p-6 hover:-translate-y-2 hover:shadow-lg transition-all border border-border flex flex-col h-full group framer-shadow">
+                    <div
+                        class="w-full aspect-video rounded-3xl bg-[#faf9f1] overflow-hidden relative mb-8 shrink-0 flex items-center justify-center group-hover:bg-accent-sky/20 transition-colors">
+                        <span
+                            class="material-symbols-outlined text-accent-blue text-5xl group-hover:scale-110 transition-transform duration-500">3d_rotation</span>
                     </div>
                     <div class="flex flex-col flex-1 px-2">
                         <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-xl font-bold text-text-main tracking-tight group-hover:text-accent-blue transition-colors">Cinematic 3D Car</h3>
-                            <span class="material-symbols-outlined text-border group-hover:text-accent-blue transition-colors">arrow_outward</span>
+                            <h3
+                                class="text-xl font-bold text-text-main tracking-tight group-hover:text-accent-blue transition-colors">
+                                Cinematic 3D Car</h3>
+                            <span
+                                class="material-symbols-outlined text-border group-hover:text-accent-blue transition-colors">arrow_outward</span>
                         </div>
-                        <p class="text-text-muted font-medium mb-6 text-sm">A high-end, scroll-driven 3D marketing website providing an immersive product launch experience.</p>
+                        <p class="text-text-muted font-medium mb-6 text-sm">A high-end, scroll-driven 3D marketing
+                            website providing an immersive product launch experience.</p>
                         <div class="flex gap-2 flex-wrap mt-auto">
-                            <span class="px-3 py-1 bg-[#faf9f1] text-[10px] font-bold uppercase tracking-wider rounded-lg text-text-muted">Three.js</span>
-                            <span class="px-3 py-1 bg-[#faf9f1] text-[10px] font-bold uppercase tracking-wider rounded-lg text-text-muted">Vite</span>
+                            <span
+                                class="px-3 py-1 bg-[#faf9f1] text-[10px] font-bold uppercase tracking-wider rounded-lg text-text-muted">Three.js</span>
+                            <span
+                                class="px-3 py-1 bg-[#faf9f1] text-[10px] font-bold uppercase tracking-wider rounded-lg text-text-muted">Vite</span>
                         </div>
                     </div>
                 </a>
 
                 <!-- Project 4 -->
-                <a href="https://charanbs18.github.io/drone-website/" target="_blank" class="bg-white rounded-[2rem] p-6 hover:-translate-y-2 hover:shadow-lg transition-all border border-border flex flex-col h-full group framer-shadow">
-                    <div class="w-full aspect-video rounded-3xl bg-[#faf9f1] overflow-hidden relative mb-8 shrink-0 flex items-center justify-center group-hover:bg-accent-sky/20 transition-colors">
-                        <span class="material-symbols-outlined text-accent-blue text-5xl group-hover:scale-110 transition-transform duration-500">flight</span>
+                <a href="https://charanbs18.github.io/drone-website/" target="_blank"
+                    class="bg-white rounded-[2rem] p-6 hover:-translate-y-2 hover:shadow-lg transition-all border border-border flex flex-col h-full group framer-shadow">
+                    <div
+                        class="w-full aspect-video rounded-3xl bg-[#faf9f1] overflow-hidden relative mb-8 shrink-0 flex items-center justify-center group-hover:bg-accent-sky/20 transition-colors">
+                        <span
+                            class="material-symbols-outlined text-accent-blue text-5xl group-hover:scale-110 transition-transform duration-500">flight</span>
                     </div>
                     <div class="flex flex-col flex-1 px-2">
                         <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-xl font-bold text-text-main tracking-tight group-hover:text-accent-blue transition-colors">Cinematic Drone Showcase</h3>
-                            <span class="material-symbols-outlined text-border group-hover:text-accent-blue transition-colors">arrow_outward</span>
+                            <h3
+                                class="text-xl font-bold text-text-main tracking-tight group-hover:text-accent-blue transition-colors">
+                                Cinematic Drone Showcase</h3>
+                            <span
+                                class="material-symbols-outlined text-border group-hover:text-accent-blue transition-colors">arrow_outward</span>
                         </div>
-                        <p class="text-text-muted font-medium mb-6 text-sm">A high-end 3D drone explosion visualization with scroll-driven animations in a clean studio environment.</p>
+                        <p class="text-text-muted font-medium mb-6 text-sm">A high-end 3D drone explosion visualization
+                            with scroll-driven animations in a clean studio environment.</p>
                         <div class="flex gap-2 flex-wrap mt-auto">
-                            <span class="px-3 py-1 bg-[#faf9f1] text-[10px] font-bold uppercase tracking-wider rounded-lg text-text-muted">Three.js</span>
-                            <span class="px-3 py-1 bg-[#faf9f1] text-[10px] font-bold uppercase tracking-wider rounded-lg text-text-muted">3D Animation</span>
+                            <span
+                                class="px-3 py-1 bg-[#faf9f1] text-[10px] font-bold uppercase tracking-wider rounded-lg text-text-muted">Three.js</span>
+                            <span
+                                class="px-3 py-1 bg-[#faf9f1] text-[10px] font-bold uppercase tracking-wider rounded-lg text-text-muted">3D
+                                Animation</span>
                         </div>
                     </div>
                 </a>
             </div>
             <div class="mt-12 text-center">
-                <a href="https://github.com/CharanBS18?tab=repositories" target="_blank" class="inline-flex bg-white border border-border text-text-main px-8 py-3.5 rounded-full font-bold text-sm hover:-translate-y-1 transition-transform shadow-sm group">
+                <a href="https://github.com/CharanBS18?tab=repositories" target="_blank"
+                    class="inline-flex bg-white border border-border text-text-main px-8 py-3.5 rounded-full font-bold text-sm hover:-translate-y-1 transition-transform shadow-sm group">
                     View all on GitHub
-                    <span class="material-symbols-outlined ml-2 text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    <span
+                        class="material-symbols-outlined ml-2 text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
                 </a>
             </div>
         </section>
@@ -216,36 +301,49 @@
         <!-- Certificates Section -->
         <section class="framer-card p-10 lg:p-16 shadow-sm mt-8 bg-[#faf9f1]" id="certificates">
             <div class="max-w-3xl mx-auto text-center flex flex-col items-center">
-                <div class="inline-block px-4 py-1.5 rounded-full bg-accent-sky/20 text-accent-blue text-xs font-bold tracking-wide uppercase mb-6">
+                <div
+                    class="inline-block px-4 py-1.5 rounded-full bg-accent-sky/20 text-accent-blue text-xs font-bold tracking-wide uppercase mb-6">
                     Achievements
                 </div>
-                <h2 class="font-headline text-4xl lg:text-5xl font-extrabold tracking-tight text-text-main mb-6">Certificates</h2>
+                <h2 class="font-headline text-4xl lg:text-5xl font-extrabold tracking-tight text-text-main mb-6">
+                    Certificates</h2>
                 <p class="text-lg text-text-muted font-medium mb-10 max-w-2xl">
                     A showcase of my continuous learning and professional development across various domains.
                 </p>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-                    <a href="certificate/AWS certificate.pdf" target="_blank" class="flex flex-col items-center bg-white border border-border p-6 rounded-3xl hover:border-accent-blue hover:-translate-y-1 hover:shadow-lg transition-all group">
-                        <span class="material-symbols-outlined text-accent-blue text-4xl mb-4 group-hover:scale-110 transition-transform">cloud_done</span>
+                    <a href="certificate/AWS certificate.pdf" target="_blank"
+                        class="flex flex-col items-center bg-white border border-border p-6 rounded-3xl hover:border-accent-blue hover:-translate-y-1 hover:shadow-lg transition-all group">
+                        <span
+                            class="material-symbols-outlined text-accent-blue text-4xl mb-4 group-hover:scale-110 transition-transform">cloud_done</span>
                         <h3 class="font-bold text-text-main text-center mb-2 text-sm">AWS Certification</h3>
                         <p class="text-text-muted text-xs text-center">Amazon Web Services</p>
                     </a>
-                    <a href="certificate/Cyber Job Simulation certificate.pdf" target="_blank" class="flex flex-col items-center bg-white border border-border p-6 rounded-3xl hover:border-accent-blue hover:-translate-y-1 hover:shadow-lg transition-all group">
-                        <span class="material-symbols-outlined text-accent-blue text-4xl mb-4 group-hover:scale-110 transition-transform">security</span>
+                    <a href="certificate/Cyber Job Simulation certificate.pdf" target="_blank"
+                        class="flex flex-col items-center bg-white border border-border p-6 rounded-3xl hover:border-accent-blue hover:-translate-y-1 hover:shadow-lg transition-all group">
+                        <span
+                            class="material-symbols-outlined text-accent-blue text-4xl mb-4 group-hover:scale-110 transition-transform">security</span>
                         <h3 class="font-bold text-text-main text-center mb-2 text-sm">Cybersecurity Simulation</h3>
                         <p class="text-text-muted text-xs text-center">Security Training</p>
                     </a>
-                    <a href="certificate/Data analysis certifcate.pdf" target="_blank" class="flex flex-col items-center bg-white border border-border p-6 rounded-3xl hover:border-accent-blue hover:-translate-y-1 hover:shadow-lg transition-all group">
-                        <span class="material-symbols-outlined text-accent-blue text-4xl mb-4 group-hover:scale-110 transition-transform">analytics</span>
+                    <a href="certificate/Data analysis certifcate.pdf" target="_blank"
+                        class="flex flex-col items-center bg-white border border-border p-6 rounded-3xl hover:border-accent-blue hover:-translate-y-1 hover:shadow-lg transition-all group">
+                        <span
+                            class="material-symbols-outlined text-accent-blue text-4xl mb-4 group-hover:scale-110 transition-transform">analytics</span>
                         <h3 class="font-bold text-text-main text-center mb-2 text-sm">Data Analysis</h3>
                         <p class="text-text-muted text-xs text-center">Data & Analytics</p>
                     </a>
-                    <a href="certificate/EregFenDKXDDeTGR2_BotenCEjm3LFxtq9A_695272c9f76d215bcf76bc16_1778107926902_completion_certificate.pdf" target="_blank" class="flex flex-col items-center bg-white border border-border p-6 rounded-3xl hover:border-accent-blue hover:-translate-y-1 hover:shadow-lg transition-all group">
-                        <span class="material-symbols-outlined text-accent-blue text-4xl mb-4 group-hover:scale-110 transition-transform">verified</span>
-                        <h3 class="font-bold text-text-main text-center mb-2 text-sm">Completion Certificate</h3>
+                    <a href="certificate/EregFenDKXDDeTGR2_BotenCEjm3LFxtq9A_695272c9f76d215bcf76bc16_1778107926902_completion_certificate.pdf"
+                        target="_blank"
+                        class="flex flex-col items-center bg-white border border-border p-6 rounded-3xl hover:border-accent-blue hover:-translate-y-1 hover:shadow-lg transition-all group">
+                        <span
+                            class="material-symbols-outlined text-accent-blue text-4xl mb-4 group-hover:scale-110 transition-transform">verified</span>
+                        <h3 class="font-bold text-text-main text-center mb-2 text-sm">vista Certificate</h3>
                         <p class="text-text-muted text-xs text-center">Professional Course</p>
                     </a>
-                    <a href="certificate/forge data labeling certificate.pdf" target="_blank" class="flex flex-col items-center bg-white border border-border p-6 rounded-3xl hover:border-accent-blue hover:-translate-y-1 hover:shadow-lg transition-all group">
-                        <span class="material-symbols-outlined text-accent-blue text-4xl mb-4 group-hover:scale-110 transition-transform">label</span>
+                    <a href="certificate/forge data labeling certificate.pdf" target="_blank"
+                        class="flex flex-col items-center bg-white border border-border p-6 rounded-3xl hover:border-accent-blue hover:-translate-y-1 hover:shadow-lg transition-all group">
+                        <span
+                            class="material-symbols-outlined text-accent-blue text-4xl mb-4 group-hover:scale-110 transition-transform">label</span>
                         <h3 class="font-bold text-text-main text-center mb-2 text-sm">Data Labeling</h3>
                         <p class="text-text-muted text-xs text-center">Forge / Machine Learning</p>
                     </a>
@@ -254,12 +352,16 @@
         </section>
 
         <!-- CTA Section -->
-        <section class="framer-card p-12 lg:p-24 text-center mt-8 bg-text-main text-white border-none shadow-sm" id="contact">
+        <section class="framer-card p-12 lg:p-24 text-center mt-8 bg-text-main text-white border-none shadow-sm"
+            id="contact">
             <h2 class="font-headline text-5xl md:text-7xl font-extrabold tracking-tight mb-6">Ready to build?</h2>
-            <p class="text-xl text-neutral-300 max-w-2xl mx-auto font-medium mb-12">Whether it's a legacy overhaul or a fresh vision, let's create something that defines the next decade.</p>
-            <a href="mailto:charan201204@gmail.com" class="inline-flex bg-white text-text-main px-10 py-5 rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-lg group">
+            <p class="text-xl text-neutral-300 max-w-2xl mx-auto font-medium mb-12">Whether it's a legacy overhaul or a
+                fresh vision, let's create something that defines the next decade.</p>
+            <a href="mailto:charan201204@gmail.com"
+                class="inline-flex bg-white text-text-main px-10 py-5 rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-lg group">
                 charan201204@gmail.com
-                <span class="material-symbols-outlined ml-3 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                <span
+                    class="material-symbols-outlined ml-3 group-hover:translate-x-1 transition-transform">arrow_forward</span>
             </a>
         </section>
 
@@ -267,20 +369,27 @@
 
     <!-- Footer -->
     <footer class="w-full py-12 px-6 mt-12 mb-12">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 framer-card p-8 shadow-sm">
+        <div
+            class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 framer-card p-8 shadow-sm">
             <div class="flex flex-col items-center md:items-start gap-1">
                 <span class="text-xl font-extrabold tracking-tight text-text-main">CHARAN.BS</span>
                 <p class="text-text-muted text-sm font-medium tracking-wide">© 2026. Built for the future.</p>
             </div>
             <div class="flex flex-wrap justify-center gap-6">
-                <a class="text-text-muted hover:text-accent-blue hover:-translate-y-0.5 transition-all font-bold text-sm" href="https://github.com/CharanBS18" target="_blank">GitHub</a>
-                <a class="text-text-muted hover:text-accent-blue hover:-translate-y-0.5 transition-all font-bold text-sm" href="https://www.linkedin.com/in/charan-bs-b34975391" target="_blank">LinkedIn</a>
-                <a class="text-text-muted hover:text-accent-blue hover:-translate-y-0.5 transition-all font-bold text-sm" href="https://twitter.com/CharanBS114" target="_blank">Twitter</a>
-                <a class="text-text-muted hover:text-accent-blue hover:-translate-y-0.5 transition-all font-bold text-sm" href="https://www.instagram.com/charan._._25" target="_blank">Instagram</a>
-                <a class="text-text-muted hover:text-accent-blue hover:-translate-y-0.5 transition-all font-bold text-sm" href="https://discord.com/users/charan00002" target="_blank">Discord</a>
+                <a class="text-text-muted hover:text-accent-blue hover:-translate-y-0.5 transition-all font-bold text-sm"
+                    href="https://github.com/CharanBS18" target="_blank">GitHub</a>
+                <a class="text-text-muted hover:text-accent-blue hover:-translate-y-0.5 transition-all font-bold text-sm"
+                    href="https://www.linkedin.com/in/charan-bs-b34975391" target="_blank">LinkedIn</a>
+                <a class="text-text-muted hover:text-accent-blue hover:-translate-y-0.5 transition-all font-bold text-sm"
+                    href="https://twitter.com/CharanBS114" target="_blank">Twitter</a>
+                <a class="text-text-muted hover:text-accent-blue hover:-translate-y-0.5 transition-all font-bold text-sm"
+                    href="https://www.instagram.com/charan._._25" target="_blank">Instagram</a>
+                <a class="text-text-muted hover:text-accent-blue hover:-translate-y-0.5 transition-all font-bold text-sm"
+                    href="https://discord.com/users/charan00002" target="_blank">Discord</a>
             </div>
         </div>
     </footer>
 
 </body>
+
 </html>
