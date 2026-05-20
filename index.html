@@ -90,8 +90,8 @@
             user-select: none;
             -webkit-user-drag: none;
             touch-action: none;
-            transform-origin: 140px 25px;
-            /* Origin exactly at the card holder slot */
+            transform-origin: 175px 23px;
+            /* Origin at the blue circle center in the chrome clip */
         }
 
         #id-card img {
@@ -928,7 +928,7 @@
             background:
                 radial-gradient(circle at 50% 45%, rgba(160, 200, 255, 0.22), transparent 42%),
                 rgba(255, 255, 255, 0.76);
-            min-height: 520px;
+            min-height: 380px;
         }
 
         .tech-globe-wrap {
@@ -1036,12 +1036,10 @@
         .stack-marquee-stage {
             position: relative;
             overflow: hidden;
-            min-height: 330px;
+            min-height: 220px;
             border-radius: 1.65rem;
             border: 1px solid rgba(230, 228, 217, 0.92);
-            background:
-                linear-gradient(135deg, rgba(255, 255, 255, 0.78), rgba(250, 249, 241, 0.94)),
-                radial-gradient(circle at 22% 22%, rgba(160, 200, 255, 0.22), transparent 34%);
+            background: rgba(255, 255, 255, 0.5);
             box-shadow: 0 18px 42px rgba(49, 48, 53, 0.06);
             perspective: 1200px;
         }
@@ -1079,8 +1077,8 @@
         .stack-marquee-row {
             display: flex;
             width: max-content;
-            gap: 0.85rem;
-            margin: 0.85rem 0;
+            gap: 0.6rem;
+            margin: 0.55rem 0;
             animation: stack-marquee 42s linear infinite;
         }
 
@@ -1088,12 +1086,12 @@
             display: inline-flex;
             align-items: center;
             gap: 0.55rem;
-            min-width: 132px;
+            min-width: 110px;
             justify-content: center;
             border-radius: 0.85rem;
             border: 1px solid rgba(230, 228, 217, 0.98);
             background: rgba(255, 255, 255, 0.88);
-            padding: 0.85rem 1rem;
+            padding: 0.65rem 0.85rem;
             color: #313035;
             font-size: 0.82rem;
             font-weight: 900;
@@ -1248,7 +1246,7 @@
             </div>
 
             <div id="id-card-container"
-                class="overflow-visible p-0 relative min-h-[500px] flex items-center justify-center select-none"
+                class="overflow-visible p-0 relative min-h-[640px] flex items-center justify-center select-none"
                 style="perspective: 1200px;">
                 <!-- Subtle studio grid background -->
                 <div class="absolute inset-0 opacity-[0.05] pointer-events-none"
@@ -1269,8 +1267,8 @@
 
                 <!-- Interactive ID Card Badge (absolute top-0 left-0 coordinates perfectly matches lanyard SVG space) -->
                 <div id="id-card"
-                    class="border-beam absolute top-0 left-0 w-[280px] h-[450px] rounded-[2.2rem] bg-white border border-[#e6e4d9] shadow-2xl flex flex-col items-center p-6 z-10 select-none cursor-grab active:cursor-grabbing hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.18)]"
-                    style="transform-style: preserve-3d; transform: translate3d(0px, 120px, 0px) rotate(0deg); will-change: transform;">
+                    class="border-beam absolute top-0 left-0 w-[350px] h-[560px] rounded-[2.2rem] bg-white border border-[#e6e4d9] shadow-2xl flex flex-col items-center p-6 z-10 select-none cursor-grab active:cursor-grabbing hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.18)]"
+                    style="transform-style: preserve-3d; will-change: transform;">
 
                     <!-- Shiny Holographic Reflection Overlay (softened to 12% to keep profile image completely natural) -->
                     <div id="holo-sheen"
@@ -1308,7 +1306,7 @@
 
                         <!-- Profile Photo Frame -->
                         <div
-                            class="w-44 h-44 mx-auto rounded-2xl bg-neutral-50 border border-neutral-100 p-1.5 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] mb-4 overflow-hidden relative group">
+                            class="w-56 h-56 mx-auto rounded-2xl bg-neutral-50 border border-neutral-100 p-1.5 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] mb-4 overflow-hidden relative group">
                             <!-- Image inside badge (fully clear and original) -->
                             <img src="char.png" alt="Charan BS"
                                 class="w-full h-full object-cover rounded-[0.9rem] border border-black/5 pointer-events-none select-none" />
@@ -1923,7 +1921,7 @@
                     <span
                         class="material-symbols-outlined ml-3 group-hover:translate-x-1 transition-transform">arrow_forward</span>
                 </a>
-                <a href="https://www.linkedin.com/in/charan-bs-b34975391" target="_blank"
+                <a href="https://www.linkedin.com/in/charan-b-s-25a70b35a/" target="_blank"
                     class="inline-flex border border-white/20 bg-white/10 text-white px-8 py-4 rounded-full font-bold text-base hover:bg-white/15 hover:scale-105 transition-all shadow-lg group">
                     LinkedIn
                     <span
@@ -1952,7 +1950,7 @@
                 <a class="text-text-muted hover:text-accent-blue hover:-translate-y-0.5 transition-all font-bold text-sm"
                     href="https://github.com/CharanBS18" target="_blank">GitHub</a>
                 <a class="text-text-muted hover:text-accent-blue hover:-translate-y-0.5 transition-all font-bold text-sm"
-                    href="https://www.linkedin.com/in/charan-bs-b34975391" target="_blank">LinkedIn</a>
+                    href="https://www.linkedin.com/in/charan-b-s-25a70b35a/" target="_blank">LinkedIn</a>
                 <a class="text-text-muted hover:text-accent-blue hover:-translate-y-0.5 transition-all font-bold text-sm"
                     href="https://twitter.com/CharanBS114" target="_blank">Twitter</a>
                 <a class="text-text-muted hover:text-accent-blue hover:-translate-y-0.5 transition-all font-bold text-sm"
@@ -2093,74 +2091,6 @@
         </div>
     </div>
 
-    <!-- Interactive Premium Mac-style Dock (Socials & Navigation) -->
-    <div id="interactive-dock"
-        class="fixed bottom-6 left-1/2 -translate-x-1/2 h-16 bg-white/50 backdrop-blur-2xl border border-white/80 rounded-[1.25rem] flex items-center justify-center gap-3.5 px-4.5 z-40 shadow-[0_20px_50px_rgba(0,0,0,0.12)] select-none transition-all duration-500 hover:shadow-[0_30px_60px_rgba(0,0,0,0.18)]">
-        <!-- Home / Start anchor -->
-        <a href="#top" onclick="scrollToSection('top'); return false;"
-            class="dock-item flex flex-col items-center justify-center w-11 h-11 bg-white border border-neutral-200/50 rounded-xl shadow-sm text-text-muted hover:text-[#4976a4] hover:bg-neutral-50 transition-colors relative group"
-            style="will-change: width, height;">
-            <span class="material-symbols-outlined text-xl">home</span>
-            <span
-                class="absolute -top-10 left-1/2 -translate-x-1/2 bg-text-main text-white text-[9px] font-bold tracking-wider uppercase px-2 py-1 rounded shadow opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">Home</span>
-        </a>
-        <!-- GitHub Link -->
-        <a href="https://github.com/CharanBS18" target="_blank" rel="noopener noreferrer"
-            class="dock-item flex flex-col items-center justify-center w-11 h-11 bg-white border border-neutral-200/50 rounded-xl shadow-sm text-text-muted hover:text-black hover:bg-neutral-50 transition-colors relative group"
-            style="will-change: width, height;">
-            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                <path
-                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-            </svg>
-            <span
-                class="absolute -top-10 left-1/2 -translate-x-1/2 bg-text-main text-white text-[9px] font-bold tracking-wider uppercase px-2 py-1 rounded shadow opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">GitHub</span>
-        </a>
-        <!-- LinkedIn Link -->
-        <a href="https://www.linkedin.com/in/charan-b-s-827289255/" target="_blank" rel="noopener noreferrer"
-            class="dock-item flex flex-col items-center justify-center w-11 h-11 bg-white border border-neutral-200/50 rounded-xl shadow-sm text-text-muted hover:text-[#0077b5] hover:bg-neutral-50 transition-colors relative group"
-            style="will-change: width, height;">
-            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                <path
-                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-            </svg>
-            <span
-                class="absolute -top-10 left-1/2 -translate-x-1/2 bg-text-main text-white text-[9px] font-bold tracking-wider uppercase px-2 py-1 rounded shadow opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">LinkedIn</span>
-        </a>
-        <!-- Twitter Link -->
-        <a href="https://twitter.com/CharanBS114" target="_blank" rel="noopener noreferrer"
-            class="dock-item flex flex-col items-center justify-center w-11 h-11 bg-white border border-neutral-200/50 rounded-xl shadow-sm text-text-muted hover:text-[#1da1f2] hover:bg-neutral-50 transition-colors relative group"
-            style="will-change: width, height;">
-            <svg class="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24">
-                <path
-                    d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
-            </svg>
-            <span
-                class="absolute -top-10 left-1/2 -translate-x-1/2 bg-text-main text-white text-[9px] font-bold tracking-wider uppercase px-2 py-1 rounded shadow opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">Twitter</span>
-        </a>
-        <!-- Instagram Link -->
-        <a href="https://www.instagram.com/charan._._25" target="_blank" rel="noopener noreferrer"
-            class="dock-item flex flex-col items-center justify-center w-11 h-11 bg-white border border-neutral-200/50 rounded-xl shadow-sm text-text-muted hover:text-[#e1306c] hover:bg-neutral-50 transition-colors relative group"
-            style="will-change: width, height;">
-            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                <path
-                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-            </svg>
-            <span
-                class="absolute -top-10 left-1/2 -translate-x-1/2 bg-text-main text-white text-[9px] font-bold tracking-wider uppercase px-2 py-1 rounded shadow opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">Instagram</span>
-        </a>
-        <!-- Discord Link -->
-        <a href="https://discord.com/users/charan00002" target="_blank" rel="noopener noreferrer"
-            class="dock-item flex flex-col items-center justify-center w-11 h-11 bg-white border border-neutral-200/50 rounded-xl shadow-sm text-text-muted hover:text-[#5865f2] hover:bg-neutral-50 transition-colors relative group"
-            style="will-change: width, height;">
-            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                <path
-                    d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.094 13.094 0 0 1-1.873-.894.077.077 0 0 1-.008-.128c.126-.093.252-.19.372-.287a.075.075 0 0 1 .077-.011c3.92 1.793 8.18 1.793 12.061 0a.073.073 0 0 1 .078.009c.12.099.246.195.373.289a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 1-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.156-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.156 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.156-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.156 2.418z" />
-            </svg>
-            <span
-                class="absolute -top-10 left-1/2 -translate-x-1/2 bg-text-main text-white text-[9px] font-bold tracking-wider uppercase px-2 py-1 rounded shadow opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">Discord</span>
-        </a>
-    </div>
-
     <!-- Interactive Physics Engine for ID Card Badge -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -2198,7 +2128,7 @@
             const air_drag = 0.955;    // Air friction damping (dampens horizontal motion quickly)
             const rot_gravity = 0.022; // Torque from gravity trying to verticalize card (straightens faster)
             const rot_damping = 0.86;  // Rotational decay friction (dampens rotation tilts and swings almost instantly)
-            const h_com = 180;         // Distance from slot P to Center of Mass
+            const h_com = 225;         // Distance from slot P to Center of Mass (adjusted for larger card)
 
             // Pointer Tracking State
             let isDragging = false;
@@ -2235,6 +2165,11 @@
 
                 // Sync visual wall pin hook with anchorX
                 lanyardAnchor.style.left = anchorX + 'px';
+
+                // Set initial card position based on physics coordinates
+                const cardX = px - 175;
+                const cardY = py - 23;
+                card.style.transform = `translate3d(${cardX}px, ${cardY}px, 0px) rotateZ(${theta}rad) rotateX(0deg) rotateY(0deg)`;
             }
 
             // Make sure container is sized, then init
@@ -2450,9 +2385,9 @@
                 }
 
                 // Update DOM positions & 3D CSS Transforms
-                // Note: transform-origin is set to "140px 25px" in CSS (Badge slot)
-                const cardX = px - 140;
-                const cardY = py - 25;
+                // Note: transform-origin is set to "175px 23px" in CSS (Blue circle center in chrome clip)
+                const cardX = px - 175;
+                const cardY = py - 23;
                 card.style.transform = `translate3d(${cardX}px, ${cardY}px, 0px) rotateZ(${theta}rad) rotateX(${rx}deg) rotateY(${ry}deg)`;
 
                 // Update SVG Lanyard string path
