@@ -90,7 +90,8 @@
             user-select: none;
             -webkit-user-drag: none;
             touch-action: none;
-            transform-origin: 140px 25px; /* Origin exactly at the card holder slot */
+            transform-origin: 140px 25px;
+            /* Origin exactly at the card holder slot */
         }
 
         #id-card img {
@@ -98,10 +99,1054 @@
             -webkit-user-drag: none;
             pointer-events: none;
         }
+
+        /* Border Beam ray effect for premium ID Card */
+        .border-beam {
+            position: relative;
+        }
+
+        .border-beam::before {
+            content: "";
+            position: absolute;
+            inset: -1.5px;
+            border-radius: 2.2rem;
+            padding: 1.5px;
+            background: linear-gradient(90deg, #4976a4, #a0c4ff, transparent, transparent, #4976a4);
+            background-size: 200% 200%;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            z-index: 25;
+            animation: border-beam-flow 6s linear infinite;
+        }
+
+        @keyframes border-beam-flow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Shimmering Shiny Text Effect */
+        .shiny-text {
+            background: linear-gradient(120deg, #313035 30%, #4976a4 50%, #313035 70%);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: text-shine 6s linear infinite;
+        }
+
+        .shiny-text-blue {
+            background: linear-gradient(120deg, #4976a4 30%, #a0c4ff 50%, #4976a4 70%);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: text-shine 6s linear infinite;
+        }
+
+        @keyframes text-shine {
+            0% {
+                background-position: 200% center;
+            }
+
+            100% {
+                background-position: -200% center;
+            }
+        }
+
+        .certificate-gallery {
+            position: relative;
+            min-height: 420px;
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.45s ease, transform 0.45s ease;
+        }
+
+        .certificate-gallery.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .certificate-stack {
+            position: relative;
+            z-index: 1;
+            height: 290px;
+            margin: 0 auto;
+            perspective: 1100px;
+        }
+
+        .certificate-photo {
+            --tx: 0px;
+            --ty: 0px;
+            --rot: 0deg;
+            --scale: 1;
+            position: absolute;
+            left: 50%;
+            top: 20px;
+            width: 220px;
+            min-height: 220px;
+            transform: translateX(-50%) translate(0, 0) rotate(0deg) scale(1);
+            opacity: 0;
+            transition:
+                transform 0.82s cubic-bezier(0.18, 0.78, 0.28, 1),
+                opacity 0.35s ease,
+                box-shadow 0.3s ease;
+            transition-delay: var(--delay, 0s);
+            will-change: transform;
+            cursor: grab;
+            touch-action: none;
+        }
+
+        .certificate-gallery.is-loaded .certificate-photo {
+            opacity: 1;
+            transform: translateX(-50%) translate(var(--tx), var(--ty)) rotate(var(--rot)) scale(var(--scale));
+        }
+
+        .certificate-photo:hover,
+        .certificate-photo:focus-visible {
+            --scale: 1.08;
+            z-index: 90 !important;
+            box-shadow: 0 26px 60px rgba(49, 48, 53, 0.16);
+            outline: none;
+        }
+
+        .certificate-photo:active {
+            cursor: grabbing;
+        }
+
+        .certificate-photo.is-dragging {
+            --scale: 1.08;
+            z-index: 100 !important;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .certificate-paper {
+            position: relative;
+            min-height: 220px;
+            overflow: hidden;
+            border-radius: 1.5rem;
+            border: 1px solid #e6e4d9;
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(250, 249, 241, 0.98)),
+                radial-gradient(circle at 20% 10%, rgba(160, 200, 255, 0.2), transparent 32%);
+            box-shadow: 0 12px 30px rgba(49, 48, 53, 0.08);
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        .certificate-paper::before {
+            content: "";
+            position: absolute;
+            inset: 12px;
+            border: 1px solid rgba(73, 118, 164, 0.16);
+            border-radius: 1.1rem;
+            pointer-events: none;
+        }
+
+        .certificate-paper::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, transparent 22%, rgba(255, 255, 255, 0.58) 48%, transparent 72%);
+            transform: translateX(-130%);
+            transition: transform 0.75s ease;
+            pointer-events: none;
+        }
+
+        .certificate-photo:hover .certificate-paper::after,
+        .certificate-photo:focus-visible .certificate-paper::after {
+            transform: translateX(130%);
+        }
+
+        .certificate-seal {
+            width: 54px;
+            height: 54px;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            background: radial-gradient(circle at 35% 30%, #a0c8ff, #4976a4 70%);
+            color: white;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 10px 20px rgba(73, 118, 164, 0.22);
+        }
+
+        @media (max-width: 900px) {
+            .certificate-gallery {
+                min-height: auto;
+            }
+
+            .certificate-stack {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                height: auto;
+            }
+
+            .certificate-photo,
+            .certificate-gallery.is-loaded .certificate-photo {
+                position: relative;
+                left: auto;
+                top: auto;
+                width: 100%;
+                opacity: 1;
+                transform: none;
+                transition-delay: 0s;
+            }
+        }
+
+        .hero-signal-strip {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.75rem;
+            margin-top: 2rem;
+        }
+
+        .hero-signal {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(230, 228, 217, 0.9);
+            border-radius: 1.25rem;
+            background: rgba(255, 255, 255, 0.72);
+            padding: 0.9rem 1rem;
+            min-height: 76px;
+            box-shadow: 0 12px 28px rgba(49, 48, 53, 0.04);
+        }
+
+        .hero-signal::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(110deg, transparent 18%, rgba(160, 200, 255, 0.16) 48%, transparent 78%);
+            transform: translateX(-120%);
+            animation: signal-sweep 7s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes signal-sweep {
+
+            0%,
+            38% {
+                transform: translateX(-120%);
+            }
+
+            62%,
+            100% {
+                transform: translateX(120%);
+            }
+        }
+
+        .capability-bento {
+            display: grid;
+            grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.92fr);
+            gap: 1rem;
+            align-items: stretch;
+        }
+
+        .bento-panel {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(230, 228, 217, 0.92);
+            border-radius: 1.5rem;
+            background: rgba(255, 255, 255, 0.78);
+            box-shadow: 0 16px 38px rgba(49, 48, 53, 0.05);
+        }
+
+        .bento-panel::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(135deg, rgba(160, 200, 255, 0.13), transparent 42%),
+                linear-gradient(315deg, rgba(73, 118, 164, 0.08), transparent 38%);
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            pointer-events: none;
+        }
+
+        .bento-panel:hover::before {
+            opacity: 1;
+        }
+
+        .command-card {
+            background: #313035;
+            color: white;
+            border-radius: 1.35rem;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 18px 40px rgba(49, 48, 53, 0.18);
+        }
+
+        .command-line {
+            min-height: 1.5rem;
+        }
+
+        .command-caret {
+            display: inline-block;
+            width: 0.55rem;
+            height: 1rem;
+            margin-left: 0.15rem;
+            background: #a0c8ff;
+            vertical-align: -0.15rem;
+            animation: caret-blink 1s steps(2, start) infinite;
+        }
+
+        @keyframes caret-blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .capability-tile {
+            position: relative;
+            overflow: hidden;
+            min-height: 148px;
+            border-radius: 1.25rem;
+            border: 1px solid rgba(230, 228, 217, 0.88);
+            background: rgba(250, 249, 241, 0.82);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .capability-tile:hover {
+            transform: translateY(-4px);
+            border-color: rgba(73, 118, 164, 0.34);
+            box-shadow: 0 18px 34px rgba(49, 48, 53, 0.08);
+        }
+
+        .skill-radar {
+            position: relative;
+            width: min(100%, 340px);
+            aspect-ratio: 1;
+            margin: 0 auto;
+            border-radius: 50%;
+            background:
+                repeating-radial-gradient(circle, rgba(73, 118, 164, 0.16) 0 1px, transparent 1px 54px),
+                conic-gradient(from 0deg, rgba(73, 118, 164, 0.08), rgba(160, 200, 255, 0.22), rgba(73, 118, 164, 0.08));
+            border: 1px solid rgba(73, 118, 164, 0.18);
+        }
+
+        .skill-radar::before {
+            content: "";
+            position: absolute;
+            inset: 14%;
+            border-radius: 50%;
+            border: 1px dashed rgba(73, 118, 164, 0.28);
+            animation: radar-spin 18s linear infinite;
+        }
+
+        @keyframes radar-spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .radar-label {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            white-space: nowrap;
+            border: 1px solid rgba(230, 228, 217, 0.95);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.86);
+            padding: 0.45rem 0.7rem;
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #313035;
+            box-shadow: 0 10px 22px rgba(49, 48, 53, 0.06);
+            transform: rotate(var(--angle)) translateX(118px) rotate(calc(-1 * var(--angle))) translate(-50%, -50%);
+        }
+
+        .radar-core {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 118px;
+            height: 118px;
+            display: grid;
+            place-items: center;
+            border-radius: 1.4rem;
+            border: 1px solid rgba(230, 228, 217, 0.9);
+            background: rgba(255, 255, 255, 0.88);
+            box-shadow: 0 20px 42px rgba(49, 48, 53, 0.09);
+            transform: translate(-50%, -50%) rotate(-4deg);
+        }
+
+        .process-step {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .process-step::before {
+            content: attr(data-step);
+            position: absolute;
+            left: 0;
+            top: 0.1rem;
+            width: 1.3rem;
+            height: 1.3rem;
+            display: grid;
+            place-items: center;
+            border-radius: 0.45rem;
+            background: #313035;
+            color: white;
+            font-size: 0.65rem;
+            font-weight: 800;
+        }
+
+        @media (max-width: 1024px) {
+            .capability-bento {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero-signal-strip {
+                grid-template-columns: 1fr;
+            }
+
+            .radar-label {
+                transform: rotate(var(--angle)) translateX(96px) rotate(calc(-1 * var(--angle))) translate(-50%, -50%);
+            }
+        }
+
+        .section-island {
+            position: fixed;
+            left: 50%;
+            top: 5.9rem;
+            z-index: 45;
+            width: min(92vw, 360px);
+            transform: translateX(-50%) translateY(-8px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+
+        .section-island.is-visible {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .section-island-shell {
+            overflow: hidden;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.78);
+            background: rgba(255, 255, 255, 0.58);
+            box-shadow: 0 18px 50px rgba(49, 48, 53, 0.12);
+            backdrop-filter: blur(22px) saturate(150%);
+            -webkit-backdrop-filter: blur(22px) saturate(150%);
+        }
+
+        .section-island-progress {
+            width: var(--progress, 0%);
+            transition: width 0.18s ease;
+        }
+
+        .project-preview {
+            position: relative;
+            overflow: hidden;
+            min-height: 230px;
+            background:
+                linear-gradient(135deg, rgba(160, 200, 255, 0.26), transparent 46%),
+                linear-gradient(315deg, rgba(73, 118, 164, 0.12), rgba(250, 249, 241, 0.92));
+        }
+
+        .preview-window {
+            position: absolute;
+            inset: 22px;
+            border-radius: 1.35rem;
+            border: 1px solid rgba(255, 255, 255, 0.82);
+            background: rgba(255, 255, 255, 0.72);
+            box-shadow: 0 24px 50px rgba(49, 48, 53, 0.12);
+            transform: rotate(-2deg);
+            transition: transform 0.35s ease;
+        }
+
+        .group:hover .preview-window {
+            transform: rotate(0deg) translateY(-4px);
+        }
+
+        .preview-topbar {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            border-bottom: 1px solid rgba(230, 228, 217, 0.9);
+            padding: 0.75rem 0.9rem;
+        }
+
+        .preview-dot {
+            width: 0.48rem;
+            height: 0.48rem;
+            border-radius: 999px;
+            background: rgba(73, 118, 164, 0.42);
+        }
+
+        .preview-content {
+            position: relative;
+            height: calc(100% - 42px);
+            padding: 1rem;
+        }
+
+        .plant-leaf {
+            position: absolute;
+            width: 88px;
+            height: 118px;
+            left: 50%;
+            top: 50%;
+            border-radius: 88px 0 88px 0;
+            background: linear-gradient(135deg, #7fb77e, #d9ed92);
+            transform: translate(-50%, -50%) rotate(-38deg);
+            box-shadow: inset -12px -10px 0 rgba(49, 48, 53, 0.08);
+        }
+
+        .plant-leaf::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 12%;
+            width: 2px;
+            height: 78%;
+            background: rgba(49, 48, 53, 0.18);
+            transform: rotate(24deg);
+        }
+
+        .route-map {
+            position: absolute;
+            inset: 1rem;
+            border-radius: 1rem;
+            background:
+                linear-gradient(to right, rgba(73, 118, 164, 0.12) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(73, 118, 164, 0.12) 1px, transparent 1px);
+            background-size: 28px 28px;
+        }
+
+        .route-map::before {
+            content: "";
+            position: absolute;
+            left: 18%;
+            top: 62%;
+            width: 66%;
+            height: 36%;
+            border-top: 5px solid #4976a4;
+            border-right: 5px solid #a0c8ff;
+            border-radius: 999px 999px 0 0;
+            transform: rotate(-12deg);
+        }
+
+        .preview-car {
+            position: absolute;
+            left: 16%;
+            right: 16%;
+            top: 45%;
+            height: 48px;
+            border-radius: 999px 999px 18px 18px;
+            background: linear-gradient(135deg, #313035, #4976a4);
+            box-shadow: 0 18px 30px rgba(49, 48, 53, 0.18);
+        }
+
+        .preview-car::before {
+            content: "";
+            position: absolute;
+            left: 22%;
+            right: 22%;
+            top: -22px;
+            height: 38px;
+            border-radius: 999px 999px 8px 8px;
+            background: linear-gradient(135deg, rgba(160, 200, 255, 0.92), rgba(255, 255, 255, 0.82));
+        }
+
+        .drone-body {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 92px;
+            height: 44px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #313035, #66646b);
+            transform: translate(-50%, -50%);
+            box-shadow: 0 18px 32px rgba(49, 48, 53, 0.16);
+        }
+
+        .drone-arm {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 210px;
+            height: 2px;
+            background: rgba(49, 48, 53, 0.42);
+            transform: translate(-50%, -50%) rotate(var(--arm-rot));
+        }
+
+        .drone-rotor {
+            position: absolute;
+            width: 48px;
+            height: 48px;
+            border: 3px solid rgba(73, 118, 164, 0.55);
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.35);
+            animation: rotor-pulse 2.2s ease-in-out infinite;
+        }
+
+        @keyframes rotor-pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.08);
+            }
+        }
+
+        .project-hover-list {
+            position: relative;
+        }
+
+        .project-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            border-top: 1px solid rgba(49, 48, 53, 0.16);
+            padding: 2.4rem 0;
+            cursor: pointer;
+            transition: opacity 0.25s ease;
+        }
+
+        .project-row:last-child {
+            border-bottom: 1px solid rgba(49, 48, 53, 0.16);
+        }
+
+        .project-row-title {
+            transition: transform 0.32s ease, color 0.32s ease;
+        }
+
+        .project-row-meta {
+            transition: transform 0.32s ease, color 0.32s ease;
+        }
+
+        .project-row:hover .project-row-title,
+        .project-row:focus-visible .project-row-title {
+            color: #4976a4;
+            transform: translateX(12px);
+        }
+
+        .project-row:hover .project-row-meta,
+        .project-row:focus-visible .project-row-meta {
+            color: #313035;
+            transform: translateX(-12px);
+        }
+
+        .project-hover-list:hover .project-row:not(:hover) {
+            opacity: 0.42;
+        }
+
+        .project-modal-preview,
+        .project-modal-cursor,
+        .project-modal-label {
+            position: fixed;
+            left: 0;
+            top: 0;
+            pointer-events: none;
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+            transition: transform 0.42s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.24s ease;
+            z-index: 60;
+        }
+
+        .project-modal-preview {
+            width: 350px;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 1.4rem;
+            border: 1px solid rgba(255, 255, 255, 0.72);
+            background: white;
+            box-shadow: 0 28px 80px rgba(49, 48, 53, 0.22);
+        }
+
+        .project-modal-preview.is-active,
+        .project-modal-cursor.is-active,
+        .project-modal-label.is-active {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .project-modal-track {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            transition: top 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+
+        .project-modal-slide {
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .project-modal-card {
+            position: relative;
+            width: 78%;
+            height: 74%;
+            overflow: hidden;
+            border-radius: 1rem;
+            background: rgba(255, 255, 255, 0.74);
+            border: 1px solid rgba(255, 255, 255, 0.82);
+            box-shadow: 0 20px 40px rgba(49, 48, 53, 0.22);
+            transform: rotate(-3deg);
+        }
+
+        .project-modal-card::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: 38px;
+            border-bottom: 1px solid rgba(230, 228, 217, 0.9);
+            background: rgba(255, 255, 255, 0.62);
+        }
+
+        .project-modal-card::after {
+            content: "";
+            position: absolute;
+            left: 16px;
+            top: 15px;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #4976a4;
+            box-shadow: 13px 0 0 rgba(73, 118, 164, 0.42), 26px 0 0 rgba(73, 118, 164, 0.24);
+        }
+
+        .project-modal-cursor,
+        .project-modal-label {
+            width: 82px;
+            height: 82px;
+            display: grid;
+            place-items: center;
+            border-radius: 999px;
+        }
+
+        .project-modal-cursor {
+            background: #4976a4;
+            box-shadow: 0 16px 40px rgba(73, 118, 164, 0.32);
+        }
+
+        .project-modal-label {
+            color: white;
+            font-size: 0.78rem;
+            font-weight: 800;
+        }
+
+        @media (max-width: 900px) {
+            .project-row {
+                display: block;
+                padding: 1.7rem 0;
+            }
+
+            .project-row-title {
+                font-size: 2.25rem;
+                line-height: 1.05;
+            }
+
+            .project-row-meta {
+                margin-top: 0.75rem;
+            }
+
+            .project-modal-preview,
+            .project-modal-cursor,
+            .project-modal-label {
+                display: none;
+            }
+        }
+
+        .about-proof-grid {
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 1rem;
+            align-items: stretch;
+        }
+
+        .proof-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1.5rem;
+            border: 1px solid rgba(230, 228, 217, 0.92);
+            background: rgba(255, 255, 255, 0.76);
+            box-shadow: 0 16px 38px rgba(49, 48, 53, 0.05);
+        }
+
+        .proof-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(160, 200, 255, 0.13), transparent 45%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .proof-card:hover::after {
+            opacity: 1;
+        }
+
+        .tech-globe-shell {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1.75rem;
+            border: 1px solid rgba(230, 228, 217, 0.92);
+            background:
+                radial-gradient(circle at 50% 45%, rgba(160, 200, 255, 0.22), transparent 42%),
+                rgba(255, 255, 255, 0.76);
+            min-height: 520px;
+        }
+
+        .tech-globe-wrap {
+            position: relative;
+            width: min(100%, 470px);
+            aspect-ratio: 1;
+            margin: 0 auto;
+        }
+
+        #tech-globe {
+            width: 100%;
+            height: 100%;
+            cursor: grab;
+            touch-action: none;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        #tech-globe.is-ready {
+            opacity: 1;
+        }
+
+        .globe-pin,
+        .globe-traffic {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s ease, filter 0.2s ease;
+        }
+
+        .globe-pin {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .globe-pyramid {
+            position: relative;
+            width: 13px;
+            height: 13px;
+            transform-style: preserve-3d;
+            animation: pyramid-spin 4s linear infinite;
+        }
+
+        .globe-pyramid span {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 0;
+            height: 0;
+            border-left: 6.5px solid transparent;
+            border-right: 6.5px solid transparent;
+            border-bottom: 13px solid #313035;
+            transform-origin: center bottom;
+        }
+
+        .globe-pyramid span:nth-child(1) {
+            transform: rotateY(0deg) translateZ(4px) rotateX(19.5deg);
+        }
+
+        .globe-pyramid span:nth-child(2) {
+            border-bottom-color: #4976a4;
+            transform: rotateY(120deg) translateZ(4px) rotateX(19.5deg);
+        }
+
+        .globe-pyramid span:nth-child(3) {
+            border-bottom-color: #66646b;
+            transform: rotateY(240deg) translateZ(4px) rotateX(19.5deg);
+        }
+
+        @keyframes pyramid-spin {
+            to {
+                transform: rotateX(20deg) rotateY(360deg);
+            }
+        }
+
+        .globe-pin-label,
+        .globe-traffic {
+            border-radius: 0.35rem;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 0.58rem;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            white-space: nowrap;
+            box-shadow: 0 6px 18px rgba(49, 48, 53, 0.12);
+        }
+
+        .globe-pin-label {
+            background: white;
+            color: #313035;
+            padding: 0.16rem 0.42rem;
+        }
+
+        .globe-traffic {
+            background: rgba(255, 255, 255, 0.82);
+            color: #313035;
+            padding: 0.22rem 0.5rem;
+            filter: drop-shadow(0 1px 2px rgba(49, 48, 53, 0.2));
+        }
+
+        .stack-marquee-stage {
+            position: relative;
+            overflow: hidden;
+            min-height: 330px;
+            border-radius: 1.65rem;
+            border: 1px solid rgba(230, 228, 217, 0.92);
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.78), rgba(250, 249, 241, 0.94)),
+                radial-gradient(circle at 22% 22%, rgba(160, 200, 255, 0.22), transparent 34%);
+            box-shadow: 0 18px 42px rgba(49, 48, 53, 0.06);
+            perspective: 1200px;
+        }
+
+        .stack-marquee-stage::before,
+        .stack-marquee-stage::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 20%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .stack-marquee-stage::before {
+            left: 0;
+            background: linear-gradient(to right, #faf9f1, transparent);
+        }
+
+        .stack-marquee-stage::after {
+            right: 0;
+            background: linear-gradient(to left, #faf9f1, transparent);
+        }
+
+        .stack-marquee-plane {
+            position: absolute;
+            left: -18%;
+            right: -18%;
+            top: 50%;
+            transform: translateY(-50%) rotateY(-28deg) rotateX(8deg);
+            transform-style: preserve-3d;
+        }
+
+        .stack-marquee-row {
+            display: flex;
+            width: max-content;
+            gap: 0.85rem;
+            margin: 0.85rem 0;
+            animation: stack-marquee 42s linear infinite;
+        }
+
+        .stack-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            min-width: 132px;
+            justify-content: center;
+            border-radius: 0.85rem;
+            border: 1px solid rgba(230, 228, 217, 0.98);
+            background: rgba(255, 255, 255, 0.88);
+            padding: 0.85rem 1rem;
+            color: #313035;
+            font-size: 0.82rem;
+            font-weight: 900;
+            box-shadow: 0 14px 32px rgba(49, 48, 53, 0.08);
+        }
+
+        @keyframes stack-marquee {
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        .case-study-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .case-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1.35rem;
+            border: 1px solid rgba(230, 228, 217, 0.92);
+            background: rgba(255, 255, 255, 0.76);
+            padding: 1.35rem;
+            min-height: 260px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .case-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 22px 42px rgba(49, 48, 53, 0.08);
+        }
+
+        .case-stat {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            border-radius: 999px;
+            background: #313035;
+            color: white;
+            padding: 0.45rem 0.65rem;
+            font-size: 0.68rem;
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 1024px) {
+            .about-proof-grid,
+            .case-study-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tech-globe-shell {
+                min-height: auto;
+            }
+        }
     </style>
 </head>
 
 <body class="font-body selection:bg-accent-sky/30 selection:text-text-main text-text-main leading-relaxed relative">
+    <!-- Interactive Background Magnetic Grid Canvas -->
+    <canvas id="magnetic-grid-canvas"
+        class="fixed inset-0 w-full h-full pointer-events-none z-[-1] opacity-[0.06]"></canvas>
 
 
 
@@ -114,6 +1159,10 @@
             <div class="hidden md:flex items-center gap-8">
                 <a class="text-text-muted hover:text-text-main transition-colors font-semibold tracking-tight text-sm"
                     href="#about">About</a>
+                <a class="text-text-muted hover:text-text-main transition-colors font-semibold tracking-tight text-sm"
+                    href="#stack">Stack</a>
+                <a class="text-text-muted hover:text-text-main transition-colors font-semibold tracking-tight text-sm"
+                    href="#capabilities">Capabilities</a>
                 <a class="text-text-muted hover:text-text-main transition-colors font-semibold tracking-tight text-sm"
                     href="#work">Projects</a>
                 <a class="text-text-muted hover:text-text-main transition-colors font-semibold tracking-tight text-sm"
@@ -128,6 +1177,22 @@
             </a>
         </nav>
     </header>
+
+    <div id="section-island" class="section-island hidden md:block">
+        <div class="section-island-shell">
+            <div class="flex items-center justify-between gap-3 px-4 py-2.5">
+                <div class="flex items-center gap-2 min-w-0">
+                    <span class="material-symbols-outlined text-accent-blue text-lg shrink-0" id="section-island-icon">home</span>
+                    <span id="section-island-label"
+                        class="truncate text-xs font-black uppercase tracking-[0.18em] text-text-main">Start</span>
+                </div>
+                <span class="text-[10px] font-black uppercase tracking-[0.18em] text-text-muted">Scroll</span>
+            </div>
+            <div class="h-1 bg-white/55">
+                <div id="section-island-progress" class="section-island-progress h-full bg-accent-blue"></div>
+            </div>
+        </div>
+    </div>
 
     <main class="w-full max-w-7xl mx-auto px-4 sm:px-6 mt-32 space-y-8 pb-32">
 
@@ -155,36 +1220,63 @@
                         Learn more
                     </a>
                 </div>
+                <div class="hero-signal-strip">
+                    <div class="hero-signal">
+                        <span class="material-symbols-outlined text-accent-blue text-2xl mb-2 block">auto_awesome</span>
+                        <p class="text-[10px] font-black uppercase tracking-[0.22em] text-text-muted">Interface Style</p>
+                        <p class="font-bold text-text-main">Polished micro-interactions</p>
+                    </div>
+                    <div class="hero-signal">
+                        <span class="material-symbols-outlined text-accent-blue text-2xl mb-2 block">psychology</span>
+                        <p class="text-[10px] font-black uppercase tracking-[0.22em] text-text-muted">AI Workflow</p>
+                        <p class="font-bold text-text-main">RAG, data apps, automation</p>
+                    </div>
+                </div>
             </div>
 
-            <div id="id-card-container" class="overflow-visible p-0 relative min-h-[500px] flex items-center justify-center select-none" style="perspective: 1200px;">
+            <div id="id-card-container"
+                class="overflow-visible p-0 relative min-h-[500px] flex items-center justify-center select-none"
+                style="perspective: 1200px;">
                 <!-- Subtle studio grid background -->
-                <div class="absolute inset-0 opacity-[0.05] pointer-events-none" style="background-image: radial-gradient(#313035 1px, transparent 1px); background-size: 20px 20px;"></div>
-                
+                <div class="absolute inset-0 opacity-[0.05] pointer-events-none"
+                    style="background-image: radial-gradient(#313035 1px, transparent 1px); background-size: 20px 20px;">
+                </div>
+
                 <!-- SVG Lanyard Shadow (Renders behind the card) -->
                 <svg id="lanyard-shadow-svg" class="absolute inset-0 w-full h-full pointer-events-none z-0">
-                    <path id="lanyard-shadow" d="" fill="none" stroke="rgba(49, 48, 53, 0.05)" stroke-width="4" stroke-linecap="round" />
+                    <path id="lanyard-shadow" d="" fill="none" stroke="rgba(49, 48, 53, 0.05)" stroke-width="4"
+                        stroke-linecap="round" />
                 </svg>
-                
+
                 <!-- Lanyard wall hook anchor at the top (z-25 sits on top of everything) -->
-                <div id="lanyard-anchor-point" class="absolute top-4 left-1/2 -translate-x-1/2 w-4.5 h-4.5 bg-[#313035] rounded-full border border-white shadow-[0_2px_6px_rgba(0,0,0,0.15)] z-25 flex items-center justify-center">
+                <div id="lanyard-anchor-point"
+                    class="absolute top-4 left-1/2 -translate-x-1/2 w-4.5 h-4.5 bg-[#313035] rounded-full border border-white shadow-[0_2px_6px_rgba(0,0,0,0.15)] z-25 flex items-center justify-center">
                     <div class="w-1.5 h-1.5 bg-[#4976a4] rounded-full"></div>
                 </div>
-                
+
                 <!-- Interactive ID Card Badge (absolute top-0 left-0 coordinates perfectly matches lanyard SVG space) -->
-                <div id="id-card" class="absolute top-0 left-0 w-[280px] h-[450px] rounded-[2.2rem] bg-white border border-[#e6e4d9] shadow-2xl flex flex-col items-center p-6 z-10 select-none cursor-grab active:cursor-grabbing hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.18)]" style="transform-style: preserve-3d; transform: translate3d(0px, 120px, 0px) rotate(0deg); will-change: transform;">
-                    
+                <div id="id-card"
+                    class="border-beam absolute top-0 left-0 w-[280px] h-[450px] rounded-[2.2rem] bg-white border border-[#e6e4d9] shadow-2xl flex flex-col items-center p-6 z-10 select-none cursor-grab active:cursor-grabbing hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.18)]"
+                    style="transform-style: preserve-3d; transform: translate3d(0px, 120px, 0px) rotate(0deg); will-change: transform;">
+
                     <!-- Shiny Holographic Reflection Overlay (softened to 12% to keep profile image completely natural) -->
-                    <div id="holo-sheen" class="absolute inset-0 rounded-[2.2rem] pointer-events-none opacity-[0.12] mix-blend-color-dodge transition-opacity duration-300 z-30" style="background: linear-gradient(135deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 45%, rgba(160,200,255,0.6) 50%, rgba(255,255,255,0.8) 55%, rgba(255,255,255,0) 100%) -280px -280px / 800px 800px no-repeat;"></div>
-                    
+                    <div id="holo-sheen"
+                        class="absolute inset-0 rounded-[2.2rem] pointer-events-none opacity-[0.12] mix-blend-color-dodge transition-opacity duration-300 z-30"
+                        style="background: linear-gradient(135deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 45%, rgba(160,200,255,0.6) 50%, rgba(255,255,255,0.8) 55%, rgba(255,255,255,0) 100%) -280px -280px / 800px 800px no-repeat;">
+                    </div>
+
                     <!-- Glossy Glass reflection -->
-                    <div class="absolute inset-0 rounded-[2.2rem] pointer-events-none opacity-[0.12] z-20" style="background: linear-gradient(105deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.1) 40%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0.3) 100%);"></div>
+                    <div class="absolute inset-0 rounded-[2.2rem] pointer-events-none opacity-[0.12] z-20"
+                        style="background: linear-gradient(105deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.1) 40%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0.3) 100%);">
+                    </div>
 
                     <!-- Badge Holder Slot -->
-                    <div class="w-14 h-3.5 bg-neutral-100 rounded-full mb-5 border border-neutral-200 flex items-center justify-center shadow-[inset_0_1px_3px_rgba(0,0,0,0.06)] relative z-20 shrink-0">
+                    <div
+                        class="w-14 h-3.5 bg-neutral-100 rounded-full mb-5 border border-neutral-200 flex items-center justify-center shadow-[inset_0_1px_3px_rgba(0,0,0,0.06)] relative z-20 shrink-0">
                         <div class="w-8 h-1 bg-[#313035]/30 rounded-full"></div>
                         <!-- Chrome Lanyard Clip -->
-                        <div class="absolute -top-3 w-4 h-5.5 bg-gradient-to-b from-[#b0b0b0] via-[#eaeaea] to-[#888888] rounded-t-sm rounded-b border border-neutral-400 shadow-sm flex items-center justify-center">
+                        <div
+                            class="absolute -top-3 w-4 h-5.5 bg-gradient-to-b from-[#b0b0b0] via-[#eaeaea] to-[#888888] rounded-t-sm rounded-b border border-neutral-400 shadow-sm flex items-center justify-center">
                             <div class="w-2 h-2 bg-[#4976a4] rounded-full border border-white/20"></div>
                         </div>
                     </div>
@@ -195,44 +1287,59 @@
                         <div class="flex justify-between items-center mb-3">
                             <div class="flex items-center gap-1.5">
                                 <div class="w-2 h-2 bg-accent-blue rounded-full animate-pulse"></div>
-                                <span class="text-[9px] font-black uppercase tracking-widest text-[#4976a4]">CREATIVE DEV</span>
+                                <span class="shiny-text-blue text-[9px] font-black uppercase tracking-widest">CREATIVE
+                                    DEV</span>
                             </div>
                             <span class="text-[9px] font-bold text-text-muted tracking-wider">ID #CHARANBS18</span>
                         </div>
 
                         <!-- Profile Photo Frame -->
-                        <div class="w-44 h-44 mx-auto rounded-2xl bg-neutral-50 border border-neutral-100 p-1.5 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] mb-4 overflow-hidden relative group">
+                        <div
+                            class="w-44 h-44 mx-auto rounded-2xl bg-neutral-50 border border-neutral-100 p-1.5 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] mb-4 overflow-hidden relative group">
                             <!-- Image inside badge (fully clear and original) -->
-                            <img src="char.png" alt="Charan BS" class="w-full h-full object-cover rounded-[0.9rem] border border-black/5 pointer-events-none select-none" />
+                            <img src="char.png" alt="Charan BS"
+                                class="w-full h-full object-cover rounded-[0.9rem] border border-black/5 pointer-events-none select-none" />
                         </div>
 
                         <!-- Name & Role -->
                         <div class="text-center mb-4">
-                            <h2 class="text-xl font-bold tracking-tight text-[#313035] leading-tight mb-0.5 select-none">Charan B.S.</h2>
-                            <p class="text-[10px] font-bold text-[#4976a4] uppercase tracking-wider select-none">AI &amp; Full-Stack Developer</p>
+                            <h2
+                                class="text-xl font-bold tracking-tight text-[#313035] leading-tight mb-0.5 select-none">
+                                <span class="shiny-text">Charan B.S.</span></h2>
+                            <p class="text-[10px] font-bold text-[#4976a4] uppercase tracking-wider select-none">AI
+                                &amp; Full-Stack Developer</p>
                         </div>
 
                         <!-- Specs Grid (Golden Chip & Details) -->
                         <div class="grid grid-cols-5 gap-3 items-center mt-auto border-t border-[#f1efe6] pt-3">
                             <!-- Golden Silicon Chip -->
                             <div class="col-span-2 flex items-center">
-                                <svg class="w-10 h-7 rounded bg-gradient-to-br from-[#ffe082] via-[#ffd54f] to-[#ffb300] p-1 border border-[#ffb300]/50 shadow-sm" viewBox="0 0 40 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M4 4h32v22H4V4z" fill="#ffb300" opacity="0.3"/>
-                                    <rect x="7" y="6" width="6" height="5" rx="1" fill="#fff" opacity="0.5"/>
-                                    <rect x="7" y="12" width="6" height="5" rx="1" fill="#fff" opacity="0.5"/>
-                                    <rect x="7" y="18" width="6" height="5" rx="1" fill="#fff" opacity="0.5"/>
-                                    <rect x="27" y="6" width="6" height="5" rx="1" fill="#fff" opacity="0.5"/>
-                                    <rect x="27" y="12" width="6" height="5" rx="1" fill="#fff" opacity="0.5"/>
-                                    <rect x="27" y="18" width="6" height="5" rx="1" fill="#fff" opacity="0.5"/>
-                                    <path d="M13 8.5h14M13 14.5h14M13 20.5h14M20 6v17" stroke="#ff8f00" stroke-width="0.8" stroke-linecap="round"/>
+                                <svg class="w-10 h-7 rounded bg-gradient-to-br from-[#ffe082] via-[#ffd54f] to-[#ffb300] p-1 border border-[#ffb300]/50 shadow-sm"
+                                    viewBox="0 0 40 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4 4h32v22H4V4z" fill="#ffb300" opacity="0.3" />
+                                    <rect x="7" y="6" width="6" height="5" rx="1" fill="#fff" opacity="0.5" />
+                                    <rect x="7" y="12" width="6" height="5" rx="1" fill="#fff" opacity="0.5" />
+                                    <rect x="7" y="18" width="6" height="5" rx="1" fill="#fff" opacity="0.5" />
+                                    <rect x="27" y="6" width="6" height="5" rx="1" fill="#fff" opacity="0.5" />
+                                    <rect x="27" y="12" width="6" height="5" rx="1" fill="#fff" opacity="0.5" />
+                                    <rect x="27" y="18" width="6" height="5" rx="1" fill="#fff" opacity="0.5" />
+                                    <path d="M13 8.5h14M13 14.5h14M13 20.5h14M20 6v17" stroke="#ff8f00"
+                                        stroke-width="0.8" stroke-linecap="round" />
                                 </svg>
                             </div>
 
                             <!-- Details -->
-                            <div class="col-span-3 flex flex-col justify-center text-[9px] font-medium text-text-muted space-y-0.5 select-none pl-1">
-                                <div><span class="font-bold text-text-main text-[8px] uppercase tracking-wide">Dept:</span> ENG-AI</div>
-                                <div><span class="font-bold text-text-main text-[8px] uppercase tracking-wide">Loc:</span> Bangalore</div>
-                                <div><span class="font-bold text-text-main text-[8px] uppercase tracking-wide">Exp:</span> 2026.05</div>
+                            <div
+                                class="col-span-3 flex flex-col justify-center text-[9px] font-medium text-text-muted space-y-0.5 select-none pl-1">
+                                <div><span
+                                        class="font-bold text-text-main text-[8px] uppercase tracking-wide">Dept:</span>
+                                    ENG-AI</div>
+                                <div><span
+                                        class="font-bold text-text-main text-[8px] uppercase tracking-wide">Loc:</span>
+                                    Bangalore</div>
+                                <div><span
+                                        class="font-bold text-text-main text-[8px] uppercase tracking-wide">Exp:</span>
+                                    2026.05</div>
                             </div>
                         </div>
 
@@ -241,39 +1348,116 @@
                             <svg class="w-full h-7 opacity-80" viewBox="0 0 200 30" xmlns="http://www.w3.org/2000/svg">
                                 <rect x="0" width="200" height="30" fill="transparent" />
                                 <g fill="#313035">
-                                    <rect x="10" y="2" width="2" height="20" /><rect x="14" y="2" width="3" height="20" /><rect x="19" y="2" width="1" height="20" /><rect x="22" y="2" width="2" height="20" />
-                                    <rect x="26" y="2" width="4" height="20" /><rect x="32" y="2" width="1" height="20" /><rect x="35" y="2" width="2" height="20" /><rect x="39" y="2" width="3" height="20" />
-                                    <rect x="44" y="2" width="1" height="20" /><rect x="47" y="2" width="4" height="20" /><rect x="53" y="2" width="2" height="20" /><rect x="57" y="2" width="1" height="20" />
-                                    <rect x="60" y="2" width="3" height="20" /><rect x="65" y="2" width="2" height="20" /><rect x="69" y="2" width="1" height="20" /><rect x="72" y="2" width="4" height="20" />
-                                    <rect x="78" y="2" width="1" height="20" /><rect x="81" y="2" width="2" height="20" /><rect x="85" y="2" width="3" height="20" /><rect x="90" y="2" width="2" height="20" />
-                                    <rect x="94" y="2" width="1" height="20" /><rect x="97" y="2" width="4" height="20" /><rect x="103" y="2" width="2" height="20" /><rect x="107" y="2" width="3" height="20" />
-                                    <rect x="112" y="2" width="1" height="20" /><rect x="115" y="2" width="2" height="20" /><rect x="119" y="2" width="4" height="20" /><rect x="125" y="2" width="1" height="20" />
-                                    <rect x="128" y="2" width="3" height="20" /><rect x="133" y="2" width="2" height="20" /><rect x="137" y="2" width="1" height="20" /><rect x="140" y="2" width="4" height="20" />
-                                    <rect x="146" y="2" width="2" height="20" /><rect x="150" y="2" width="1" height="20" /><rect x="153" y="2" width="3" height="20" /><rect x="158" y="2" width="2" height="20" />
-                                    <rect x="162" y="2" width="4" height="20" /><rect x="168" y="2" width="1" height="20" /><rect x="171" y="2" width="2" height="20" /><rect x="175" y="2" width="3" height="20" />
-                                    <rect x="180" y="2" width="1" height="20" /><rect x="183" y="2" width="4" height="20" /><rect x="189" y="2" width="2" height="20" />
+                                    <rect x="10" y="2" width="2" height="20" />
+                                    <rect x="14" y="2" width="3" height="20" />
+                                    <rect x="19" y="2" width="1" height="20" />
+                                    <rect x="22" y="2" width="2" height="20" />
+                                    <rect x="26" y="2" width="4" height="20" />
+                                    <rect x="32" y="2" width="1" height="20" />
+                                    <rect x="35" y="2" width="2" height="20" />
+                                    <rect x="39" y="2" width="3" height="20" />
+                                    <rect x="44" y="2" width="1" height="20" />
+                                    <rect x="47" y="2" width="4" height="20" />
+                                    <rect x="53" y="2" width="2" height="20" />
+                                    <rect x="57" y="2" width="1" height="20" />
+                                    <rect x="60" y="2" width="3" height="20" />
+                                    <rect x="65" y="2" width="2" height="20" />
+                                    <rect x="69" y="2" width="1" height="20" />
+                                    <rect x="72" y="2" width="4" height="20" />
+                                    <rect x="78" y="2" width="1" height="20" />
+                                    <rect x="81" y="2" width="2" height="20" />
+                                    <rect x="85" y="2" width="3" height="20" />
+                                    <rect x="90" y="2" width="2" height="20" />
+                                    <rect x="94" y="2" width="1" height="20" />
+                                    <rect x="97" y="2" width="4" height="20" />
+                                    <rect x="103" y="2" width="2" height="20" />
+                                    <rect x="107" y="2" width="3" height="20" />
+                                    <rect x="112" y="2" width="1" height="20" />
+                                    <rect x="115" y="2" width="2" height="20" />
+                                    <rect x="119" y="2" width="4" height="20" />
+                                    <rect x="125" y="2" width="1" height="20" />
+                                    <rect x="128" y="2" width="3" height="20" />
+                                    <rect x="133" y="2" width="2" height="20" />
+                                    <rect x="137" y="2" width="1" height="20" />
+                                    <rect x="140" y="2" width="4" height="20" />
+                                    <rect x="146" y="2" width="2" height="20" />
+                                    <rect x="150" y="2" width="1" height="20" />
+                                    <rect x="153" y="2" width="3" height="20" />
+                                    <rect x="158" y="2" width="2" height="20" />
+                                    <rect x="162" y="2" width="4" height="20" />
+                                    <rect x="168" y="2" width="1" height="20" />
+                                    <rect x="171" y="2" width="2" height="20" />
+                                    <rect x="175" y="2" width="3" height="20" />
+                                    <rect x="180" y="2" width="1" height="20" />
+                                    <rect x="183" y="2" width="4" height="20" />
+                                    <rect x="189" y="2" width="2" height="20" />
                                 </g>
                             </svg>
-                            <span class="text-[8px] font-bold text-text-muted mt-1 select-none tracking-[0.25em] uppercase">CHARAN.BS.18</span>
+                            <span
+                                class="text-[8px] font-bold text-text-muted mt-1 select-none tracking-[0.25em] uppercase">CHARAN.BS.18</span>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- SVG Lanyard String (Renders in front of the card, connecting directly to the clip) -->
                 <svg id="lanyard-svg" class="absolute inset-0 w-full h-full pointer-events-none z-20">
-                    <path id="lanyard-string" d="" fill="none" stroke="#4976a4" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="1 5" stroke-linejoin="round" />
+                    <path id="lanyard-string" d="" fill="none" stroke="#4976a4" stroke-width="3.5"
+                        stroke-linecap="round" stroke-dasharray="1 5" stroke-linejoin="round" />
                 </svg>
             </div>
         </section>
 
         <!-- Stats / GitHub Section -->
         <section class="framer-card p-10 lg:p-16 shadow-sm" id="about">
-            <div class="max-w-3xl mx-auto text-center mb-16">
+            <div class="max-w-3xl mx-auto text-center mb-12">
                 <!-- Callbaba headers -->
-                <h2 class="font-headline text-4xl lg:text-5xl font-extrabold tracking-tight text-text-main mb-6">Open
-                    Source Footprint</h2>
-                <p class="text-lg text-text-muted font-medium">My open-source contributions and activity metrics
-                    generated directly from my GitHub profile.</p>
+                <h2 class="font-headline text-4xl lg:text-5xl font-extrabold tracking-tight text-text-main mb-6">I build AI-powered web products with clear interfaces.</h2>
+                <p class="text-lg text-text-muted font-medium">I am focused on AI/ML applications, data-aware tools,
+                    full-stack prototypes, and interactive frontends that feel polished enough to show to real users.</p>
+            </div>
+
+            <div class="about-proof-grid mb-12">
+                <div class="proof-card p-7 lg:p-8">
+                    <div class="relative z-10">
+                        <p class="text-[10px] font-black uppercase tracking-[0.24em] text-accent-blue mb-5">What I can do for a team</p>
+                        <div class="grid sm:grid-cols-2 gap-5">
+                            <div>
+                                <span class="material-symbols-outlined text-accent-blue text-3xl mb-3 block">psychology</span>
+                                <h3 class="font-extrabold text-text-main mb-2">AI application thinking</h3>
+                                <p class="text-sm font-medium text-text-muted">Turn an AI idea into a usable workflow, not just a model demo.</p>
+                            </div>
+                            <div>
+                                <span class="material-symbols-outlined text-accent-blue text-3xl mb-3 block">design_services</span>
+                                <h3 class="font-extrabold text-text-main mb-2">Frontend craft</h3>
+                                <p class="text-sm font-medium text-text-muted">Build interfaces with motion, hierarchy, and responsive polish.</p>
+                            </div>
+                            <div>
+                                <span class="material-symbols-outlined text-accent-blue text-3xl mb-3 block">database</span>
+                                <h3 class="font-extrabold text-text-main mb-2">Data-aware builds</h3>
+                                <p class="text-sm font-medium text-text-muted">Work with analysis, labeling, dashboards, and structured information.</p>
+                            </div>
+                            <div>
+                                <span class="material-symbols-outlined text-accent-blue text-3xl mb-3 block">rocket_launch</span>
+                                <h3 class="font-extrabold text-text-main mb-2">Prototype speed</h3>
+                                <p class="text-sm font-medium text-text-muted">Move quickly from rough requirement to deployed, reviewable experience.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="proof-card p-7 lg:p-8">
+                    <div class="relative z-10 h-full flex flex-col justify-between gap-8">
+                        <div>
+                            <p class="text-[10px] font-black uppercase tracking-[0.24em] text-accent-blue mb-4">Role fit</p>
+                            <h3 class="font-headline text-3xl font-extrabold leading-tight text-text-main mb-4">Best fit for AI/ML, frontend, full-stack, and data-product roles.</h3>
+                            <p class="text-text-muted font-medium">I bring the rare mix companies usually want in early talent: curiosity around AI, enough engineering range to build, and enough design taste to make the work feel credible.</p>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="stack-pill"><span class="material-symbols-outlined text-accent-blue text-lg">check_circle</span> Internship-ready</span>
+                            <span class="stack-pill"><span class="material-symbols-outlined text-accent-blue text-lg">check_circle</span> Product-minded</span>
+                            <span class="stack-pill"><span class="material-symbols-outlined text-accent-blue text-lg">check_circle</span> Build-first</span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="flex flex-col xl:flex-row gap-6 justify-center items-center mb-10">
@@ -290,6 +1474,237 @@
             </div>
         </section>
 
+        <!-- Tech Stack Globe Section -->
+        <section id="stack" class="framer-card p-10 lg:p-16 shadow-sm bg-[#faf9f1]">
+            <div class="grid lg:grid-cols-[0.85fr_1.15fr] gap-8 items-center">
+                <div>
+                    <div
+                        class="inline-block px-4 py-1.5 rounded-full bg-white border border-border text-accent-blue text-xs font-bold tracking-wide uppercase mb-6">
+                        Tech Stack
+                    </div>
+                    <h2 class="font-headline text-4xl lg:text-5xl font-extrabold tracking-tight text-text-main mb-6">
+                        A stack built for AI products, data workflows, and expressive interfaces.</h2>
+                    <p class="text-lg text-text-muted font-medium mb-8">
+                        The globe visual maps the tools I use like an application network: frontend, backend, AI,
+                        data, design, and deployment working together.
+                    </p>
+                    <div class="stack-marquee-stage">
+                        <div class="stack-marquee-plane">
+                            <div class="stack-marquee-row">
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">code</span> Java</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">javascript</span> JavaScript</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">terminal</span> Python</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">html</span> HTML5</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">view_quilt</span> React</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">deployed_code</span> Netlify</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">hub</span> NodeJS</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">api</span> Flask</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">database</span> MySQL</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">dns</span> MongoDB</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">design_services</span> Figma</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">view_in_ar</span> Blender</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">draw</span> Canva</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">movie</span> DaVinci</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">analytics</span> Power BI</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">bar_chart</span> Tableau</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">palette</span> Adobe</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">design_services</span> Figma</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">view_in_ar</span> Blender</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">draw</span> Canva</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">movie</span> DaVinci</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">analytics</span> Power BI</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">bar_chart</span> Tableau</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">palette</span> Adobe</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">code</span> Java</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">javascript</span> JavaScript</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">terminal</span> Python</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">html</span> HTML5</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">view_quilt</span> React</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">deployed_code</span> Netlify</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">hub</span> NodeJS</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">api</span> Flask</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">database</span> MySQL</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">dns</span> MongoDB</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">design_services</span> Figma</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">view_in_ar</span> Blender</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">draw</span> Canva</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">movie</span> DaVinci</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">analytics</span> Power BI</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">bar_chart</span> Tableau</span>
+                                <span class="stack-chip"><span class="material-symbols-outlined text-accent-blue text-lg">palette</span> Adobe</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tech-globe-shell p-6 lg:p-8">
+                    <div class="flex items-center justify-between gap-4 mb-4">
+                        <div>
+                            <p class="text-[10px] font-black uppercase tracking-[0.24em] text-accent-blue mb-1">Interactive stack network</p>
+                            <p class="text-sm font-bold text-text-muted">Drag the globe to inspect the stack.</p>
+                        </div>
+                        <span class="material-symbols-outlined text-accent-blue text-3xl">public</span>
+                    </div>
+                    <div class="tech-globe-wrap" data-tech-globe-wrap>
+                        <canvas id="tech-globe" width="700" height="700"></canvas>
+                        <div class="globe-pin" data-globe-pin="react">
+                            <div class="globe-pyramid"><span></span><span></span><span></span></div>
+                            <span class="globe-pin-label">react</span>
+                        </div>
+                        <div class="globe-pin" data-globe-pin="javascript">
+                            <div class="globe-pyramid"><span></span><span></span><span></span></div>
+                            <span class="globe-pin-label">javascript</span>
+                        </div>
+                        <div class="globe-pin" data-globe-pin="python">
+                            <div class="globe-pyramid"><span></span><span></span><span></span></div>
+                            <span class="globe-pin-label">python</span>
+                        </div>
+                        <div class="globe-pin" data-globe-pin="java">
+                            <div class="globe-pyramid"><span></span><span></span><span></span></div>
+                            <span class="globe-pin-label">java</span>
+                        </div>
+                        <div class="globe-pin" data-globe-pin="databases">
+                            <div class="globe-pyramid"><span></span><span></span><span></span></div>
+                            <span class="globe-pin-label">mysql/mongo</span>
+                        </div>
+                        <div class="globe-pin" data-globe-pin="backend">
+                            <div class="globe-pyramid"><span></span><span></span><span></span></div>
+                            <span class="globe-pin-label">node/flask</span>
+                        </div>
+                        <div class="globe-pin" data-globe-pin="design">
+                            <div class="globe-pyramid"><span></span><span></span><span></span></div>
+                            <span class="globe-pin-label">figma/canva</span>
+                        </div>
+                        <div class="globe-pin" data-globe-pin="3d">
+                            <div class="globe-pyramid"><span></span><span></span><span></span></div>
+                            <span class="globe-pin-label">blender</span>
+                        </div>
+                        <div class="globe-pin" data-globe-pin="analytics">
+                            <div class="globe-pyramid"><span></span><span></span><span></span></div>
+                            <span class="globe-pin-label">bi/tableau</span>
+                        </div>
+                        <div class="globe-pin" data-globe-pin="video">
+                            <div class="globe-pyramid"><span></span><span></span><span></span></div>
+                            <span class="globe-pin-label">resolve</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Creative Systems Section -->
+        <section id="capabilities" class="framer-card p-10 lg:p-16 shadow-sm bg-[#faf9f1]">
+            <div class="max-w-3xl mx-auto text-center mb-12">
+                <div
+                    class="inline-block px-4 py-1.5 rounded-full bg-white border border-border text-accent-blue text-xs font-bold tracking-wide uppercase mb-6">
+                    Creative Systems
+                </div>
+                <h2 class="font-headline text-4xl lg:text-5xl font-extrabold tracking-tight text-text-main mb-6">
+                    Built like a product, presented like a story.</h2>
+                <p class="text-lg text-text-muted font-medium">
+                    A compact view of the tools, thinking patterns, and interface details I bring into real projects.
+                </p>
+            </div>
+
+            <div class="capability-bento">
+                <div class="bento-panel p-6 lg:p-8 min-h-[520px]">
+                    <div class="relative z-10 flex flex-col h-full">
+                        <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-8">
+                            <div>
+                                <p class="text-[10px] font-black uppercase tracking-[0.24em] text-accent-blue mb-3">
+                                    AI command surface</p>
+                                <h3 class="font-headline text-3xl font-extrabold leading-tight text-text-main">
+                                    Ideas move from prompt to prototype.</h3>
+                            </div>
+                            <div
+                                class="inline-flex items-center gap-2 rounded-full border border-border bg-white px-4 py-2 text-xs font-bold text-text-muted self-start">
+                                <span class="material-symbols-outlined text-accent-blue text-base">bolt</span>
+                                Fast iteration loop
+                            </div>
+                        </div>
+
+                        <div class="command-card p-5 mb-6">
+                            <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-4">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-[#ff6b6b]"></span>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-[#ffd166]"></span>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-[#7bd88f]"></span>
+                                </div>
+                                <span class="text-[10px] uppercase tracking-[0.24em] text-white/45 font-black">charan.ai</span>
+                            </div>
+                            <p class="text-white/55 text-xs font-bold uppercase tracking-[0.2em] mb-3">Current build prompt</p>
+                            <p class="command-line font-mono text-sm md:text-base leading-relaxed">
+                                <span class="text-[#a0c8ff]">~/portfolio</span>
+                                <span class="text-white/45"> $ </span>
+                                <span data-command-text>Design an AI-ready portfolio experience</span><span
+                                    class="command-caret"></span>
+                            </p>
+                        </div>
+
+                        <div class="grid md:grid-cols-3 gap-4 mt-auto">
+                            <div class="capability-tile p-5">
+                                <span class="material-symbols-outlined text-accent-blue text-3xl mb-5 block">hub</span>
+                                <h4 class="font-extrabold text-text-main mb-2">RAG Apps</h4>
+                                <p class="text-sm font-medium text-text-muted">Retrieval flows, plant diagnosis, and domain-aware assistants.</p>
+                            </div>
+                            <div class="capability-tile p-5">
+                                <span class="material-symbols-outlined text-accent-blue text-3xl mb-5 block">view_in_ar</span>
+                                <h4 class="font-extrabold text-text-main mb-2">3D UI</h4>
+                                <p class="text-sm font-medium text-text-muted">Scroll scenes, product reveals, and cinematic interaction layers.</p>
+                            </div>
+                            <div class="capability-tile p-5">
+                                <span class="material-symbols-outlined text-accent-blue text-3xl mb-5 block">query_stats</span>
+                                <h4 class="font-extrabold text-text-main mb-2">Data Systems</h4>
+                                <p class="text-sm font-medium text-text-muted">Dashboards, analysis, labeling workflows, and clean pipelines.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid gap-4">
+                    <div class="bento-panel p-6 lg:p-7">
+                        <div class="relative z-10">
+                            <p class="text-[10px] font-black uppercase tracking-[0.24em] text-accent-blue mb-4">Skill radar</p>
+                            <div class="skill-radar">
+                                <span class="radar-label" style="--angle: -90deg;">React</span>
+                                <span class="radar-label" style="--angle: -20deg;">Python</span>
+                                <span class="radar-label" style="--angle: 45deg;">AI</span>
+                                <span class="radar-label" style="--angle: 115deg;">Data</span>
+                                <span class="radar-label" style="--angle: 185deg;">Three.js</span>
+                                <div class="radar-core">
+                                    <div class="text-center">
+                                        <span class="material-symbols-outlined text-accent-blue text-3xl mb-1 block">developer_mode</span>
+                                        <p class="text-[10px] uppercase tracking-[0.22em] font-black text-text-muted">Core</p>
+                                        <p class="font-headline text-xl font-extrabold text-text-main">Build</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bento-panel p-6 lg:p-7">
+                        <div class="relative z-10">
+                            <p class="text-[10px] font-black uppercase tracking-[0.24em] text-accent-blue mb-5">Working rhythm</p>
+                            <div class="space-y-5">
+                                <div class="process-step" data-step="1">
+                                    <h4 class="font-extrabold text-text-main leading-tight">Find the useful edge</h4>
+                                    <p class="text-sm font-medium text-text-muted">Convert broad ideas into the one interaction that matters.</p>
+                                </div>
+                                <div class="process-step" data-step="2">
+                                    <h4 class="font-extrabold text-text-main leading-tight">Prototype with motion</h4>
+                                    <p class="text-sm font-medium text-text-muted">Make states, transitions, and feedback feel intentional.</p>
+                                </div>
+                                <div class="process-step" data-step="3">
+                                    <h4 class="font-extrabold text-text-main leading-tight">Ship with clarity</h4>
+                                    <p class="text-sm font-medium text-text-muted">Keep the interface readable, responsive, and easy to explore.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Projects Grid Section -->
         <section id="work" class="framer-card p-10 lg:p-16 border-none shadow-sm bg-[#faf9f1]">
             <div class="max-w-3xl mx-auto text-center mb-16">
@@ -299,116 +1714,98 @@
                     showcasing full-stack capabilities.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project 1 -->
+            <div class="project-hover-list" data-project-showcase>
                 <a href="https://planthealthrag-fsggg4j6desaboqkfomqeb.streamlit.app" target="_blank"
-                    class="bg-white rounded-[2rem] p-6 hover:-translate-y-2 hover:shadow-lg transition-all border border-border flex flex-col h-full group framer-shadow">
-                    <div
-                        class="w-full aspect-video rounded-3xl bg-[#faf9f1] overflow-hidden relative mb-8 shrink-0 flex items-center justify-center group-hover:bg-accent-sky/20 transition-colors">
-                        <span
-                            class="material-symbols-outlined text-accent-blue text-5xl group-hover:scale-110 transition-transform duration-500">psychiatry</span>
-                    </div>
-                    <div class="flex flex-col flex-1 px-2">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3
-                                class="text-xl font-bold text-text-main tracking-tight group-hover:text-accent-blue transition-colors">
-                                Plant Health RAG</h3>
-                            <span
-                                class="material-symbols-outlined text-border group-hover:text-accent-blue transition-colors">arrow_outward</span>
-                        </div>
-                        <p class="text-text-muted font-medium mb-6 text-sm">An AI-powered Streamlit application using
-                            Retrieval-Augmented Generation to diagnose plant diseases.</p>
-                        <div class="flex gap-2 flex-wrap mt-auto">
-                            <span
-                                class="px-3 py-1 bg-[#faf9f1] text-[10px] font-bold uppercase tracking-wider rounded-lg text-text-muted">Python</span>
-                            <span
-                                class="px-3 py-1 bg-[#faf9f1] text-[10px] font-bold uppercase tracking-wider rounded-lg text-text-muted">Streamlit</span>
-                        </div>
-                    </div>
+                    class="project-row group" data-project-index="0">
+                    <h3 class="project-row-title font-headline text-4xl md:text-6xl font-normal tracking-tight text-text-main">
+                        Plant Health RAG</h3>
+                    <p class="project-row-meta text-sm md:text-base font-bold text-text-muted">AI Diagnosis / Streamlit</p>
+                </a>
+                <a href="https://charanbs18.github.io/EV-project-PPT/" target="_blank" class="project-row group"
+                    data-project-index="1">
+                    <h3 class="project-row-title font-headline text-4xl md:text-6xl font-normal tracking-tight text-text-main">
+                        Lumina Volt EV</h3>
+                    <p class="project-row-meta text-sm md:text-base font-bold text-text-muted">3D Pathing / WebGL</p>
+                </a>
+                <a href="https://charanbs18.github.io/carwebsite/" target="_blank" class="project-row group"
+                    data-project-index="2">
+                    <h3 class="project-row-title font-headline text-4xl md:text-6xl font-normal tracking-tight text-text-main">
+                        Cinematic 3D Car</h3>
+                    <p class="project-row-meta text-sm md:text-base font-bold text-text-muted">Three.js / Vite</p>
+                </a>
+                <a href="https://charanbs18.github.io/drone-website/" target="_blank" class="project-row group"
+                    data-project-index="3">
+                    <h3 class="project-row-title font-headline text-4xl md:text-6xl font-normal tracking-tight text-text-main">
+                        Cinematic Drone Showcase</h3>
+                    <p class="project-row-meta text-sm md:text-base font-bold text-text-muted">3D Animation / Scroll</p>
                 </a>
 
-                <!-- Project 2 -->
-                <a href="https://charanbs18.github.io/EV-project-PPT/" target="_blank"
-                    class="bg-white rounded-[2rem] p-6 hover:-translate-y-2 hover:shadow-lg transition-all border border-border flex flex-col h-full group framer-shadow">
-                    <div
-                        class="w-full aspect-video rounded-3xl bg-[#faf9f1] overflow-hidden relative mb-8 shrink-0 flex items-center justify-center group-hover:bg-accent-sky/20 transition-colors">
-                        <span
-                            class="material-symbols-outlined text-accent-blue text-5xl group-hover:scale-110 transition-transform duration-500">electric_car</span>
-                    </div>
-                    <div class="flex flex-col flex-1 px-2">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3
-                                class="text-xl font-bold text-text-main tracking-tight group-hover:text-accent-blue transition-colors">
-                                Lumina Volt EV</h3>
-                            <span
-                                class="material-symbols-outlined text-border group-hover:text-accent-blue transition-colors">arrow_outward</span>
+                <div class="project-modal-preview" data-project-modal>
+                    <div class="project-modal-track" data-project-track>
+                        <div class="project-modal-slide" style="background-color: #dbead7;">
+                            <div class="project-modal-card">
+                                <div class="plant-leaf"></div>
+                                <div class="absolute left-5 bottom-5 right-5 rounded-xl bg-white/75 border border-white px-4 py-3">
+                                    <div class="h-2 w-2/3 bg-accent-blue/70 rounded-full mb-2"></div>
+                                    <div class="h-2 w-full bg-[#e6e4d9] rounded-full"></div>
+                                </div>
+                            </div>
                         </div>
-                        <p class="text-text-muted font-medium mb-6 text-sm">A modern Electric Vehicle charging station
-                            finder featuring 3D pathing and a premium UI.</p>
-                        <div class="flex gap-2 flex-wrap mt-auto">
-                            <span
-                                class="px-3 py-1 bg-[#faf9f1] text-[10px] font-bold uppercase tracking-wider rounded-lg text-text-muted">3D
-                                Pathing</span>
-                            <span
-                                class="px-3 py-1 bg-[#faf9f1] text-[10px] font-bold uppercase tracking-wider rounded-lg text-text-muted">WebGL</span>
+                        <div class="project-modal-slide" style="background-color: #dfe8f5;">
+                            <div class="project-modal-card">
+                                <div class="route-map"></div>
+                                <span class="material-symbols-outlined absolute left-[24%] top-[61%] text-accent-blue text-3xl">ev_station</span>
+                                <span class="material-symbols-outlined absolute right-[24%] top-[29%] text-text-main text-3xl">location_on</span>
+                            </div>
+                        </div>
+                        <div class="project-modal-slide" style="background-color: #efe8d3;">
+                            <div class="project-modal-card">
+                                <div class="preview-car"></div>
+                                <div class="absolute bottom-9 left-1/2 h-3 w-3/4 -translate-x-1/2 rounded-full bg-text-main/10"></div>
+                            </div>
+                        </div>
+                        <div class="project-modal-slide" style="background-color: #e5e7eb;">
+                            <div class="project-modal-card">
+                                <div class="drone-arm" style="--arm-rot: 22deg;"></div>
+                                <div class="drone-arm" style="--arm-rot: -22deg;"></div>
+                                <div class="drone-rotor left-[11%] top-[30%]"></div>
+                                <div class="drone-rotor right-[11%] top-[30%]"></div>
+                                <div class="drone-rotor left-[11%] bottom-[19%]"></div>
+                                <div class="drone-rotor right-[11%] bottom-[19%]"></div>
+                                <div class="drone-body"></div>
+                            </div>
                         </div>
                     </div>
-                </a>
+                </div>
+                <div class="project-modal-cursor" data-project-cursor></div>
+                <div class="project-modal-label" data-project-label>View</div>
+            </div>
 
-                <!-- Project 3 -->
-                <a href="https://charanbs18.github.io/carwebsite/" target="_blank"
-                    class="bg-white rounded-[2rem] p-6 hover:-translate-y-2 hover:shadow-lg transition-all border border-border flex flex-col h-full group framer-shadow">
-                    <div
-                        class="w-full aspect-video rounded-3xl bg-[#faf9f1] overflow-hidden relative mb-8 shrink-0 flex items-center justify-center group-hover:bg-accent-sky/20 transition-colors">
-                        <span
-                            class="material-symbols-outlined text-accent-blue text-5xl group-hover:scale-110 transition-transform duration-500">3d_rotation</span>
-                    </div>
-                    <div class="flex flex-col flex-1 px-2">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3
-                                class="text-xl font-bold text-text-main tracking-tight group-hover:text-accent-blue transition-colors">
-                                Cinematic 3D Car</h3>
-                            <span
-                                class="material-symbols-outlined text-border group-hover:text-accent-blue transition-colors">arrow_outward</span>
-                        </div>
-                        <p class="text-text-muted font-medium mb-6 text-sm">A high-end, scroll-driven 3D marketing
-                            website providing an immersive product launch experience.</p>
-                        <div class="flex gap-2 flex-wrap mt-auto">
-                            <span
-                                class="px-3 py-1 bg-[#faf9f1] text-[10px] font-bold uppercase tracking-wider rounded-lg text-text-muted">Three.js</span>
-                            <span
-                                class="px-3 py-1 bg-[#faf9f1] text-[10px] font-bold uppercase tracking-wider rounded-lg text-text-muted">Vite</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Project 4 -->
-                <a href="https://charanbs18.github.io/drone-website/" target="_blank"
-                    class="bg-white rounded-[2rem] p-6 hover:-translate-y-2 hover:shadow-lg transition-all border border-border flex flex-col h-full group framer-shadow">
-                    <div
-                        class="w-full aspect-video rounded-3xl bg-[#faf9f1] overflow-hidden relative mb-8 shrink-0 flex items-center justify-center group-hover:bg-accent-sky/20 transition-colors">
-                        <span
-                            class="material-symbols-outlined text-accent-blue text-5xl group-hover:scale-110 transition-transform duration-500">flight</span>
-                    </div>
-                    <div class="flex flex-col flex-1 px-2">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3
-                                class="text-xl font-bold text-text-main tracking-tight group-hover:text-accent-blue transition-colors">
-                                Cinematic Drone Showcase</h3>
-                            <span
-                                class="material-symbols-outlined text-border group-hover:text-accent-blue transition-colors">arrow_outward</span>
-                        </div>
-                        <p class="text-text-muted font-medium mb-6 text-sm">A high-end 3D drone explosion visualization
-                            with scroll-driven animations in a clean studio environment.</p>
-                        <div class="flex gap-2 flex-wrap mt-auto">
-                            <span
-                                class="px-3 py-1 bg-[#faf9f1] text-[10px] font-bold uppercase tracking-wider rounded-lg text-text-muted">Three.js</span>
-                            <span
-                                class="px-3 py-1 bg-[#faf9f1] text-[10px] font-bold uppercase tracking-wider rounded-lg text-text-muted">3D
-                                Animation</span>
-                        </div>
-                    </div>
-                </a>
+            <div class="case-study-grid">
+                <article class="case-card">
+                    <span class="case-stat mb-5"><span class="material-symbols-outlined text-sm">psychology</span> AI workflow</span>
+                    <h3 class="font-headline text-2xl font-extrabold text-text-main mb-3">Plant Health RAG</h3>
+                    <p class="text-sm font-bold uppercase tracking-[0.18em] text-accent-blue mb-3">Problem</p>
+                    <p class="text-sm font-medium text-text-muted mb-5">Plant disease information is scattered and hard to use at diagnosis time.</p>
+                    <p class="text-sm font-bold uppercase tracking-[0.18em] text-accent-blue mb-3">Built</p>
+                    <p class="text-sm font-medium text-text-muted">A Streamlit RAG app that turns plant health questions into clearer, retrieval-backed guidance.</p>
+                </article>
+                <article class="case-card">
+                    <span class="case-stat mb-5"><span class="material-symbols-outlined text-sm">view_in_ar</span> 3D interface</span>
+                    <h3 class="font-headline text-2xl font-extrabold text-text-main mb-3">Lumina Volt EV</h3>
+                    <p class="text-sm font-bold uppercase tracking-[0.18em] text-accent-blue mb-3">Problem</p>
+                    <p class="text-sm font-medium text-text-muted mb-5">EV charging tools often feel flat and hard to explore visually.</p>
+                    <p class="text-sm font-bold uppercase tracking-[0.18em] text-accent-blue mb-3">Built</p>
+                    <p class="text-sm font-medium text-text-muted">A polished charging-station finder concept with premium UI, pathing, and spatial interaction.</p>
+                </article>
+                <article class="case-card">
+                    <span class="case-stat mb-5"><span class="material-symbols-outlined text-sm">animation</span> Motion system</span>
+                    <h3 class="font-headline text-2xl font-extrabold text-text-main mb-3">3D Web Showcases</h3>
+                    <p class="text-sm font-bold uppercase tracking-[0.18em] text-accent-blue mb-3">Problem</p>
+                    <p class="text-sm font-medium text-text-muted mb-5">Product demos need to feel memorable without losing usability.</p>
+                    <p class="text-sm font-bold uppercase tracking-[0.18em] text-accent-blue mb-3">Built</p>
+                    <p class="text-sm font-medium text-text-muted">Scroll-driven car and drone scenes that show comfort with Three.js, timing, and visual polish.</p>
+                </article>
             </div>
             <div class="mt-12 text-center">
                 <a href="https://github.com/CharanBS18?tab=repositories" target="_blank"
@@ -423,7 +1820,7 @@
 
 
         <!-- Certificates Section -->
-        <section class="framer-card p-10 lg:p-16 shadow-sm mt-8 bg-[#faf9f1]" id="certificates">
+        <section class="framer-card p-10 lg:p-16 shadow-sm mt-8 bg-[#faf9f1] overflow-hidden" id="certificates">
             <div class="max-w-3xl mx-auto text-center flex flex-col items-center">
                 <div
                     class="inline-block px-4 py-1.5 rounded-full bg-accent-sky/20 text-accent-blue text-xs font-bold tracking-wide uppercase mb-6">
@@ -431,45 +1828,67 @@
                 </div>
                 <h2 class="font-headline text-4xl lg:text-5xl font-extrabold tracking-tight text-text-main mb-6">
                     Certificates</h2>
-                <p class="text-lg text-text-muted font-medium mb-10 max-w-2xl">
+                <p class="text-lg text-text-muted font-medium mb-8 max-w-2xl">
                     A showcase of my continuous learning and professional development across various domains.
                 </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+            </div>
+
+            <div class="certificate-gallery mx-auto w-full max-w-6xl" data-certificate-gallery>
+                <div class="certificate-stack">
                     <a href="certificate/AWS certificate.pdf" target="_blank"
-                        class="flex flex-col items-center bg-white border border-border p-6 rounded-3xl hover:border-accent-blue hover:-translate-y-1 hover:shadow-lg transition-all group">
-                        <span
-                            class="material-symbols-outlined text-accent-blue text-4xl mb-4 group-hover:scale-110 transition-transform">cloud_done</span>
-                        <h3 class="font-bold text-text-main text-center mb-2 text-sm">AWS Certification</h3>
-                        <p class="text-text-muted text-xs text-center">Amazon Web Services</p>
+                        class="certificate-photo group" style="--tx: -320px; --ty: 16px; --rot: -3deg; --delay: 0s; z-index: 50;">
+                        <div class="certificate-paper p-6 flex h-full flex-col items-center justify-center text-center">
+                            <div class="certificate-seal mb-5">
+                                <span class="material-symbols-outlined text-3xl">cloud_done</span>
+                            </div>
+                            <span class="text-[10px] font-black uppercase tracking-[0.28em] text-accent-blue mb-5">Verified Credential</span>
+                            <h3 class="font-headline text-2xl font-extrabold leading-tight text-text-main mb-3">AWS Certification</h3>
+                            <p class="text-text-muted text-xs font-bold uppercase tracking-wider">Amazon Web Services</p>
+                        </div>
                     </a>
                     <a href="certificate/Cyber Job Simulation certificate.pdf" target="_blank"
-                        class="flex flex-col items-center bg-white border border-border p-6 rounded-3xl hover:border-accent-blue hover:-translate-y-1 hover:shadow-lg transition-all group">
-                        <span
-                            class="material-symbols-outlined text-accent-blue text-4xl mb-4 group-hover:scale-110 transition-transform">security</span>
-                        <h3 class="font-bold text-text-main text-center mb-2 text-sm">Cybersecurity Simulation</h3>
-                        <p class="text-text-muted text-xs text-center">Security Training</p>
+                        class="certificate-photo group" style="--tx: -160px; --ty: 34px; --rot: 2.5deg; --delay: 0.15s; z-index: 40;">
+                        <div class="certificate-paper p-6 flex h-full flex-col items-center justify-center text-center">
+                            <div class="certificate-seal mb-5">
+                                <span class="material-symbols-outlined text-3xl">security</span>
+                            </div>
+                            <span class="text-[10px] font-black uppercase tracking-[0.28em] text-accent-blue mb-5">Simulation</span>
+                            <h3 class="font-headline text-2xl font-extrabold leading-tight text-text-main mb-3">Cybersecurity Simulation</h3>
+                            <p class="text-text-muted text-xs font-bold uppercase tracking-wider">Security Training</p>
+                        </div>
                     </a>
                     <a href="certificate/Data analysis certifcate.pdf" target="_blank"
-                        class="flex flex-col items-center bg-white border border-border p-6 rounded-3xl hover:border-accent-blue hover:-translate-y-1 hover:shadow-lg transition-all group">
-                        <span
-                            class="material-symbols-outlined text-accent-blue text-4xl mb-4 group-hover:scale-110 transition-transform">analytics</span>
-                        <h3 class="font-bold text-text-main text-center mb-2 text-sm">Data Analysis</h3>
-                        <p class="text-text-muted text-xs text-center">Data & Analytics</p>
+                        class="certificate-photo group" style="--tx: 0px; --ty: 8px; --rot: -1deg; --delay: 0.3s; z-index: 30;">
+                        <div class="certificate-paper p-6 flex h-full flex-col items-center justify-center text-center">
+                            <div class="certificate-seal mb-5">
+                                <span class="material-symbols-outlined text-3xl">analytics</span>
+                            </div>
+                            <span class="text-[10px] font-black uppercase tracking-[0.28em] text-accent-blue mb-5">Analytics</span>
+                            <h3 class="font-headline text-2xl font-extrabold leading-tight text-text-main mb-3">Data Analysis</h3>
+                            <p class="text-text-muted text-xs font-bold uppercase tracking-wider">Data & Analytics</p>
+                        </div>
                     </a>
                     <a href="certificate/EregFenDKXDDeTGR2_BotenCEjm3LFxtq9A_695272c9f76d215bcf76bc16_1778107926902_completion_certificate.pdf"
-                        target="_blank"
-                        class="flex flex-col items-center bg-white border border-border p-6 rounded-3xl hover:border-accent-blue hover:-translate-y-1 hover:shadow-lg transition-all group">
-                        <span
-                            class="material-symbols-outlined text-accent-blue text-4xl mb-4 group-hover:scale-110 transition-transform">verified</span>
-                        <h3 class="font-bold text-text-main text-center mb-2 text-sm">vista Certificate</h3>
-                        <p class="text-text-muted text-xs text-center">Professional Course</p>
+                        target="_blank" class="certificate-photo group" style="--tx: 160px; --ty: 24px; --rot: 2deg; --delay: 0.45s; z-index: 20;">
+                        <div class="certificate-paper p-6 flex h-full flex-col items-center justify-center text-center">
+                            <div class="certificate-seal mb-5">
+                                <span class="material-symbols-outlined text-3xl">verified</span>
+                            </div>
+                            <span class="text-[10px] font-black uppercase tracking-[0.28em] text-accent-blue mb-5">Completion</span>
+                            <h3 class="font-headline text-2xl font-extrabold leading-tight text-text-main mb-3">Vista Certificate</h3>
+                            <p class="text-text-muted text-xs font-bold uppercase tracking-wider">Professional Course</p>
+                        </div>
                     </a>
                     <a href="certificate/forge data labeling certificate.pdf" target="_blank"
-                        class="flex flex-col items-center bg-white border border-border p-6 rounded-3xl hover:border-accent-blue hover:-translate-y-1 hover:shadow-lg transition-all group">
-                        <span
-                            class="material-symbols-outlined text-accent-blue text-4xl mb-4 group-hover:scale-110 transition-transform">label</span>
-                        <h3 class="font-bold text-text-main text-center mb-2 text-sm">Data Labeling</h3>
-                        <p class="text-text-muted text-xs text-center">Forge / Machine Learning</p>
+                        class="certificate-photo group" style="--tx: 320px; --ty: 46px; --rot: -2.5deg; --delay: 0.6s; z-index: 10;">
+                        <div class="certificate-paper p-6 flex h-full flex-col items-center justify-center text-center">
+                            <div class="certificate-seal mb-5">
+                                <span class="material-symbols-outlined text-3xl">label</span>
+                            </div>
+                            <span class="text-[10px] font-black uppercase tracking-[0.28em] text-accent-blue mb-5">Machine Learning</span>
+                            <h3 class="font-headline text-2xl font-extrabold leading-tight text-text-main mb-3">Data Labeling</h3>
+                            <p class="text-text-muted text-xs font-bold uppercase tracking-wider">Forge / Machine Learning</p>
+                        </div>
                     </a>
                 </div>
             </div>
@@ -478,15 +1897,32 @@
         <!-- CTA Section -->
         <section class="framer-card p-12 lg:p-24 text-center mt-8 bg-text-main text-white border-none shadow-sm"
             id="contact">
-            <h2 class="font-headline text-5xl md:text-7xl font-extrabold tracking-tight mb-6">Ready to build?</h2>
-            <p class="text-xl text-neutral-300 max-w-2xl mx-auto font-medium mb-12">Whether it's a legacy overhaul or a
-                fresh vision, let's create something that defines the next decade.</p>
-            <a href="mailto:charan201204@gmail.com"
-                class="inline-flex bg-white text-text-main px-10 py-5 rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-lg group">
-                charan201204@gmail.com
-                <span
-                    class="material-symbols-outlined ml-3 group-hover:translate-x-1 transition-transform">arrow_forward</span>
-            </a>
+            <div
+                class="inline-block px-4 py-1.5 rounded-full bg-white/10 border border-white/15 text-accent-sky text-xs font-bold tracking-wide uppercase mb-7">
+                Open to roles
+            </div>
+            <h2 class="font-headline text-5xl md:text-7xl font-extrabold tracking-tight mb-6">Let me bring this energy to your team.</h2>
+            <p class="text-xl text-neutral-300 max-w-2xl mx-auto font-medium mb-12">I am looking for opportunities where I can build AI products, polished web interfaces, and useful data-driven tools with people who care about quality.</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="mailto:charan201204@gmail.com"
+                    class="inline-flex bg-white text-text-main px-8 py-4 rounded-full font-bold text-base hover:scale-105 transition-transform shadow-lg group">
+                    Email me
+                    <span
+                        class="material-symbols-outlined ml-3 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                </a>
+                <a href="https://www.linkedin.com/in/charan-bs-b34975391" target="_blank"
+                    class="inline-flex border border-white/20 bg-white/10 text-white px-8 py-4 rounded-full font-bold text-base hover:bg-white/15 hover:scale-105 transition-all shadow-lg group">
+                    LinkedIn
+                    <span
+                        class="material-symbols-outlined ml-3 group-hover:translate-x-1 transition-transform">arrow_outward</span>
+                </a>
+                <a href="https://github.com/CharanBS18" target="_blank"
+                    class="inline-flex border border-white/20 bg-white/10 text-white px-8 py-4 rounded-full font-bold text-base hover:bg-white/15 hover:scale-105 transition-all shadow-lg group">
+                    GitHub
+                    <span
+                        class="material-symbols-outlined ml-3 group-hover:translate-x-1 transition-transform">arrow_outward</span>
+                </a>
+            </div>
         </section>
 
     </main>
@@ -513,6 +1949,204 @@
             </div>
         </div>
     </footer>
+
+    <!-- Floating Vertical Wire Scroll Tracker (Left Edge) -->
+    <div id="scroll-wire-tracker"
+        class="fixed left-8 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-center gap-8 py-6 z-40"
+        style="height: 430px;">
+        <!-- Vertical Suspension Wire -->
+        <div class="absolute w-[1px] bg-neutral-200/80 top-6 bottom-6 left-1/2 -translate-x-1/2"></div>
+
+        <!-- Sliding Mechanical Indicator Bead -->
+        <div id="scroll-bead"
+            class="absolute w-2.5 h-2.5 bg-[#4976a4] rounded-full left-1/2 -translate-x-1/2 shadow-sm z-20"
+            style="top: 24px; transition: transform 0.3s ease;"></div>
+
+        <!-- Section Tracker Anchors -->
+        <button onclick="scrollToSection('top')"
+            class="scroll-anchor w-3 h-3 bg-white border-2 border-neutral-300 rounded-full hover:border-[#4976a4] hover:scale-125 transition-all duration-300 relative z-10 group"
+            data-target="top">
+            <span
+                class="absolute left-6 top-1/2 -translate-y-1/2 px-2 py-1 bg-white border border-neutral-100 rounded text-[9px] font-bold text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-sm whitespace-nowrap uppercase tracking-widest">Start</span>
+        </button>
+        <button onclick="scrollToSection('about')"
+            class="scroll-anchor w-3 h-3 bg-white border-2 border-neutral-300 rounded-full hover:border-[#4976a4] hover:scale-125 transition-all duration-300 relative z-10 group"
+            data-target="about">
+            <span
+                class="absolute left-6 top-1/2 -translate-y-1/2 px-2 py-1 bg-white border border-neutral-100 rounded text-[9px] font-bold text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-sm whitespace-nowrap uppercase tracking-widest">About</span>
+        </button>
+        <button onclick="scrollToSection('stack')"
+            class="scroll-anchor w-3 h-3 bg-white border-2 border-neutral-300 rounded-full hover:border-[#4976a4] hover:scale-125 transition-all duration-300 relative z-10 group"
+            data-target="stack">
+            <span
+                class="absolute left-6 top-1/2 -translate-y-1/2 px-2 py-1 bg-white border border-neutral-100 rounded text-[9px] font-bold text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-sm whitespace-nowrap uppercase tracking-widest">Stack</span>
+        </button>
+        <button onclick="scrollToSection('capabilities')"
+            class="scroll-anchor w-3 h-3 bg-white border-2 border-neutral-300 rounded-full hover:border-[#4976a4] hover:scale-125 transition-all duration-300 relative z-10 group"
+            data-target="capabilities">
+            <span
+                class="absolute left-6 top-1/2 -translate-y-1/2 px-2 py-1 bg-white border border-neutral-100 rounded text-[9px] font-bold text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-sm whitespace-nowrap uppercase tracking-widest">Skills</span>
+        </button>
+        <button onclick="scrollToSection('work')"
+            class="scroll-anchor w-3 h-3 bg-white border-2 border-neutral-300 rounded-full hover:border-[#4976a4] hover:scale-125 transition-all duration-300 relative z-10 group"
+            data-target="work">
+            <span
+                class="absolute left-6 top-1/2 -translate-y-1/2 px-2 py-1 bg-white border border-neutral-100 rounded text-[9px] font-bold text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-sm whitespace-nowrap uppercase tracking-widest">Works</span>
+        </button>
+        <button onclick="scrollToSection('certificates')"
+            class="scroll-anchor w-3 h-3 bg-white border-2 border-neutral-300 rounded-full hover:border-[#4976a4] hover:scale-125 transition-all duration-300 relative z-10 group"
+            data-target="certificates">
+            <span
+                class="absolute left-6 top-1/2 -translate-y-1/2 px-2 py-1 bg-white border border-neutral-100 rounded text-[9px] font-bold text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-sm whitespace-nowrap uppercase tracking-widest">Credentials</span>
+        </button>
+        <button onclick="scrollToSection('contact')"
+            class="scroll-anchor w-3 h-3 bg-white border-2 border-neutral-300 rounded-full hover:border-[#4976a4] hover:scale-125 transition-all duration-300 relative z-10 group"
+            data-target="contact">
+            <span
+                class="absolute left-6 top-1/2 -translate-y-1/2 px-2 py-1 bg-white border border-neutral-100 rounded text-[9px] font-bold text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-sm whitespace-nowrap uppercase tracking-widest">Contact</span>
+        </button>
+    </div>
+
+    <!-- Tactile 3D Paper-Peel Certificate Lightbox Overlay -->
+    <div id="cert-lightbox"
+        class="fixed inset-0 bg-[#313035]/65 backdrop-blur-md flex items-center justify-center z-50 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="absolute inset-0 cursor-pointer" onclick="closeCertLightbox()"></div>
+
+        <!-- Perspective Wrapper -->
+        <div class="relative w-[92vw] max-w-4xl h-[85vh] flex items-center justify-center" style="perspective: 1500px;">
+            <!-- 3D Paper Sheet -->
+            <div id="cert-paper-sheet"
+                class="relative w-full h-full bg-white rounded-[2rem] shadow-[0_30px_70px_rgba(0,0,0,0.4)] border border-neutral-200/50 p-6 flex flex-col cursor-grab active:cursor-grabbing select-none"
+                style="transform-style: preserve-3d; transform: rotateX(0deg) rotateY(0deg); will-change: transform; transition: transform 0.1s ease;">
+
+                <!-- Gloss Reflection Glare -->
+                <div id="cert-glare"
+                    class="absolute inset-0 rounded-[2rem] pointer-events-none opacity-0 z-30 mix-blend-color-dodge transition-opacity duration-300"
+                    style="background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0) 60%);">
+                </div>
+
+                <!-- Tactile Chrome Header -->
+                <div
+                    class="flex items-center justify-between mb-4 pb-4 border-b border-neutral-100 relative z-20 shrink-0">
+                    <div class="flex items-center gap-3">
+                        <!-- Mechanical Rivet / Eyelet -->
+                        <div
+                            class="w-5 h-5 bg-gradient-to-tr from-neutral-400 via-neutral-100 to-neutral-500 rounded-full border border-neutral-300 flex items-center justify-center shadow-inner">
+                            <div class="w-2.5 h-2.5 bg-[#4976a4] rounded-full"></div>
+                        </div>
+                        <div>
+                            <h3 id="cert-lightbox-title"
+                                class="font-extrabold text-text-main tracking-tight leading-none text-base">Certificate
+                                Title</h3>
+                            <p id="cert-lightbox-subtitle"
+                                class="text-text-muted text-[10px] uppercase font-bold tracking-wider mt-1">ISSUING
+                                AUTHORITY</p>
+                        </div>
+                    </div>
+
+                    <!-- Close button in mechanical style -->
+                    <button onclick="closeCertLightbox()"
+                        class="w-8 h-8 bg-neutral-100 hover:bg-neutral-200 border border-neutral-200 hover:border-neutral-300 rounded-full flex items-center justify-center transition-all duration-300 group shadow-sm">
+                        <span
+                            class="material-symbols-outlined text-sm font-bold text-text-muted group-hover:text-text-main">close</span>
+                    </button>
+                </div>
+
+                <!-- PDF Viewer / Container -->
+                <div
+                    class="flex-1 rounded-2xl bg-[#faf9f1] border border-neutral-200/60 overflow-hidden relative shadow-[inset_0_2px_8px_rgba(0,0,0,0.03)] z-10">
+                    <!-- Overlay to prevent iframe mouse stealing during drag -->
+                    <div id="cert-iframe-mask" class="absolute inset-0 z-20 hidden"></div>
+                    <iframe id="cert-lightbox-iframe" src="" class="w-full h-full border-none relative z-10"
+                        style="background-color: #faf9f1;"></iframe>
+                </div>
+
+                <!-- Action Footer -->
+                <div
+                    class="flex justify-between items-center mt-4 pt-4 border-t border-neutral-100 shrink-0 relative z-20">
+                    <span
+                        class="text-[10px] font-bold text-[#4976a4] tracking-widest uppercase flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 bg-[#4976a4] rounded-full animate-ping"></span>
+                        DRAG TO TILT SHEET IN 3D
+                    </span>
+                    <a id="cert-lightbox-link" href="" target="_blank"
+                        class="px-5 py-2 rounded-xl bg-text-main hover:bg-[#4976a4] text-white text-xs font-bold transition-all duration-300 shadow-sm flex items-center gap-1.5 group">
+                        Open in New Tab
+                        <span
+                            class="material-symbols-outlined text-xs group-hover:translate-x-0.5 transition-transform">arrow_outward</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive Premium Mac-style Dock (Socials & Navigation) -->
+    <div id="interactive-dock"
+        class="fixed bottom-6 left-1/2 -translate-x-1/2 h-16 bg-white/50 backdrop-blur-2xl border border-white/80 rounded-[1.25rem] flex items-center justify-center gap-3.5 px-4.5 z-40 shadow-[0_20px_50px_rgba(0,0,0,0.12)] select-none transition-all duration-500 hover:shadow-[0_30px_60px_rgba(0,0,0,0.18)]">
+        <!-- Home / Start anchor -->
+        <a href="#top" onclick="scrollToSection('top'); return false;"
+            class="dock-item flex flex-col items-center justify-center w-11 h-11 bg-white border border-neutral-200/50 rounded-xl shadow-sm text-text-muted hover:text-[#4976a4] hover:bg-neutral-50 transition-colors relative group"
+            style="will-change: width, height;">
+            <span class="material-symbols-outlined text-xl">home</span>
+            <span
+                class="absolute -top-10 left-1/2 -translate-x-1/2 bg-text-main text-white text-[9px] font-bold tracking-wider uppercase px-2 py-1 rounded shadow opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">Home</span>
+        </a>
+        <!-- GitHub Link -->
+        <a href="https://github.com/CharanBS18" target="_blank"
+            class="dock-item flex flex-col items-center justify-center w-11 h-11 bg-white border border-neutral-200/50 rounded-xl shadow-sm text-text-muted hover:text-black hover:bg-neutral-50 transition-colors relative group"
+            style="will-change: width, height;">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path
+                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+            </svg>
+            <span
+                class="absolute -top-10 left-1/2 -translate-x-1/2 bg-text-main text-white text-[9px] font-bold tracking-wider uppercase px-2 py-1 rounded shadow opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">GitHub</span>
+        </a>
+        <!-- LinkedIn Link -->
+        <a href="https://www.linkedin.com/in/charan-b-s-827289255/" target="_blank"
+            class="dock-item flex flex-col items-center justify-center w-11 h-11 bg-white border border-neutral-200/50 rounded-xl shadow-sm text-text-muted hover:text-[#0077b5] hover:bg-neutral-50 transition-colors relative group"
+            style="will-change: width, height;">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path
+                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+            </svg>
+            <span
+                class="absolute -top-10 left-1/2 -translate-x-1/2 bg-text-main text-white text-[9px] font-bold tracking-wider uppercase px-2 py-1 rounded shadow opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">LinkedIn</span>
+        </a>
+        <!-- Twitter Link -->
+        <a href="https://twitter.com/CharanBS114" target="_blank"
+            class="dock-item flex flex-col items-center justify-center w-11 h-11 bg-white border border-neutral-200/50 rounded-xl shadow-sm text-text-muted hover:text-[#1da1f2] hover:bg-neutral-50 transition-colors relative group"
+            style="will-change: width, height;">
+            <svg class="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24">
+                <path
+                    d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+            </svg>
+            <span
+                class="absolute -top-10 left-1/2 -translate-x-1/2 bg-text-main text-white text-[9px] font-bold tracking-wider uppercase px-2 py-1 rounded shadow opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">Twitter</span>
+        </a>
+        <!-- Instagram Link -->
+        <a href="https://www.instagram.com/charan._._25" target="_blank"
+            class="dock-item flex flex-col items-center justify-center w-11 h-11 bg-white border border-neutral-200/50 rounded-xl shadow-sm text-text-muted hover:text-[#e1306c] hover:bg-neutral-50 transition-colors relative group"
+            style="will-change: width, height;">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path
+                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+            </svg>
+            <span
+                class="absolute -top-10 left-1/2 -translate-x-1/2 bg-text-main text-white text-[9px] font-bold tracking-wider uppercase px-2 py-1 rounded shadow opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">Instagram</span>
+        </a>
+        <!-- Discord Link -->
+        <a href="https://discord.com/users/charan00002" target="_blank"
+            class="dock-item flex flex-col items-center justify-center w-11 h-11 bg-white border border-neutral-200/50 rounded-xl shadow-sm text-text-muted hover:text-[#5865f2] hover:bg-neutral-50 transition-colors relative group"
+            style="will-change: width, height;">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path
+                    d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.094 13.094 0 0 1-1.873-.894.077.077 0 0 1-.008-.128c.126-.093.252-.19.372-.287a.075.075 0 0 1 .077-.011c3.92 1.793 8.18 1.793 12.061 0a.073.073 0 0 1 .078.009c.12.099.246.195.373.289a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 1-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.156-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.156 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.156-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.156 2.418z" />
+            </svg>
+            <span
+                class="absolute -top-10 left-1/2 -translate-x-1/2 bg-text-main text-white text-[9px] font-bold tracking-wider uppercase px-2 py-1 rounded shadow opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">Discord</span>
+        </a>
+    </div>
 
     <!-- Interactive Physics Engine for ID Card Badge -->
     <script>
@@ -571,12 +2205,12 @@
                 const rect = container.getBoundingClientRect();
                 // Place anchor slightly to the left (by 60px) as requested
                 anchorX = rect.width / 2 - 60;
-                
+
                 // When opening/restarting the site, start the card high up
                 // near the top anchor so it falls down beautifully under gravity!
                 px = anchorX - 50; // starts offset slightly to the left to induce a swing
                 py = anchorY + 15; // starts near the top anchor point (slack lanyard)
-                
+
                 lastPx = px;
                 lastPy = py;
                 lastLastPx = px;
@@ -592,13 +2226,13 @@
 
             // Make sure container is sized, then init
             initPhysics();
-            
+
             // Re-center on window resize
             window.addEventListener('resize', () => {
                 const oldAnchorX = anchorX;
                 const rect = container.getBoundingClientRect();
                 anchorX = rect.width / 2 - 60; // Place anchor slightly left
-                
+
                 // Shift card by delta anchor to prevent sudden physics snap
                 const dx = anchorX - oldAnchorX;
                 px += dx;
@@ -639,7 +2273,7 @@
 
             function startDrag(e) {
                 isDragging = true;
-                
+
                 const coords = getLocalCoords(e);
                 pointerX = coords.x;
                 pointerY = coords.y;
@@ -658,14 +2292,14 @@
                 // Apply active styles
                 container.classList.remove('cursor-grab');
                 container.classList.add('cursor-grabbing');
-                
+
                 // Prevent page scroll when touching card
                 if (e.cancelable) e.preventDefault();
             }
 
             function drag(e) {
                 if (!isDragging) return;
-                
+
                 const coords = getLocalCoords(e);
                 pointerX = coords.x;
                 pointerY = coords.y;
@@ -686,7 +2320,7 @@
             function endDrag() {
                 if (!isDragging) return;
                 isDragging = false;
-                
+
                 // Transfer pointer velocity to the physical card
                 vx = Math.min(25, Math.max(-25, pointerVelocityX));
                 vy = Math.min(25, Math.max(-25, pointerVelocityY));
@@ -707,11 +2341,11 @@
                     // Pull slot P towards mouse position minus grab offset
                     const targetPx = pointerX - grabOffsetX;
                     const targetPy = pointerY - grabOffsetY;
-                    
+
                     // Smooth elastic drag tracking (mass spring damper feel)
                     px += (targetPx - px) * 0.22;
                     py += (targetPy - py) * 0.22;
-                    
+
                     // Derivate velocity
                     vx = px - lastPx;
                     vy = py - lastPy;
@@ -788,7 +2422,7 @@
                     const cardCenterY = py + Math.cos(theta) * h_com;
                     const hdx = hoverX - cardCenterX;
                     const hdy = hoverY - cardCenterY;
-                    
+
                     const targetRx = -hdy * 0.015;
                     const targetRy = hdx * 0.015;
                     // Clamp hover tilt to 5 degrees max for professional micro-movement
@@ -826,9 +2460,9 @@
                     const midY = (anchorY + py) / 2;
                     pathD = `M ${anchorX} ${anchorY} Q ${midX} ${midY} ${px} ${py}`;
                 }
-                
+
                 lanyardPath.setAttribute('d', pathD);
-                
+
                 // Draw string shadow underneath for high depth realism
                 const shadowSag = dist < L ? (L - dist) * 0.82 + 8 : 8;
                 const smidX = (anchorX + px) / 2 + 10;
@@ -849,6 +2483,761 @@
 
             // Start physics loop
             requestAnimationFrame(updatePhysics);
+        });
+
+        // ============================================================================
+        // Creative Additions: Interactive Background Magnetic Grid & 3D Card Parallax
+        // ============================================================================
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Magnetic Background Grid Engine
+            const canvas = document.getElementById('magnetic-grid-canvas');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                let width = window.innerWidth;
+                let height = window.innerHeight;
+                canvas.width = width;
+                canvas.height = height;
+
+                let mouse = { x: -1000, y: -1000 };
+                window.addEventListener('mousemove', (e) => {
+                    mouse.x = e.clientX;
+                    mouse.y = e.clientY;
+                });
+
+                window.addEventListener('mouseleave', () => {
+                    mouse.x = -1000;
+                    mouse.y = -1000;
+                });
+
+                window.addEventListener('resize', () => {
+                    width = window.innerWidth;
+                    height = window.innerHeight;
+                    canvas.width = width;
+                    canvas.height = height;
+                });
+
+                const dotSpacing = 32;
+                const influenceRadius = 160;
+                const maxPull = 9; // Max magnetic displacement in pixels
+
+                function drawGrid() {
+                    ctx.clearRect(0, 0, width, height);
+
+                    const cols = Math.floor(width / dotSpacing) + 2;
+                    const rows = Math.floor(height / dotSpacing) + 2;
+
+                    for (let c = 0; c < cols; c++) {
+                        for (let r = 0; r < rows; r++) {
+                            const originalX = c * dotSpacing;
+                            const originalY = r * dotSpacing;
+
+                            const dx = originalX - mouse.x;
+                            const dy = originalY - mouse.y;
+                            const dist = Math.sqrt(dx * dx + dy * dy);
+
+                            let drawX = originalX;
+                            let drawY = originalY;
+                            let size = 1.1;
+
+                            if (dist < influenceRadius) {
+                                const force = (1 - dist / influenceRadius);
+                                // Gentle magnetic pull toward mouse
+                                drawX = originalX - dx * force * (maxPull / influenceRadius);
+                                drawY = originalY - dy * force * (maxPull / influenceRadius);
+
+                                size = 1.1 + force * 1.5;
+                                ctx.fillStyle = `rgba(73, 118, 164, ${0.35 + force * 0.65})`;
+                            } else {
+                                ctx.fillStyle = '#313035';
+                            }
+
+                            ctx.beginPath();
+                            ctx.arc(drawX, drawY, size, 0, Math.PI * 2);
+                            ctx.fill();
+                        }
+                    }
+                    requestAnimationFrame(drawGrid);
+                }
+                requestAnimationFrame(drawGrid);
+            }
+
+            // 2. AI command text cycle
+            const commandText = document.querySelector('[data-command-text]');
+            if (commandText) {
+                const prompts = [
+                    'Design an AI-ready portfolio experience',
+                    'Prototype the interaction before the pitch',
+                    'Connect data, UI, and motion into one flow',
+                    'Ship the clearest version of the idea'
+                ];
+                let promptIndex = 0;
+                let charIndex = prompts[0].length;
+                let deleting = true;
+
+                const tickCommand = () => {
+                    const current = prompts[promptIndex];
+                    commandText.textContent = current.slice(0, charIndex);
+
+                    if (deleting) {
+                        charIndex -= 1;
+                        if (charIndex <= 0) {
+                            deleting = false;
+                            promptIndex = (promptIndex + 1) % prompts.length;
+                        }
+                    } else {
+                        charIndex += 1;
+                        if (charIndex >= prompts[promptIndex].length) {
+                            deleting = true;
+                            window.setTimeout(tickCommand, 1200);
+                            return;
+                        }
+                    }
+
+                    window.setTimeout(tickCommand, deleting ? 28 : 46);
+                };
+
+                window.setTimeout(tickCommand, 1200);
+            }
+
+            // 3. Project hover preview modal
+            const projectRows = document.querySelectorAll('[data-project-index]');
+            const projectModal = document.querySelector('[data-project-modal]');
+            const projectTrack = document.querySelector('[data-project-track]');
+            const projectCursor = document.querySelector('[data-project-cursor]');
+            const projectLabel = document.querySelector('[data-project-label]');
+
+            if (projectRows.length && projectModal && projectTrack && projectCursor && projectLabel) {
+                let targetX = window.innerWidth / 2;
+                let targetY = window.innerHeight / 2;
+                let modalX = targetX;
+                let modalY = targetY;
+                let cursorX = targetX;
+                let cursorY = targetY;
+                let labelX = targetX;
+                let labelY = targetY;
+
+                const setProjectPosition = (element, x, y) => {
+                    element.style.left = `${x}px`;
+                    element.style.top = `${y}px`;
+                };
+
+                window.addEventListener('mousemove', (e) => {
+                    targetX = e.clientX;
+                    targetY = e.clientY;
+                });
+
+                projectRows.forEach(row => {
+                    row.addEventListener('mouseenter', () => {
+                        const index = Number(row.dataset.projectIndex) || 0;
+                        projectTrack.style.top = `${index * -100}%`;
+                        projectModal.classList.add('is-active');
+                        projectCursor.classList.add('is-active');
+                        projectLabel.classList.add('is-active');
+                    });
+
+                    row.addEventListener('mouseleave', () => {
+                        projectModal.classList.remove('is-active');
+                        projectCursor.classList.remove('is-active');
+                        projectLabel.classList.remove('is-active');
+                    });
+
+                    row.addEventListener('focus', () => {
+                        const index = Number(row.dataset.projectIndex) || 0;
+                        projectTrack.style.top = `${index * -100}%`;
+                        projectModal.classList.add('is-active');
+                    });
+
+                    row.addEventListener('blur', () => {
+                        projectModal.classList.remove('is-active');
+                    });
+                });
+
+                const animateProjectPreview = () => {
+                    modalX += (targetX - modalX) * 0.13;
+                    modalY += (targetY - modalY) * 0.13;
+                    cursorX += (targetX - cursorX) * 0.22;
+                    cursorY += (targetY - cursorY) * 0.22;
+                    labelX += (targetX - labelX) * 0.28;
+                    labelY += (targetY - labelY) * 0.28;
+
+                    setProjectPosition(projectModal, modalX, modalY);
+                    setProjectPosition(projectCursor, cursorX, cursorY);
+                    setProjectPosition(projectLabel, labelX, labelY);
+
+                    requestAnimationFrame(animateProjectPreview);
+                };
+
+                requestAnimationFrame(animateProjectPreview);
+            }
+
+            // 4. Lightweight draggable tech globe inspired by Cobe
+            const techCanvas = document.getElementById('tech-globe');
+            const globeWrap = document.querySelector('[data-tech-globe-wrap]');
+            if (techCanvas && globeWrap) {
+                const ctx = techCanvas.getContext('2d');
+                const pins = [...document.querySelectorAll('[data-globe-pin]')];
+                const nodes = [
+                    { id: 'react', lat: 38.95, lon: -77.45 },
+                    { id: 'javascript', lat: 37.62, lon: -122.38 },
+                    { id: 'python', lat: 19.09, lon: 72.87 },
+                    { id: 'java', lat: 49.01, lon: 2.55 },
+                    { id: 'databases', lat: 1.36, lon: 103.99 },
+                    { id: 'backend', lat: 53.43, lon: -6.25 },
+                    { id: 'design', lat: 35.55, lon: 139.78 },
+                    { id: '3d', lat: -33.95, lon: 151.18 },
+                    { id: 'analytics', lat: -23.43, lon: -46.47 },
+                    { id: 'video', lat: 59.65, lon: 17.93 }
+                ];
+                const arcs = [
+                    { id: 'react-backend', from: 'react', to: 'backend', value: 420, unit: 'req/s' },
+                    { id: 'python-databases', from: 'python', to: 'databases', value: 280, unit: 'ops/s' },
+                    { id: 'design-3d', from: 'design', to: '3d', value: 160, unit: 'frames' },
+                    { id: 'analytics-python', from: 'analytics', to: 'python', value: 95, unit: 'rows/s' }
+                ];
+                let phi = 0;
+                let theta = 0.25;
+                let dragStart = null;
+                let phiOffset = 0;
+                let thetaOffset = 0;
+                let dragPhi = 0;
+                let dragTheta = 0;
+                let trafficTick = 0;
+
+                const resizeGlobe = () => {
+                    const size = globeWrap.clientWidth;
+                    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+                    techCanvas.width = size * dpr;
+                    techCanvas.height = size * dpr;
+                    techCanvas.style.width = `${size}px`;
+                    techCanvas.style.height = `${size}px`;
+                    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                };
+
+                const toRad = (deg) => deg * Math.PI / 180;
+
+                const project = (lat, lon, size) => {
+                    const activePhi = phi + phiOffset + dragPhi;
+                    const activeTheta = theta + thetaOffset + dragTheta;
+                    const latRad = toRad(lat);
+                    const lonRad = toRad(lon) + activePhi;
+                    const x = Math.cos(latRad) * Math.sin(lonRad);
+                    const y = Math.sin(latRad);
+                    const z = Math.cos(latRad) * Math.cos(lonRad);
+                    const y2 = y * Math.cos(activeTheta) - z * Math.sin(activeTheta);
+                    const z2 = y * Math.sin(activeTheta) + z * Math.cos(activeTheta);
+                    const radius = size * 0.38;
+                    return {
+                        x: size / 2 + x * radius,
+                        y: size / 2 - y2 * radius,
+                        z: z2,
+                        visible: z2 > -0.1
+                    };
+                };
+
+                const drawGlobe = () => {
+                    const size = globeWrap.clientWidth;
+                    if (!size) {
+                        requestAnimationFrame(drawGlobe);
+                        return;
+                    }
+
+                    ctx.clearRect(0, 0, size, size);
+                    const center = size / 2;
+                    const radius = size * 0.38;
+                    const gradient = ctx.createRadialGradient(center - radius * 0.35, center - radius * 0.35, radius * 0.1, center, center, radius);
+                    gradient.addColorStop(0, 'rgba(255,255,255,0.98)');
+                    gradient.addColorStop(0.65, 'rgba(250,249,241,0.92)');
+                    gradient.addColorStop(1, 'rgba(160,200,255,0.24)');
+
+                    ctx.beginPath();
+                    ctx.arc(center, center, radius, 0, Math.PI * 2);
+                    ctx.fillStyle = gradient;
+                    ctx.fill();
+                    ctx.strokeStyle = 'rgba(73,118,164,0.22)';
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+
+                    ctx.save();
+                    ctx.beginPath();
+                    ctx.arc(center, center, radius, 0, Math.PI * 2);
+                    ctx.clip();
+
+                    for (let lat = -60; lat <= 60; lat += 30) {
+                        ctx.beginPath();
+                        for (let lon = -180; lon <= 180; lon += 4) {
+                            const p = project(lat, lon, size);
+                            if (lon === -180) ctx.moveTo(p.x, p.y);
+                            else ctx.lineTo(p.x, p.y);
+                        }
+                        ctx.strokeStyle = 'rgba(73,118,164,0.12)';
+                        ctx.stroke();
+                    }
+
+                    for (let lon = -180; lon < 180; lon += 30) {
+                        ctx.beginPath();
+                        for (let lat = -80; lat <= 80; lat += 4) {
+                            const p = project(lat, lon, size);
+                            if (lat === -80) ctx.moveTo(p.x, p.y);
+                            else ctx.lineTo(p.x, p.y);
+                        }
+                        ctx.strokeStyle = 'rgba(73,118,164,0.1)';
+                        ctx.stroke();
+                    }
+
+                    const nodeMap = new Map(nodes.map(node => [node.id, { ...node, point: project(node.lat, node.lon, size) }]));
+
+                    arcs.forEach((arc, index) => {
+                        const a = nodeMap.get(arc.from);
+                        const b = nodeMap.get(arc.to);
+                        if (!a || !b) return;
+
+                        const alpha = Math.max(0, Math.min(1, (a.point.z + b.point.z + 1.1) / 2.2));
+                        ctx.beginPath();
+                        const mx = (a.point.x + b.point.x) / 2;
+                        const my = (a.point.y + b.point.y) / 2 - radius * 0.16;
+                        ctx.moveTo(a.point.x, a.point.y);
+                        ctx.quadraticCurveTo(mx, my, b.point.x, b.point.y);
+                        ctx.strokeStyle = `rgba(49,48,53,${0.12 + alpha * 0.42})`;
+                        ctx.lineWidth = 1.4;
+                        ctx.stroke();
+
+                    });
+
+                    nodes.forEach(node => {
+                        const point = nodeMap.get(node.id).point;
+                        ctx.beginPath();
+                        ctx.arc(point.x, point.y, 3.5 + Math.max(0, point.z) * 2.5, 0, Math.PI * 2);
+                        ctx.fillStyle = point.z > -0.1 ? 'rgba(49,48,53,0.9)' : 'rgba(49,48,53,0.08)';
+                        ctx.fill();
+
+                        const pin = pins.find(el => el.dataset.globePin === node.id);
+                        if (pin) {
+                            const opacity = point.z > -0.08 ? Math.min(1, 0.45 + point.z) : 0;
+                            pin.style.left = `${point.x}px`;
+                            pin.style.top = `${point.y - 10}px`;
+                            pin.style.opacity = opacity;
+                            pin.style.filter = `blur(${Math.max(0, (0.25 - point.z) * 10)}px)`;
+                        }
+                    });
+
+                    ctx.restore();
+                    if (!dragStart) phi += 0.003;
+                    trafficTick += 1;
+                    techCanvas.classList.add('is-ready');
+                    requestAnimationFrame(drawGlobe);
+                };
+
+                techCanvas.addEventListener('pointerdown', (e) => {
+                    dragStart = { x: e.clientX, y: e.clientY };
+                    techCanvas.setPointerCapture(e.pointerId);
+                    techCanvas.style.cursor = 'grabbing';
+                });
+
+                techCanvas.addEventListener('pointermove', (e) => {
+                    if (!dragStart) return;
+                    dragPhi = (e.clientX - dragStart.x) / 230;
+                    dragTheta = (e.clientY - dragStart.y) / 720;
+                });
+
+                const endGlobeDrag = (e) => {
+                    if (!dragStart) return;
+                    phiOffset += dragPhi;
+                    thetaOffset += dragTheta;
+                    dragPhi = 0;
+                    dragTheta = 0;
+                    dragStart = null;
+                    if (techCanvas.hasPointerCapture(e.pointerId)) techCanvas.releasePointerCapture(e.pointerId);
+                    techCanvas.style.cursor = 'grab';
+                };
+
+                techCanvas.addEventListener('pointerup', endGlobeDrag);
+                techCanvas.addEventListener('pointercancel', endGlobeDrag);
+                window.addEventListener('resize', resizeGlobe);
+                resizeGlobe();
+                requestAnimationFrame(drawGlobe);
+            }
+
+            // 5. 3D Parallax Tilt & Gloss Glare on Project/Certificate Cards
+            const tiltCards = document.querySelectorAll('.framer-shadow');
+            tiltCards.forEach(card => {
+                // Add relative container and clip elements to handle glare
+                card.style.position = 'relative';
+                card.style.overflow = 'hidden';
+
+                // Create glare element
+                const glare = document.createElement('div');
+                glare.className = 'absolute inset-0 rounded-[2rem] pointer-events-none opacity-0 transition-opacity duration-300 z-10';
+                glare.style.background = 'radial-gradient(circle at 50% 50%, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 60%)';
+                card.appendChild(glare);
+
+                card.addEventListener('mouseenter', () => {
+                    card.style.transition = 'none';
+                    glare.style.opacity = '1';
+                });
+
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    const px = (x / rect.width) * 2 - 1; // -1 to 1
+                    const py = (y / rect.height) * 2 - 1; // -1 to 1
+
+                    // Subtle 3D tilt coordinates (max 8 degrees)
+                    const tiltX = -py * 8;
+                    const tiltY = px * 8;
+
+                    card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.02, 1.02, 1.02)`;
+
+                    // Smooth reflection glare tracking
+                    glare.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0) 65%)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    // Restore original flat layout smoothly
+                    card.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s ease';
+                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+                    glare.style.opacity = '0';
+                });
+            });
+
+            // 6. Certificate story stack reveal and tactile drag
+            const certificateGallery = document.querySelector('[data-certificate-gallery]');
+            const certificatePhotos = document.querySelectorAll('.certificate-photo');
+
+            if (certificateGallery) {
+                const revealGallery = () => {
+                    certificateGallery.classList.add('is-visible');
+                    window.setTimeout(() => {
+                        certificateGallery.classList.add('is-loaded');
+                    }, 420);
+                };
+
+                if ('IntersectionObserver' in window) {
+                    const galleryObserver = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                revealGallery();
+                                galleryObserver.disconnect();
+                            }
+                        });
+                    }, { threshold: 0.3 });
+
+                    galleryObserver.observe(certificateGallery);
+                } else {
+                    revealGallery();
+                }
+            }
+
+            certificatePhotos.forEach(card => {
+                let isDragging = false;
+                let hasMoved = false;
+                let pointerId = null;
+                let startX = 0;
+                let startY = 0;
+                let baseX = 0;
+                let baseY = 0;
+
+                const readOffset = (name) => {
+                    const value = getComputedStyle(card).getPropertyValue(name).trim();
+                    return Number.parseFloat(value) || 0;
+                };
+
+                card.addEventListener('pointerdown', (e) => {
+                    if (window.matchMedia('(max-width: 900px)').matches) return;
+
+                    isDragging = true;
+                    hasMoved = false;
+                    pointerId = e.pointerId;
+                    startX = e.clientX;
+                    startY = e.clientY;
+                    baseX = readOffset('--tx');
+                    baseY = readOffset('--ty');
+                    card.dataset.dragged = 'false';
+                    card.classList.add('is-dragging');
+                    card.setPointerCapture(pointerId);
+                });
+
+                card.addEventListener('pointermove', (e) => {
+                    if (!isDragging) return;
+
+                    const dx = e.clientX - startX;
+                    const dy = e.clientY - startY;
+
+                    if (Math.abs(dx) + Math.abs(dy) > 6) {
+                        hasMoved = true;
+                        card.dataset.dragged = 'true';
+                    }
+
+                    card.style.setProperty('--tx', `${baseX + dx}px`);
+                    card.style.setProperty('--ty', `${baseY + dy}px`);
+                });
+
+                const endDrag = () => {
+                    if (!isDragging) return;
+
+                    isDragging = false;
+                    card.classList.remove('is-dragging');
+                    if (pointerId !== null && card.hasPointerCapture(pointerId)) {
+                        card.releasePointerCapture(pointerId);
+                    }
+                    pointerId = null;
+
+                    if (hasMoved) {
+                        window.setTimeout(() => {
+                            card.dataset.dragged = 'false';
+                        }, 220);
+                    }
+                };
+
+                card.addEventListener('pointerup', endDrag);
+                card.addEventListener('pointercancel', endDrag);
+            });
+
+            // 7. Tactile 3D Paper Lightbox click interceptor and drag-to-tilt
+            const certLinks = document.querySelectorAll('#certificates .certificate-photo');
+            const lightbox = document.getElementById('cert-lightbox');
+            const lightboxIframe = document.getElementById('cert-lightbox-iframe');
+            const lightboxTitle = document.getElementById('cert-lightbox-title');
+            const lightboxSubtitle = document.getElementById('cert-lightbox-subtitle');
+            const lightboxLink = document.getElementById('cert-lightbox-link');
+            const paperSheet = document.getElementById('cert-paper-sheet');
+            const iframeMask = document.getElementById('cert-iframe-mask');
+            const certGlare = document.getElementById('cert-glare');
+
+            if (certLinks.length > 0 && lightbox && lightboxIframe) {
+                certLinks.forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        if (link.dataset.dragged === 'true') {
+                            e.preventDefault();
+                            return;
+                        }
+
+                        e.preventDefault();
+
+                        const href = link.getAttribute('href');
+                        const title = link.querySelector('h3').textContent;
+                        const subtitle = link.querySelector('p').textContent;
+
+                        // Set content
+                        lightboxIframe.src = href;
+                        lightboxTitle.textContent = title;
+                        lightboxSubtitle.textContent = subtitle;
+                        lightboxLink.setAttribute('href', href);
+
+                        // Show lightbox
+                        lightbox.classList.remove('pointer-events-none', 'opacity-0');
+                        lightbox.classList.add('opacity-100');
+
+                        // Reset sheet rotation
+                        paperSheet.style.transform = 'perspective(1500px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+                    });
+                });
+
+                window.closeCertLightbox = function () {
+                    lightbox.classList.add('pointer-events-none', 'opacity-0');
+                    lightbox.classList.remove('opacity-100');
+                    // Clear iframe source after animation finishes to prevent content flash
+                    setTimeout(() => {
+                        lightboxIframe.src = '';
+                    }, 300);
+                };
+
+                // Drag-to-tilt engine for Certificate Paper Sheet
+                let isDraggingPaper = false;
+                let startX = 0, startY = 0;
+                let paperRx = 0, paperRy = 0;
+
+                paperSheet.addEventListener('mousedown', (e) => {
+                    // Ignore clicks on buttons/inputs/links
+                    if (e.target.closest('button') || e.target.closest('a')) return;
+
+                    isDraggingPaper = true;
+                    iframeMask.classList.remove('hidden'); // Show mask to prevent iframe mouse stealing
+                    paperSheet.style.cursor = 'grabbing';
+
+                    startX = e.clientX;
+                    startY = e.clientY;
+                });
+
+                window.addEventListener('mousemove', (e) => {
+                    if (!isDraggingPaper) return;
+
+                    const dx = e.clientX - startX;
+                    const dy = e.clientY - startY;
+
+                    // Rotations mapped to drag offset (clamped to max 22 degrees)
+                    paperRy = Math.max(-22, Math.min(22, dx * 0.15));
+                    paperRx = Math.max(-22, Math.min(22, -dy * 0.15));
+
+                    paperSheet.style.transform = `perspective(1500px) rotateX(${paperRx}deg) rotateY(${paperRy}deg) scale3d(1.02, 1.02, 1.02)`;
+
+                    // Update glare position
+                    const rect = paperSheet.getBoundingClientRect();
+                    const glareX = e.clientX - rect.left;
+                    const glareY = e.clientY - rect.top;
+                    certGlare.style.opacity = '1';
+                    certGlare.style.background = `radial-gradient(circle at ${glareX}px ${glareY}px, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 60%)`;
+                });
+
+                window.addEventListener('mouseup', () => {
+                    if (!isDraggingPaper) return;
+                    isDraggingPaper = false;
+                    iframeMask.classList.add('hidden'); // Hide mask so iframe becomes interactive again
+                    paperSheet.style.cursor = 'grab';
+
+                    // Return slowly to flat
+                    paperSheet.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
+                    paperSheet.style.transform = 'perspective(1500px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+                    certGlare.style.opacity = '0';
+
+                    // Remove transition after animation finishes so drag is responsive again
+                    setTimeout(() => {
+                        if (!isDraggingPaper) paperSheet.style.transition = 'none';
+                    }, 600);
+                });
+            }
+
+            // 8. Wire-Suspended Mechanical Scroll Tracker Engine
+            const anchors = document.querySelectorAll('.scroll-anchor');
+            const bead = document.getElementById('scroll-bead');
+            const sections = ['top', 'about', 'stack', 'capabilities', 'work', 'certificates', 'contact'];
+            const sectionIsland = document.getElementById('section-island');
+            const sectionIslandLabel = document.getElementById('section-island-label');
+            const sectionIslandIcon = document.getElementById('section-island-icon');
+            const sectionIslandProgress = document.getElementById('section-island-progress');
+            const sectionMeta = {
+                top: { label: 'Start', icon: 'home' },
+                about: { label: 'Open Source', icon: 'commit' },
+                stack: { label: 'Tech Stack', icon: 'public' },
+                capabilities: { label: 'Capabilities', icon: 'auto_awesome' },
+                work: { label: 'Projects', icon: 'workspaces' },
+                certificates: { label: 'Certificates', icon: 'verified' },
+                contact: { label: 'Contact', icon: 'mail' }
+            };
+
+            if (anchors.length > 0 && bead) {
+                let targetY = 24;
+                let currentY = 24;
+                let beadVelocity = 0;
+                const k_bead = 0.12; // Spring constant
+                const d_bead = 0.78; // Damping constant
+                let activeIndex = -1;
+
+                window.scrollToSection = function (id) {
+                    if (id === 'top') {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    } else {
+                        const el = document.getElementById(id);
+                        if (el) {
+                            el.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                };
+
+                function updateScrollBead() {
+                    const scrollPos = window.scrollY + window.innerHeight / 3;
+                    let newIndex = 0;
+
+                    for (let i = 1; i < sections.length; i++) {
+                        const el = document.getElementById(sections[i]);
+                        if (el && scrollPos >= el.offsetTop) {
+                            newIndex = i;
+                        }
+                    }
+
+                    if (newIndex !== activeIndex) {
+                        activeIndex = newIndex;
+                    }
+
+                    const activeSection = sections[activeIndex] || 'top';
+                    const meta = sectionMeta[activeSection] || sectionMeta.top;
+                    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                    const progress = docHeight > 0 ? Math.min(100, Math.max(0, (window.scrollY / docHeight) * 100)) : 0;
+
+                    if (sectionIsland && sectionIslandLabel && sectionIslandIcon && sectionIslandProgress) {
+                        sectionIsland.classList.toggle('is-visible', window.scrollY > 240);
+                        sectionIslandLabel.textContent = meta.label;
+                        sectionIslandIcon.textContent = meta.icon;
+                        sectionIslandProgress.style.setProperty('--progress', `${progress}%`);
+                    }
+
+                    const activeAnchor = anchors[activeIndex];
+                    if (activeAnchor) {
+                        const parentRect = activeAnchor.parentElement.getBoundingClientRect();
+                        const anchorRect = activeAnchor.getBoundingClientRect();
+                        // Target center position of active anchor relative to parent wire
+                        targetY = anchorRect.top - parentRect.top + (anchorRect.height / 2) - 5;
+                    }
+
+                    // Spring physics loop for scrolling bead
+                    const springForce = (targetY - currentY) * k_bead;
+                    beadVelocity += springForce;
+                    beadVelocity *= d_bead;
+                    currentY += beadVelocity;
+
+                    bead.style.top = `${currentY}px`;
+
+                    // Style active section anchors
+                    anchors.forEach((anc, idx) => {
+                        if (idx === activeIndex) {
+                            anc.classList.add('border-[#4976a4]', 'bg-[#4976a4]/10');
+                            anc.classList.remove('border-neutral-300');
+                        } else {
+                            anc.classList.remove('border-[#4976a4]', 'bg-[#4976a4]/10');
+                            anc.classList.add('border-neutral-300');
+                        }
+                    });
+
+                    requestAnimationFrame(updateScrollBead);
+                }
+                requestAnimationFrame(updateScrollBead);
+            }
+
+            // 5. Interactive Mac-style Dock Proximity Magnification Engine
+            const dock = document.getElementById('interactive-dock');
+            const dockItems = document.querySelectorAll('.dock-item');
+
+            if (dock && dockItems.length > 0) {
+                document.addEventListener('mousemove', (e) => {
+                    const dockRect = dock.getBoundingClientRect();
+                    const mouseX = e.clientX;
+                    const mouseY = e.clientY;
+
+                    // Proximity detection
+                    const inRange = mouseY >= dockRect.top - 100 && mouseY <= dockRect.bottom + 80;
+
+                    dockItems.forEach(item => {
+                        const itemRect = item.getBoundingClientRect();
+                        const itemCenterX = itemRect.left + itemRect.width / 2;
+
+                        if (inRange) {
+                            const dist = Math.abs(mouseX - itemCenterX);
+                            const maxDist = 140; // Max influence radius
+
+                            if (dist < maxDist) {
+                                const ratio = (1 - dist / maxDist);
+                                const scale = 1 + ratio * 0.45; // Max 1.45x scaling
+                                const size = 44 * scale;
+
+                                item.style.width = `${size}px`;
+                                item.style.height = `${size}px`;
+                                return;
+                            }
+                        }
+                        // Restore default base dimensions
+                        item.style.width = '44px';
+                        item.style.height = '44px';
+                    });
+                });
+
+                dock.addEventListener('mouseleave', () => {
+                    dockItems.forEach(item => {
+                        item.style.width = '44px';
+                        item.style.height = '44px';
+                    });
+                });
+            }
         });
     </script>
 </body>
