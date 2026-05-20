@@ -77,6 +77,27 @@
                 transform: translateY(-20px) rotate(4deg);
             }
         }
+
+        /* Custom Physics ID Card specific styling */
+        #id-card-container {
+            position: relative;
+            touch-action: none;
+        }
+
+        #id-card {
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+            user-select: none;
+            -webkit-user-drag: none;
+            touch-action: none;
+            transform-origin: 140px 25px; /* Origin exactly at the card holder slot */
+        }
+
+        #id-card img {
+            user-select: none;
+            -webkit-user-drag: none;
+            pointer-events: none;
+        }
     </style>
 </head>
 
@@ -136,9 +157,112 @@
                 </div>
             </div>
 
-            <div class="framer-card overflow-hidden p-0 relative shadow-sm min-h-[400px]">
-                <img src="char.png" alt="Charan BS"
-                    class="w-full h-full object-cover rounded-[2rem] saturate-150 transition-transform hover:scale-105 duration-1000" />
+            <div id="id-card-container" class="overflow-visible p-0 relative min-h-[500px] flex items-center justify-center select-none" style="perspective: 1200px;">
+                <!-- Subtle studio grid background -->
+                <div class="absolute inset-0 opacity-[0.05] pointer-events-none" style="background-image: radial-gradient(#313035 1px, transparent 1px); background-size: 20px 20px;"></div>
+                
+                <!-- SVG Lanyard Shadow (Renders behind the card) -->
+                <svg id="lanyard-shadow-svg" class="absolute inset-0 w-full h-full pointer-events-none z-0">
+                    <path id="lanyard-shadow" d="" fill="none" stroke="rgba(49, 48, 53, 0.05)" stroke-width="4" stroke-linecap="round" />
+                </svg>
+                
+                <!-- Lanyard wall hook anchor at the top (z-25 sits on top of everything) -->
+                <div id="lanyard-anchor-point" class="absolute top-4 left-1/2 -translate-x-1/2 w-4.5 h-4.5 bg-[#313035] rounded-full border border-white shadow-[0_2px_6px_rgba(0,0,0,0.15)] z-25 flex items-center justify-center">
+                    <div class="w-1.5 h-1.5 bg-[#4976a4] rounded-full"></div>
+                </div>
+                
+                <!-- Interactive ID Card Badge (absolute top-0 left-0 coordinates perfectly matches lanyard SVG space) -->
+                <div id="id-card" class="absolute top-0 left-0 w-[280px] h-[450px] rounded-[2.2rem] bg-white border border-[#e6e4d9] shadow-2xl flex flex-col items-center p-6 z-10 select-none cursor-grab active:cursor-grabbing hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.18)]" style="transform-style: preserve-3d; transform: translate3d(0px, 120px, 0px) rotate(0deg); will-change: transform;">
+                    
+                    <!-- Shiny Holographic Reflection Overlay (softened to 12% to keep profile image completely natural) -->
+                    <div id="holo-sheen" class="absolute inset-0 rounded-[2.2rem] pointer-events-none opacity-[0.12] mix-blend-color-dodge transition-opacity duration-300 z-30" style="background: linear-gradient(135deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 45%, rgba(160,200,255,0.6) 50%, rgba(255,255,255,0.8) 55%, rgba(255,255,255,0) 100%) -280px -280px / 800px 800px no-repeat;"></div>
+                    
+                    <!-- Glossy Glass reflection -->
+                    <div class="absolute inset-0 rounded-[2.2rem] pointer-events-none opacity-[0.12] z-20" style="background: linear-gradient(105deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.1) 40%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0.3) 100%);"></div>
+
+                    <!-- Badge Holder Slot -->
+                    <div class="w-14 h-3.5 bg-neutral-100 rounded-full mb-5 border border-neutral-200 flex items-center justify-center shadow-[inset_0_1px_3px_rgba(0,0,0,0.06)] relative z-20 shrink-0">
+                        <div class="w-8 h-1 bg-[#313035]/30 rounded-full"></div>
+                        <!-- Chrome Lanyard Clip -->
+                        <div class="absolute -top-3 w-4 h-5.5 bg-gradient-to-b from-[#b0b0b0] via-[#eaeaea] to-[#888888] rounded-t-sm rounded-b border border-neutral-400 shadow-sm flex items-center justify-center">
+                            <div class="w-2 h-2 bg-[#4976a4] rounded-full border border-white/20"></div>
+                        </div>
+                    </div>
+
+                    <!-- Badge Content -->
+                    <div class="w-full flex flex-col flex-1 z-20 relative select-none">
+                        <!-- Header -->
+                        <div class="flex justify-between items-center mb-3">
+                            <div class="flex items-center gap-1.5">
+                                <div class="w-2 h-2 bg-accent-blue rounded-full animate-pulse"></div>
+                                <span class="text-[9px] font-black uppercase tracking-widest text-[#4976a4]">CREATIVE DEV</span>
+                            </div>
+                            <span class="text-[9px] font-bold text-text-muted tracking-wider">ID #CHARANBS18</span>
+                        </div>
+
+                        <!-- Profile Photo Frame -->
+                        <div class="w-44 h-44 mx-auto rounded-2xl bg-neutral-50 border border-neutral-100 p-1.5 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] mb-4 overflow-hidden relative group">
+                            <!-- Image inside badge (fully clear and original) -->
+                            <img src="char.png" alt="Charan BS" class="w-full h-full object-cover rounded-[0.9rem] border border-black/5 pointer-events-none select-none" />
+                        </div>
+
+                        <!-- Name & Role -->
+                        <div class="text-center mb-4">
+                            <h2 class="text-xl font-bold tracking-tight text-[#313035] leading-tight mb-0.5 select-none">Charan B.S.</h2>
+                            <p class="text-[10px] font-bold text-[#4976a4] uppercase tracking-wider select-none">AI &amp; Full-Stack Developer</p>
+                        </div>
+
+                        <!-- Specs Grid (Golden Chip & Details) -->
+                        <div class="grid grid-cols-5 gap-3 items-center mt-auto border-t border-[#f1efe6] pt-3">
+                            <!-- Golden Silicon Chip -->
+                            <div class="col-span-2 flex items-center">
+                                <svg class="w-10 h-7 rounded bg-gradient-to-br from-[#ffe082] via-[#ffd54f] to-[#ffb300] p-1 border border-[#ffb300]/50 shadow-sm" viewBox="0 0 40 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4 4h32v22H4V4z" fill="#ffb300" opacity="0.3"/>
+                                    <rect x="7" y="6" width="6" height="5" rx="1" fill="#fff" opacity="0.5"/>
+                                    <rect x="7" y="12" width="6" height="5" rx="1" fill="#fff" opacity="0.5"/>
+                                    <rect x="7" y="18" width="6" height="5" rx="1" fill="#fff" opacity="0.5"/>
+                                    <rect x="27" y="6" width="6" height="5" rx="1" fill="#fff" opacity="0.5"/>
+                                    <rect x="27" y="12" width="6" height="5" rx="1" fill="#fff" opacity="0.5"/>
+                                    <rect x="27" y="18" width="6" height="5" rx="1" fill="#fff" opacity="0.5"/>
+                                    <path d="M13 8.5h14M13 14.5h14M13 20.5h14M20 6v17" stroke="#ff8f00" stroke-width="0.8" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+
+                            <!-- Details -->
+                            <div class="col-span-3 flex flex-col justify-center text-[9px] font-medium text-text-muted space-y-0.5 select-none pl-1">
+                                <div><span class="font-bold text-text-main text-[8px] uppercase tracking-wide">Dept:</span> ENG-AI</div>
+                                <div><span class="font-bold text-text-main text-[8px] uppercase tracking-wide">Loc:</span> Bangalore</div>
+                                <div><span class="font-bold text-text-main text-[8px] uppercase tracking-wide">Exp:</span> 2026.05</div>
+                            </div>
+                        </div>
+
+                        <!-- Barcode Area -->
+                        <div class="w-full flex flex-col items-center mt-3 pt-3 border-t border-[#f1efe6]">
+                            <svg class="w-full h-7 opacity-80" viewBox="0 0 200 30" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="0" width="200" height="30" fill="transparent" />
+                                <g fill="#313035">
+                                    <rect x="10" y="2" width="2" height="20" /><rect x="14" y="2" width="3" height="20" /><rect x="19" y="2" width="1" height="20" /><rect x="22" y="2" width="2" height="20" />
+                                    <rect x="26" y="2" width="4" height="20" /><rect x="32" y="2" width="1" height="20" /><rect x="35" y="2" width="2" height="20" /><rect x="39" y="2" width="3" height="20" />
+                                    <rect x="44" y="2" width="1" height="20" /><rect x="47" y="2" width="4" height="20" /><rect x="53" y="2" width="2" height="20" /><rect x="57" y="2" width="1" height="20" />
+                                    <rect x="60" y="2" width="3" height="20" /><rect x="65" y="2" width="2" height="20" /><rect x="69" y="2" width="1" height="20" /><rect x="72" y="2" width="4" height="20" />
+                                    <rect x="78" y="2" width="1" height="20" /><rect x="81" y="2" width="2" height="20" /><rect x="85" y="2" width="3" height="20" /><rect x="90" y="2" width="2" height="20" />
+                                    <rect x="94" y="2" width="1" height="20" /><rect x="97" y="2" width="4" height="20" /><rect x="103" y="2" width="2" height="20" /><rect x="107" y="2" width="3" height="20" />
+                                    <rect x="112" y="2" width="1" height="20" /><rect x="115" y="2" width="2" height="20" /><rect x="119" y="2" width="4" height="20" /><rect x="125" y="2" width="1" height="20" />
+                                    <rect x="128" y="2" width="3" height="20" /><rect x="133" y="2" width="2" height="20" /><rect x="137" y="2" width="1" height="20" /><rect x="140" y="2" width="4" height="20" />
+                                    <rect x="146" y="2" width="2" height="20" /><rect x="150" y="2" width="1" height="20" /><rect x="153" y="2" width="3" height="20" /><rect x="158" y="2" width="2" height="20" />
+                                    <rect x="162" y="2" width="4" height="20" /><rect x="168" y="2" width="1" height="20" /><rect x="171" y="2" width="2" height="20" /><rect x="175" y="2" width="3" height="20" />
+                                    <rect x="180" y="2" width="1" height="20" /><rect x="183" y="2" width="4" height="20" /><rect x="189" y="2" width="2" height="20" />
+                                </g>
+                            </svg>
+                            <span class="text-[8px] font-bold text-text-muted mt-1 select-none tracking-[0.25em] uppercase">CHARAN.BS.18</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- SVG Lanyard String (Renders in front of the card, connecting directly to the clip) -->
+                <svg id="lanyard-svg" class="absolute inset-0 w-full h-full pointer-events-none z-20">
+                    <path id="lanyard-string" d="" fill="none" stroke="#4976a4" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="1 5" stroke-linejoin="round" />
+                </svg>
             </div>
         </section>
 
@@ -390,6 +514,343 @@
         </div>
     </footer>
 
+    <!-- Interactive Physics Engine for ID Card Badge -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('id-card-container');
+            const card = document.getElementById('id-card');
+            const lanyardPath = document.getElementById('lanyard-string');
+            const lanyardShadow = document.getElementById('lanyard-shadow');
+            const lanyardAnchor = document.getElementById('lanyard-anchor-point');
+            const holoSheen = document.getElementById('holo-sheen');
+
+            if (!container || !card || !lanyardPath || !lanyardShadow || !lanyardAnchor) return;
+
+            // Anchor point (hanging coordinates on hook in container space)
+            let anchorX = 0;
+            let anchorY = 16;
+
+            // Physics Variables (attachment point P at the slot of the card)
+            let px = 0, py = 0;
+            let vx = 0, vy = 0;
+            let lastPx = 0, lastPy = 0;
+            let lastLastPx = 0, lastLastPy = 0;
+
+            // Rotational physics variables (around slot attachment point)
+            let theta = 0; // rotation angle (rad)
+            let omega = 0; // angular velocity (rad/s)
+
+            // 3D Visual Tilt (depth)
+            let rx = 0, ry = 0; // degrees
+
+            // Simulation Constants (Heavily damped for highly controlled, solid, premium movement)
+            const L = 135;             // Lanyard rest length (px)
+            const g = 0.35;            // Gravity acceleration force (slower, gentler fall)
+            const k_spring = 0.06;     // Rope spring tension constant (less snappy elasticity)
+            const c_damping = 0.18;    // Rope damping force (strongly dampens vertical bounces)
+            const air_drag = 0.955;    // Air friction damping (dampens horizontal motion quickly)
+            const rot_gravity = 0.022; // Torque from gravity trying to verticalize card (straightens faster)
+            const rot_damping = 0.86;  // Rotational decay friction (dampens rotation tilts and swings almost instantly)
+            const h_com = 180;         // Distance from slot P to Center of Mass
+
+            // Pointer Tracking State
+            let isDragging = false;
+            let grabOffsetX = 0;
+            let grabOffsetY = 0;
+            let pointerX = 0, pointerY = 0;
+            let hoverX = 0, hoverY = 0;
+            let isHovering = false;
+
+            // Mouse tracking speed history (for toss momentum)
+            let pointerVelocityX = 0, pointerVelocityY = 0;
+            let lastPointerX = 0, lastPointerY = 0;
+            let lastPointerTime = 0;
+
+            // Initialize position centered nicely
+            function initPhysics() {
+                const rect = container.getBoundingClientRect();
+                // Place anchor slightly to the left (by 60px) as requested
+                anchorX = rect.width / 2 - 60;
+                
+                // When opening/restarting the site, start the card high up
+                // near the top anchor so it falls down beautifully under gravity!
+                px = anchorX - 50; // starts offset slightly to the left to induce a swing
+                py = anchorY + 15; // starts near the top anchor point (slack lanyard)
+                
+                lastPx = px;
+                lastPy = py;
+                lastLastPx = px;
+                lastLastPy = py;
+                vx = 0;
+                vy = 0;
+                theta = -0.3; // Slight initial tilt for a beautiful falling spin!
+                omega = 0;
+
+                // Sync visual wall pin hook with anchorX
+                lanyardAnchor.style.left = anchorX + 'px';
+            }
+
+            // Make sure container is sized, then init
+            initPhysics();
+            
+            // Re-center on window resize
+            window.addEventListener('resize', () => {
+                const oldAnchorX = anchorX;
+                const rect = container.getBoundingClientRect();
+                anchorX = rect.width / 2 - 60; // Place anchor slightly left
+                
+                // Shift card by delta anchor to prevent sudden physics snap
+                const dx = anchorX - oldAnchorX;
+                px += dx;
+                lastPx += dx;
+                lastLastPx += dx;
+
+                // Sync visual wall pin hook with anchorX
+                lanyardAnchor.style.left = anchorX + 'px';
+            });
+
+            // Pointer events
+            function getLocalCoords(e) {
+                const rect = container.getBoundingClientRect();
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                return {
+                    x: clientX - rect.left,
+                    y: clientY - rect.top
+                };
+            }
+
+            card.addEventListener('mousedown', startDrag);
+            card.addEventListener('touchstart', startDrag, { passive: true });
+
+            window.addEventListener('mousemove', drag);
+            window.addEventListener('touchmove', drag, { passive: false });
+
+            window.addEventListener('mouseup', endDrag);
+            window.addEventListener('touchend', endDrag);
+
+            container.addEventListener('mouseenter', () => { isHovering = true; });
+            container.addEventListener('mouseleave', () => { isHovering = false; });
+            container.addEventListener('mousemove', (e) => {
+                const coords = getLocalCoords(e);
+                hoverX = coords.x;
+                hoverY = coords.y;
+            });
+
+            function startDrag(e) {
+                isDragging = true;
+                
+                const coords = getLocalCoords(e);
+                pointerX = coords.x;
+                pointerY = coords.y;
+
+                // Grab offset is the difference between pointer and P's current position (px, py)
+                grabOffsetX = pointerX - px;
+                grabOffsetY = pointerY - py;
+
+                // Initialize velocity tracking
+                lastPointerX = pointerX;
+                lastPointerY = pointerY;
+                lastPointerTime = performance.now();
+                pointerVelocityX = 0;
+                pointerVelocityY = 0;
+
+                // Apply active styles
+                container.classList.remove('cursor-grab');
+                container.classList.add('cursor-grabbing');
+                
+                // Prevent page scroll when touching card
+                if (e.cancelable) e.preventDefault();
+            }
+
+            function drag(e) {
+                if (!isDragging) return;
+                
+                const coords = getLocalCoords(e);
+                pointerX = coords.x;
+                pointerY = coords.y;
+
+                // Measure instantaneous pointer velocity
+                const now = performance.now();
+                const dt = Math.max(1, now - lastPointerTime);
+                pointerVelocityX = (pointerX - lastPointerX) / dt * 16.66; // Normalize to 60fps equivalent
+                pointerVelocityY = (pointerY - lastPointerY) / dt * 16.66;
+
+                lastPointerX = pointerX;
+                lastPointerY = pointerY;
+                lastPointerTime = now;
+
+                if (e.cancelable) e.preventDefault();
+            }
+
+            function endDrag() {
+                if (!isDragging) return;
+                isDragging = false;
+                
+                // Transfer pointer velocity to the physical card
+                vx = Math.min(25, Math.max(-25, pointerVelocityX));
+                vy = Math.min(25, Math.max(-25, pointerVelocityY));
+
+                container.classList.remove('cursor-grabbing');
+                container.classList.add('cursor-grab');
+            }
+
+            // Physics Update Loop (60 FPS)
+            function updatePhysics() {
+                // Keep track of positions for acceleration calculation
+                lastLastPx = lastPx;
+                lastLastPy = lastPy;
+                lastPx = px;
+                lastPy = py;
+
+                if (isDragging) {
+                    // Pull slot P towards mouse position minus grab offset
+                    const targetPx = pointerX - grabOffsetX;
+                    const targetPy = pointerY - grabOffsetY;
+                    
+                    // Smooth elastic drag tracking (mass spring damper feel)
+                    px += (targetPx - px) * 0.22;
+                    py += (targetPy - py) * 0.22;
+                    
+                    // Derivate velocity
+                    vx = px - lastPx;
+                    vy = py - lastPy;
+                } else {
+                    // Physical simulation of hanging card
+                    // 1. Gravity acting on P
+                    vy += g;
+
+                    // 2. Spring tension force from lanyard string
+                    const dx = px - anchorX;
+                    const dy = py - anchorY;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist > L) {
+                        const stretch = dist - L;
+                        // Restoring spring tension
+                        let tx = -k_spring * stretch * (dx / dist);
+                        let ty = -k_spring * stretch * (dy / dist);
+
+                        // Damping force along the string direction
+                        const v_along_string = (vx * dx + vy * dy) / dist;
+                        tx -= c_damping * v_along_string * (dx / dist);
+                        ty -= c_damping * v_along_string * (dy / dist);
+
+                        vx += tx;
+                        vy += ty;
+                    }
+
+                    // 3. Air friction
+                    vx *= air_drag;
+                    vy *= air_drag;
+
+                    // 4. Update coordinates
+                    px += vx;
+                    py += vy;
+
+                    // Prevent clipping outside container
+                    const rect = container.getBoundingClientRect();
+                    px = Math.max(30, Math.min(rect.width - 30, px));
+                    py = Math.max(20, Math.min(rect.height - 180, py));
+                }
+
+                // Rotational physics: Card swings around attachment point P
+                // We estimate the slot's acceleration
+                const ax = px - 2 * lastPx + lastLastPx;
+                const ay = py - 2 * lastPy + lastLastPy;
+
+                // Rotational forces:
+                // - Gravitational torque pulls the card bottom downwards (restoring force)
+                // - Inertial torque: horizontal acceleration swings card opposite direction, vertical acceleration affects string tension
+                const t_gravity = -rot_gravity * Math.sin(theta);
+                const t_inertia = -0.012 * (ax * Math.cos(theta) + (ay + g) * Math.sin(theta));
+
+                const torque = t_gravity + t_inertia;
+
+                // Update angular velocity and angle
+                omega += torque;
+                omega *= rot_damping;
+                theta += omega;
+
+                // Restrict extreme rotation to keep it looking clean
+                theta = Math.max(-1.5, Math.min(1.5, theta));
+
+                // Dynamic 3D Tilt calculation
+                if (isDragging) {
+                    // Tilt in 3D based on velocity (softened to be extremely subtle)
+                    const targetRx = -vy * 0.35;
+                    const targetRy = vx * 0.35;
+                    rx += (targetRx - rx) * 0.15;
+                    ry += (targetRy - ry) * 0.15;
+                } else if (isHovering && !isDragging) {
+                    // Hover tilt: twist towards pointer (gentler)
+                    const cardCenterX = px + Math.sin(theta) * h_com;
+                    const cardCenterY = py + Math.cos(theta) * h_com;
+                    const hdx = hoverX - cardCenterX;
+                    const hdy = hoverY - cardCenterY;
+                    
+                    const targetRx = -hdy * 0.015;
+                    const targetRy = hdx * 0.015;
+                    // Clamp hover tilt to 5 degrees max for professional micro-movement
+                    rx += (Math.max(-5, Math.min(5, targetRx)) - rx) * 0.1;
+                    ry += (Math.max(-5, Math.min(5, targetRy)) - ry) * 0.1;
+                } else {
+                    // Return slowly to flat orientation
+                    const targetRx = Math.sin(theta * 2) * 2; // subtle dynamic swing twist
+                    const targetRy = -vx * 0.15;
+                    rx += (targetRx - rx) * 0.08;
+                    ry += (targetRy - ry) * 0.08;
+                }
+
+                // Update DOM positions & 3D CSS Transforms
+                // Note: transform-origin is set to "140px 25px" in CSS (Badge slot)
+                const cardX = px - 140;
+                const cardY = py - 25;
+                card.style.transform = `translate3d(${cardX}px, ${cardY}px, 0px) rotateZ(${theta}rad) rotateX(${rx}deg) rotateY(${ry}deg)`;
+
+                // Update SVG Lanyard string path
+                const dx = px - anchorX;
+                const dy = py - anchorY;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+
+                let pathD = '';
+                if (dist < L) {
+                    // Rope is slack: draw hanging curve sagging down under gravity
+                    const sag = (L - dist) * 0.82;
+                    const midX = (anchorX + px) / 2;
+                    const midY = (anchorY + py) / 2 + sag;
+                    pathD = `M ${anchorX} ${anchorY} Q ${midX} ${midY} ${px} ${py}`;
+                } else {
+                    // Rope is taut: draw almost straight with a subtle springy sag
+                    const midX = (anchorX + px) / 2;
+                    const midY = (anchorY + py) / 2;
+                    pathD = `M ${anchorX} ${anchorY} Q ${midX} ${midY} ${px} ${py}`;
+                }
+                
+                lanyardPath.setAttribute('d', pathD);
+                
+                // Draw string shadow underneath for high depth realism
+                const shadowSag = dist < L ? (L - dist) * 0.82 + 8 : 8;
+                const smidX = (anchorX + px) / 2 + 10;
+                const smidY = (anchorY + py) / 2 + shadowSag;
+                const spx = px + 10;
+                const spy = py + 12;
+                const shadowD = `M ${anchorX + 10} ${anchorY + 12} Q ${smidX} ${smidY} ${spx} ${spy}`;
+                lanyardShadow.setAttribute('d', shadowD);
+
+                // Update holographic sheen gradient position
+                // It shifts as the card moves and rotates
+                const sheenX = -280 + (px - anchorX) * 0.65 + theta * 160;
+                const sheenY = -280 + (py - anchorY) * 0.65 - theta * 160;
+                holoSheen.style.backgroundPosition = `${sheenX}px ${sheenY}px`;
+
+                requestAnimationFrame(updatePhysics);
+            }
+
+            // Start physics loop
+            requestAnimationFrame(updatePhysics);
+        });
+    </script>
 </body>
 
 </html>
