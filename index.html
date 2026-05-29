@@ -3388,12 +3388,13 @@
 
             // Add global button click sound for all buttons
             document.addEventListener('click', (e) => {
+                // Skip the dedicated lightbox close button so it only plays the close sound once
+                if (e.target.id === 'cert-lightbox-close' || e.target.closest('#cert-lightbox-close')) {
+                    return;
+                }
+
                 if (e.target.tagName === 'BUTTON' || e.target.closest('button')) {
                     SoundEffects.buttonClick();
-                }
-                // Also catch lightbox close button
-                if (e.target.id === 'cert-lightbox-close') {
-                    SoundEffects.lightboxClose();
                 }
             }, true);
 
