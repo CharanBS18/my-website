@@ -41,6 +41,155 @@
                 }
             }
         }
+
+        // Sound Effects System - Persists across page reloads with unique sounds
+        let audioContext = null;
+        
+        const initAudioContext = () => {
+            if (!audioContext) {
+                try {
+                    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                } catch (e) {
+                    console.log('Web Audio API not supported');
+                    return false;
+                }
+            }
+            return audioContext !== null;
+        };
+
+        const SoundEffects = (() => {
+            // Helper function to play a tone
+            const playTone = (frequency, duration, volume = 0.1, type = 'sine') => {
+                if (!initAudioContext()) return;
+                const now = audioContext.currentTime;
+                const osc = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                osc.type = type;
+                osc.frequency.value = frequency;
+                gainNode.gain.setValueAtTime(volume, now);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, now + duration);
+                
+                osc.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                osc.start(now);
+                osc.stop(now + duration);
+            };
+
+            // Helper function to create a frequency sweep
+            const playSweep = (startFreq, endFreq, duration, volume = 0.1) => {
+                if (!initAudioContext()) return;
+                const now = audioContext.currentTime;
+                const osc = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                osc.frequency.setValueAtTime(startFreq, now);
+                osc.frequency.exponentialRampToValueAtTime(endFreq, now + duration);
+                gainNode.gain.setValueAtTime(volume, now);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, now + duration);
+                
+                osc.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                osc.start(now);
+                osc.stop(now + duration);
+            };
+
+            // ===== UNIQUE SOUND EFFECTS =====
+
+            // 1. Button click - Bright metallic click (800Hz)
+            const buttonClick = () => {
+                playTone(800, 0.06, 0.09);
+                setTimeout(() => playTone(600, 0.04, 0.05), 20);
+            };
+
+            // 2. Card hover - Warm ascending glide (400->620Hz)
+            const cardHover = () => {
+                playSweep(400, 620, 0.12, 0.07);
+            };
+
+            // 3. Card drag - Wooden drag texture with frequency shift
+            const cardDrag = () => {
+                playTone(320, 0.05, 0.06);
+                setTimeout(() => playTone(480, 0.05, 0.06), 30);
+            };
+
+            // 4. Dock hover - Soft, gentle bell ping (550Hz)
+            const dockHover = () => {
+                playSweep(700, 550, 0.15, 0.06);
+            };
+
+            // 5. Navigation click - Clear, authoritative beep (900Hz + harmonic)
+            const navClick = () => {
+                playTone(900, 0.08, 0.09);
+                setTimeout(() => playTone(1200, 0.05, 0.04), 25);
+            };
+
+            // 6. Lightbox open - Rising arpeggio (3-note ascending chord)
+            const lightboxOpen = () => {
+                playTone(440, 0.06, 0.07);   // A
+                setTimeout(() => playTone(550, 0.06, 0.07), 40);  // C#
+                setTimeout(() => playTone(660, 0.1, 0.07), 80);   // E
+            };
+
+            // 7. Lightbox close - Falling arpeggio (3-note descending)
+            const lightboxClose = () => {
+                playTone(660, 0.06, 0.07);   // E
+                setTimeout(() => playTone(550, 0.06, 0.07), 40);  // C#
+                setTimeout(() => playTone(440, 0.1, 0.07), 80);   // A
+            };
+
+            // 8. Project hover - Twin ascending sweep
+            const projectHover = () => {
+                playSweep(480, 720, 0.1, 0.06);
+                setTimeout(() => playSweep(640, 880, 0.08, 0.05), 50);
+            };
+
+            // 9. ID Card drop/gravity sound - Swishy falling whoosh
+            const idCardDrop = () => {
+                playSweep(900, 200, 0.3, 0.08);
+            };
+
+            // 10. ID Card grab/catch sound - Soft impact
+            const idCardGrab = () => {
+                playTone(600, 0.08, 0.07);
+                setTimeout(() => playTone(400, 0.06, 0.05), 20);
+            };
+
+            // 11. ID Card drag/swing - Rhythmic wobble
+            const idCardSwing = () => {
+                playTone(480, 0.04, 0.05);
+                setTimeout(() => playTone(640, 0.04, 0.05), 50);
+            };
+
+            // 12. Typing sound - Short click-clack for each character
+            const typingChar = () => {
+                playSweep(900, 750, 0.04, 0.05);
+            };
+
+            // 13. Scroll bead click - Precise mechanical click
+            const scrollBead = () => {
+                playTone(1000, 0.05, 0.07);
+                setTimeout(() => playTone(800, 0.03, 0.04), 15);
+            };
+
+            return {
+                buttonClick,
+                cardHover,
+                cardDrag,
+                dockHover,
+                navClick,
+                lightboxOpen,
+                lightboxClose,
+                projectHover,
+                idCardDrop,
+                idCardGrab,
+                idCardSwing,
+                typingChar,
+                scrollBead
+            };
+        })();
     </script>
     <style>
         body {
@@ -2243,6 +2392,9 @@
 
                 // Prevent page scroll when touching card
                 if (e.cancelable) e.preventDefault();
+
+                // Play ID card grab sound
+                SoundEffects.idCardGrab();
             }
 
             function drag(e) {
@@ -2262,6 +2414,11 @@
                 lastPointerY = pointerY;
                 lastPointerTime = now;
 
+                // Play swing sound occasionally while dragging
+                if (Math.random() < 0.08) {
+                    SoundEffects.idCardSwing();
+                }
+
                 if (e.cancelable) e.preventDefault();
             }
 
@@ -2275,6 +2432,11 @@
 
                 container.classList.remove('cursor-grabbing');
                 container.classList.add('cursor-grab');
+
+                // Play drop sound if released with velocity
+                if (Math.abs(vx) > 2 || Math.abs(vy) > 2) {
+                    SoundEffects.idCardDrop();
+                }
             }
 
             // Physics Update Loop (60 FPS)
@@ -2509,7 +2671,7 @@
                 requestAnimationFrame(drawGrid);
             }
 
-            // 2. AI command text cycle
+            // 2. AI command text cycle with typing sounds (only when visible)
             const commandText = document.querySelector('[data-command-text]');
             if (commandText) {
                 const prompts = [
@@ -2521,6 +2683,17 @@
                 let promptIndex = 0;
                 let charIndex = prompts[0].length;
                 let deleting = true;
+                let isVisible = false;
+
+                // Intersection Observer to detect when section is visible
+                if ('IntersectionObserver' in window) {
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            isVisible = entry.isIntersecting;
+                        });
+                    }, { threshold: 0.1 });
+                    observer.observe(commandText);
+                }
 
                 const tickCommand = () => {
                     const current = prompts[promptIndex];
@@ -2531,6 +2704,11 @@
                         if (charIndex <= 0) {
                             deleting = false;
                             promptIndex = (promptIndex + 1) % prompts.length;
+                        } else {
+                            // Play typing sound while deleting ONLY if visible
+                            if (isVisible) {
+                                SoundEffects.typingChar();
+                            }
                         }
                     } else {
                         charIndex += 1;
@@ -2538,6 +2716,11 @@
                             deleting = true;
                             window.setTimeout(tickCommand, 1200);
                             return;
+                        } else {
+                            // Play typing sound while typing ONLY if visible
+                            if (isVisible) {
+                                SoundEffects.typingChar();
+                            }
                         }
                     }
 
@@ -2581,6 +2764,7 @@
                         projectModal.classList.add('is-active');
                         projectCursor.classList.add('is-active');
                         projectLabel.classList.add('is-active');
+                        SoundEffects.projectHover();
                     });
 
                     row.addEventListener('mouseleave', () => {
@@ -2821,6 +3005,7 @@
                 card.addEventListener('mouseenter', () => {
                     card.style.transition = 'none';
                     glare.style.opacity = '1';
+                    SoundEffects.cardHover();
                 });
 
                 card.addEventListener('mousemove', (e) => {
@@ -2904,6 +3089,7 @@
                     card.dataset.dragged = 'false';
                     card.classList.add('is-dragging');
                     card.setPointerCapture(pointerId);
+                    SoundEffects.cardDrag();
                 });
 
                 card.addEventListener('pointermove', (e) => {
@@ -2979,10 +3165,13 @@
 
                         // Reset sheet rotation
                         paperSheet.style.transform = 'perspective(1500px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+                        
+                        SoundEffects.lightboxOpen();
                     });
                 });
 
                 window.closeCertLightbox = function () {
+                    SoundEffects.lightboxClose();
                     lightbox.classList.add('pointer-events-none', 'opacity-0');
                     lightbox.classList.remove('opacity-100');
                     // Clear iframe source after animation finishes to prevent content flash
@@ -3081,6 +3270,7 @@
                             el.scrollIntoView({ behavior: 'smooth' });
                         }
                     }
+                    SoundEffects.navClick();
                 };
 
                 function updateScrollBead() {
@@ -3147,6 +3337,8 @@
             const dockItems = document.querySelectorAll('.dock-item');
 
             if (dock && dockItems.length > 0) {
+                let lastPlayedTime = 0;
+                
                 document.addEventListener('mousemove', (e) => {
                     const dockRect = dock.getBoundingClientRect();
                     const mouseX = e.clientX;
@@ -3170,6 +3362,13 @@
 
                                 item.style.width = `${size}px`;
                                 item.style.height = `${size}px`;
+                                
+                                // Play dock hover sound once per item hover
+                                const now = Date.now();
+                                if (now - lastPlayedTime > 100) {
+                                    SoundEffects.dockHover();
+                                    lastPlayedTime = now;
+                                }
                                 return;
                             }
                         }
@@ -3186,6 +3385,28 @@
                     });
                 });
             }
+
+            // Add global button click sound for all buttons
+            document.addEventListener('click', (e) => {
+                if (e.target.tagName === 'BUTTON' || e.target.closest('button')) {
+                    SoundEffects.buttonClick();
+                }
+                // Also catch lightbox close button
+                if (e.target.id === 'cert-lightbox-close') {
+                    SoundEffects.lightboxClose();
+                }
+            }, true);
+
+            // Add sound to any anchor links (external links, etc)
+            document.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A' || e.target.closest('a')) {
+                    const link = e.target.tagName === 'A' ? e.target : e.target.closest('a');
+                    // Only play sound for non-scroll links
+                    if (!link.href.includes('#scrollToSection')) {
+                        SoundEffects.navClick();
+                    }
+                }
+            }, true);
         });
     </script>
 </body>
