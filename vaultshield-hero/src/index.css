@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#vaultshield-hero-root {
+  --font-heading: 'Helvetica Now Display Bold', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --color-text: #2c3440;
+  --color-accent: #446e9a;
+  --color-login-bg: #f0efe9;
+}
+
+#vaultshield-hero-root * {
+  box-sizing: border-box;
+}
