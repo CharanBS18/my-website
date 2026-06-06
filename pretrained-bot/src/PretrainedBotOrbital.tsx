@@ -228,7 +228,7 @@ export default function PretrainedBotOrbital() {
             transform: `translate(${centerOffset.x}px, ${centerOffset.y}px)`,
           }}
         >
-          <div className="absolute w-14 h-14 rounded-full bg-gradient-to-br from-[#446e9a] via-[#6b8fbd] to-[#9ec0e8] animate-pulse flex items-center justify-center z-10">
+          <div className="absolute w-14 h-14 rounded-full bg-gradient-to-br from-[#D62828] via-[#D62828] to-[#D62828] animate-pulse flex items-center justify-center z-10">
             <div className="absolute w-[4.5rem] h-[4.5rem] rounded-full border border-white/20 animate-ping opacity-70" />
             <div
               className="absolute w-[5.5rem] h-[5.5rem] rounded-full border border-white/10 animate-ping opacity-50"
@@ -320,9 +320,9 @@ export default function PretrainedBotOrbital() {
                           </span>
                           <span className="font-mono text-white/70">{item.energy}%</span>
                         </div>
-                        <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden">
+                          <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden">
                           <div
-                            className="h-full bg-gradient-to-r from-[#446e9a] to-[#9ec0e8]"
+                            className="h-full bg-gradient-to-r from-[#D62828] to-[#D62828]"
                             style={{ width: `${item.energy}%` }}
                           />
                         </div>

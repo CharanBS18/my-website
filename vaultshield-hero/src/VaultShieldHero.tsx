@@ -39,7 +39,7 @@ function VaultLogo() {
     >
       <path
         d="M 64 128 L 64.5 128 L 32 95 L 0 64 L 0 0 L 64 0 L 128 64 L 128 64.5 L 161 32 L 192 0 L 256 0 L 256 64 L 192 128 L 128 128 L 128 192 L 96 223 L 63.5 256 L 0 256 L 0 192 Z M 256 192 L 224 223 L 191.5 256 L 128 256 L 128 192 L 192 128 L 256 128 Z"
-        fill="#2c3440"
+        fill="var(--color-text)"
       />
     </svg>
   );
@@ -57,7 +57,7 @@ export default function VaultShieldHero() {
 
   return (
     <section
-      className="relative w-full min-h-screen font-body text-[#2c3440]"
+      className="relative w-full min-h-screen font-body"
       style={{ fontFamily: 'var(--font-body)', color: 'var(--color-text)' }}
     >
       <video
@@ -72,10 +72,9 @@ export default function VaultShieldHero() {
 
       <div className="relative z-10 flex min-h-screen flex-col">
         <nav className="mx-auto flex w-full max-w-[1280px] items-center justify-between px-5 py-4 sm:px-8 sm:py-5">
-          <a href="#" className="inline-flex shrink-0 items-center gap-3" aria-label="CHARAN.BS home">
-            <VaultLogo />
+          <a href="#" className="inline-flex shrink-0 items-center" aria-label="CHARAN.BS home">
             <span
-              className="hidden text-sm font-semibold tracking-tight text-[#2c3440] sm:inline"
+              className="hidden text-sm font-semibold tracking-tight text-text-main sm:inline"
               style={{ fontFamily: 'var(--font-heading)' }}
             >
               CHARAN.BS
@@ -89,15 +88,15 @@ export default function VaultShieldHero() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm font-medium text-[#2c3440] opacity-80 transition hover:opacity-100"
+                className="text-sm font-medium text-text-main opacity-80 transition hover:opacity-100"
               >
                 {link.label}
               </a>
             ))}
           </div>
 
-          <div className="hidden text-sm font-medium text-[#2c3440] opacity-80 md:block">
-            ù 2026
+          <div className="hidden text-sm font-medium text-text-main opacity-80 md:block">
+            ¬© 2026
           </div>
 
           <button
@@ -106,7 +105,7 @@ export default function VaultShieldHero() {
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
             onClick={() => setMenuOpen((open) => !open)}
           >
-            {menuOpen ? <X size={24} color="#2c3440" /> : <Menu size={24} color="#2c3440" />}
+            {menuOpen ? <X size={24} color="var(--color-text)" /> : <Menu size={24} color="var(--color-text)" />}
           </button>
         </nav>
 
@@ -118,7 +117,7 @@ export default function VaultShieldHero() {
                 aria-label="Close menu backdrop"
                 className="fixed inset-0 z-40 md:hidden"
                 style={{
-                  background: 'rgba(25,40,55,0.35)',
+                  background: 'rgba(17,24,39,0.35)',
                   backdropFilter: 'blur(4px)',
                   WebkitBackdropFilter: 'blur(4px)',
                 }}
@@ -133,8 +132,8 @@ export default function VaultShieldHero() {
                 className="fixed right-0 top-0 z-50 flex h-[100dvh] flex-col md:hidden"
                 style={{
                   width: 'min(88vw, 360px)',
-                  background: '#e8e6e0',
-                  boxShadow: '-12px 0 48px rgba(25,40,55,0.18)',
+                  background: 'var(--surface)',
+                  boxShadow: '-12px 0 48px rgba(17,24,39,0.08)',
                 }}
                 initial={{ x: '100%' }}
                 animate={{ x: 0 }}
@@ -142,10 +141,9 @@ export default function VaultShieldHero() {
                 transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
               >
                 <div className="flex items-center justify-between px-6 py-5">
-                  <div className="flex items-center gap-3">
-                    <VaultLogo />
+                  <div className="flex items-center">
                     <span
-                      className="text-sm font-semibold tracking-tight text-[#2c3440]"
+                      className="text-sm font-semibold tracking-tight text-text-main"
                       style={{ fontFamily: 'var(--font-heading)' }}
                     >
                       CHARAN.BS
@@ -157,11 +155,11 @@ export default function VaultShieldHero() {
                     className="inline-flex rounded-lg p-2"
                     onClick={() => setMenuOpen(false)}
                   >
-                    <X size={22} color="#2c3440" />
+                    <X size={22} color="var(--color-text)" />
                   </button>
                 </div>
 
-                <div className="mx-6 h-px bg-[#2c3440]/15" />
+                <div className="mx-6 h-px" style={{ background: 'rgba(17,24,39,0.15)' }} />
 
                 <nav className="flex flex-1 flex-col gap-1 px-6 py-6">
                   {SOCIAL_LINKS.map((link, i) => (
@@ -170,7 +168,7 @@ export default function VaultShieldHero() {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="rounded-lg px-2 py-3 text-base font-medium text-[#2c3440] opacity-90 transition hover:opacity-100"
+                      className="rounded-lg px-2 py-3 text-base font-medium text-text-main opacity-90 transition hover:opacity-100"
                       initial={{ opacity: 0, x: 16 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{
@@ -186,8 +184,8 @@ export default function VaultShieldHero() {
                 </nav>
 
                 <div className="px-6 pb-8">
-                  <p className="text-sm font-medium text-[#2c3440] opacity-70">
-                    ù 2026. Built for the future.
+                  <p className="text-sm font-medium text-text-main opacity-70">
+                     2026. Built for the future.
                   </p>
                 </div>
               </motion.aside>
@@ -201,7 +199,7 @@ export default function VaultShieldHero() {
         >
           <div className="max-w-[560px]">
             <motion.h1
-              className="mb-6 text-[#2c3440]"
+              className="mb-6 text-text-main"
               style={{
                 fontFamily: 'var(--font-heading)',
                 fontSize: 'clamp(1.65rem, 5vw, 3rem)',
@@ -228,7 +226,7 @@ export default function VaultShieldHero() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.6 }}
             >
-              ù 2026. Built for the future.
+               Built for the future.
             </motion.p>
 
             <motion.div
@@ -244,13 +242,15 @@ export default function VaultShieldHero() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex min-w-[110px] items-center justify-center rounded-[50px] bg-[#446e9a] px-6 py-[17px] font-semibold text-white"
+                  className="inline-flex min-w-[110px] items-center justify-center rounded-[50px] px-6 py-[17px] font-semibold text-white"
                   style={{
                     fontFamily: 'var(--font-body)',
                     fontSize: 'clamp(0.9rem, 2vw, 1rem)',
-                    boxShadow: '0 4px 24px rgba(68,110,154,0.28)',
+                    boxShadow: '0 4px 24px rgba(214,40,40,0.28)',
+                    backgroundColor: '#D62828',
+                    border: 'none',
                   }}
-                  whileHover={{ scale: 1.04, filter: 'brightness(1.1)' }}
+                  whileHover={{ scale: 1.04, filter: 'brightness(1.05)' }}
                   whileTap={{ scale: 0.96 }}
                 >
                   {link.label}

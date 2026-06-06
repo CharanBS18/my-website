@@ -22,25 +22,25 @@
             theme: {
                 extend: {
                     colors: {
-                        background: '#f8f7f3',
-                        surface: '#ffffff',
+                        background: '#FFFFFF',
+                        surface: '#FFFFFF',
                         text: {
-                            main: '#2c3440',
-                            muted: '#5f6b7a'
+                            main: '#111827',
+                            muted: '#6B7280'
                         },
-                        border: '#e4e2da',
+                        border: '#E5E7EB',
                         accent: {
-                            blue: '#446e9a',
-                            sky: '#9ec0e8',
-                            deep: '#2c3440',
-                            mist: '#d8e6f4',
-                            indigo: '#446e9a',
-                            rose: '#6b8fbd',
-                            teal: '#5a8aad',
-                            amber: '#7a9cb8',
-                            purple: '#5f85ad',
-                            cyan: '#6b9cc4',
-                            emerald: '#4a7f9c'
+                            blue: '#D62828',
+                            sky: '#FFFFFF',
+                            deep: '#111827',
+                            mist: '#FFFFFF',
+                            indigo: '#D62828',
+                            rose: '#D62828',
+                            teal: '#D62828',
+                            amber: '#D62828',
+                            purple: '#D62828',
+                            cyan: '#D62828',
+                            emerald: '#D62828'
                         }
                     },
                     fontFamily: {
@@ -207,19 +207,19 @@
     </script>
     <style>
         :root {
-            --bg: #f8f7f3;
-            --surface: #ffffff;
-            --ink: #2c3440;
-            --muted: #5f6b7a;
-            --border: #e4e2da;
-            --blue: #446e9a;
-            --sky: #9ec0e8;
-            --mist: #d8e6f4;
-            --deep: #1e2a36;
+            --bg: #FFFFFF; /* Background - White */
+            --surface: #FFFFFF; /* Surface - White */
+            --ink: #111827; /* Text - Dark Slate */
+            --muted: #6B7280; /* Muted - Gray */
+            --border: #E5E7EB; /* Border - Light Gray */
+            --primary: #D62828; /* Primary Accent - Red */
+            --sky: #FFFFFF;
+            --mist: #FFFFFF;
+            --deep: #111827;
         }
 
         body {
-            background: linear-gradient(180deg, #f8f7f3 0%, #f5f4ef 100%);
+            background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 100%);
             color: var(--ink);
             overflow-x: hidden;
             position: relative;
@@ -235,9 +235,9 @@
         }
 
         .framer-card {
-            background-color: #ffffff;
+            background-color: #FFFFFF;
             border-radius: 2rem;
-            border: 1px solid #e8e6e0;
+            border: 1px solid #E5E7EB;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
@@ -314,7 +314,7 @@
             inset: -1.5px;
             border-radius: 2.2rem;
             padding: 1.5px;
-            background: linear-gradient(90deg, #446e9a, #9ec0e8, #6b8fbd, transparent, transparent, #446e9a);
+            background: linear-gradient(90deg, #D62828, #FFFFFF, #D62828, transparent, transparent, #D62828);
             background-size: 200% 200%;
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
@@ -340,7 +340,7 @@
 
         /* Shimmering Shiny Text Effect — portfolio blue palette only */
         .shiny-text {
-            background: linear-gradient(120deg, #446e9a 25%, #9ec0e8 50%, #446e9a 75%);
+            background: linear-gradient(120deg, #D62828 25%, #FFFFFF 50%, #D62828 75%);
             background-size: 200% auto;
             color: transparent;
             -webkit-background-clip: text;
@@ -349,7 +349,7 @@
         }
 
         .shiny-text-blue {
-            background: linear-gradient(120deg, #446e9a 25%, #6b8fbd 50%, #9ec0e8 75%);
+            background: linear-gradient(120deg, #D62828 25%, #D62828 50%, #FFFFFF 75%);
             background-size: 200% auto;
             color: transparent;
             -webkit-background-clip: text;
@@ -373,11 +373,11 @@
             gap: 0.375rem;
             padding: 0.5rem 1rem;
             border-radius: 9999px;
-            border: 1px solid #e6e4d9;
+            border: 1px solid #E5E7EB;
             background-color: #ffffff;
             font-size: 0.875rem;
             font-weight: 500;
-            color: #2c3440;
+            color: #111827;
         }
 
         .certificate-gallery {
@@ -451,7 +451,7 @@
             min-height: 220px;
             overflow: hidden;
             border-radius: 1.5rem;
-            border: 1px solid #e6e4d9;
+            border: 1px solid #E5E7EB;
             background:
                 linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(250, 249, 241, 0.98)),
                 radial-gradient(circle at 20% 10%, rgba(160, 200, 255, 0.2), transparent 32%);
@@ -490,7 +490,7 @@
             border-radius: 999px;
             display: grid;
             place-items: center;
-            background: radial-gradient(circle at 35% 30%, #9ec0e8, #446e9a 70%);
+            background: radial-gradient(circle at 35% 30%, #FFFFFF, #D62828 70%);
             color: white;
             box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 10px 20px rgba(73, 118, 164, 0.22);
         }
@@ -593,7 +593,7 @@
         }
 
         .command-card {
-            background: #2c3440;
+            background: #111827;
             color: white;
             border-radius: 1.35rem;
             border: 1px solid rgba(255, 255, 255, 0.12);
@@ -609,7 +609,7 @@
             width: 0.55rem;
             height: 1rem;
             margin-left: 0.15rem;
-            background: #9ec0e8;
+            background: #FFFFFF;
             vertical-align: -0.15rem;
             animation: caret-blink 1s steps(2, start) infinite;
         }
@@ -679,7 +679,7 @@
             font-weight: 800;
             letter-spacing: 0.12em;
             text-transform: uppercase;
-            color: #2c3440;
+            color: #111827;
             box-shadow: 0 10px 22px rgba(49, 48, 53, 0.06);
             transform: rotate(var(--angle)) translateX(118px) rotate(calc(-1 * var(--angle))) translate(-50%, -50%);
         }
@@ -714,7 +714,7 @@
             display: grid;
             place-items: center;
             border-radius: 0.45rem;
-            background: #2c3440;
+            background: #111827;
             color: white;
             font-size: 0.65rem;
             font-weight: 800;
@@ -820,7 +820,7 @@
             left: 50%;
             top: 50%;
             border-radius: 88px 0 88px 0;
-            background: linear-gradient(135deg, #7fb77e, #d9ed92);
+            background: linear-gradient(135deg, #6B7280, #FFFFFF);
             transform: translate(-50%, -50%) rotate(-38deg);
             box-shadow: inset -12px -10px 0 rgba(49, 48, 53, 0.08);
         }
@@ -853,8 +853,8 @@
             top: 62%;
             width: 66%;
             height: 36%;
-            border-top: 5px solid #446e9a;
-            border-right: 5px solid #9ec0e8;
+            border-top: 5px solid #D62828;
+            border-right: 5px solid #FFFFFF;
             border-radius: 999px 999px 0 0;
             transform: rotate(-12deg);
         }
@@ -866,7 +866,7 @@
             top: 45%;
             height: 48px;
             border-radius: 999px 999px 18px 18px;
-            background: linear-gradient(135deg, #2c3440, #446e9a);
+            background: linear-gradient(135deg, #111827, #D62828);
             box-shadow: 0 18px 30px rgba(49, 48, 53, 0.18);
         }
 
@@ -888,7 +888,7 @@
             width: 92px;
             height: 44px;
             border-radius: 999px;
-            background: linear-gradient(135deg, #2c3440, #5f6b7a);
+            background: linear-gradient(135deg, #111827, #6B7280);
             transform: translate(-50%, -50%);
             box-shadow: 0 18px 32px rgba(49, 48, 53, 0.16);
         }
@@ -959,7 +959,7 @@
 
         .project-row:hover .project-row-meta,
         .project-row:focus-visible .project-row-meta {
-            color: #2c3440;
+            color: #111827;
             transform: translateX(-12px);
         }
 
@@ -1046,7 +1046,7 @@
             width: 7px;
             height: 7px;
             border-radius: 50%;
-            background: #446e9a;
+            background: #D62828;
             box-shadow: 13px 0 0 rgba(73, 118, 164, 0.42), 26px 0 0 rgba(73, 118, 164, 0.24);
         }
 
@@ -1060,7 +1060,7 @@
         }
 
         .project-modal-cursor {
-            background: #446e9a;
+            background: #D62828;
             box-shadow: 0 16px 40px rgba(73, 118, 164, 0.32);
         }
 
@@ -1187,7 +1187,7 @@
             height: 0;
             border-left: 6.5px solid transparent;
             border-right: 6.5px solid transparent;
-            border-bottom: 13px solid #2c3440;
+            border-bottom: 13px solid #111827;
             transform-origin: center bottom;
         }
 
@@ -1196,12 +1196,12 @@
         }
 
         .globe-pyramid span:nth-child(2) {
-            border-bottom-color: #446e9a;
+            border-bottom-color: #D62828;
             transform: rotateY(120deg) translateZ(4px) rotateX(19.5deg);
         }
 
         .globe-pyramid span:nth-child(3) {
-            border-bottom-color: #5f6b7a;
+            border-bottom-color: #6B7280;
             transform: rotateY(240deg) translateZ(4px) rotateX(19.5deg);
         }
 
@@ -1224,13 +1224,13 @@
 
         .globe-pin-label {
             background: white;
-            color: #2c3440;
+            color: #111827;
             padding: 0.16rem 0.42rem;
         }
 
         .globe-traffic {
             background: rgba(255, 255, 255, 0.82);
-            color: #2c3440;
+            color: #111827;
             padding: 0.22rem 0.5rem;
             filter: drop-shadow(0 1px 2px rgba(49, 48, 53, 0.2));
         }
@@ -1259,12 +1259,12 @@
 
         .stack-marquee-stage::before {
             left: 0;
-            background: linear-gradient(to right, #f8f7f3, transparent);
+            background: linear-gradient(to right, #FFFFFF, transparent);
         }
 
         .stack-marquee-stage::after {
             right: 0;
-            background: linear-gradient(to left, #f8f7f3, transparent);
+            background: linear-gradient(to left, #FFFFFF, transparent);
         }
 
         .stack-marquee-plane {
@@ -1294,7 +1294,7 @@
             border: 1px solid rgba(230, 228, 217, 0.98);
             background: rgba(255, 255, 255, 0.88);
             padding: 0.65rem 0.85rem;
-            color: #2c3440;
+            color: #111827;
             font-size: 0.82rem;
             font-weight: 900;
             box-shadow: 0 14px 32px rgba(49, 48, 53, 0.08);
@@ -1334,7 +1334,7 @@
             align-items: center;
             gap: 0.4rem;
             border-radius: 999px;
-            background: #2c3440;
+            background: #111827;
             color: white;
             padding: 0.45rem 0.65rem;
             font-size: 0.68rem;
@@ -1432,7 +1432,7 @@
         .prompt-box-21st {
             border-radius: 1rem;
             border: 1px solid rgba(158, 192, 232, 0.18);
-            background: linear-gradient(160deg, #1e2a36 0%, #2c3440 100%);
+            background: linear-gradient(160deg, #111827 0%, #111827 100%);
             box-shadow: 0 20px 50px rgba(30, 42, 54, 0.16), 0 0 0 1px rgba(158, 192, 232, 0.08) inset;
             overflow: hidden;
         }
@@ -1497,7 +1497,7 @@
             height: 2rem;
             border-radius: 0.55rem;
             border: 1px solid rgba(158, 192, 232, 0.3);
-            background: linear-gradient(135deg, #446e9a, #6b8fbd);
+            background: linear-gradient(135deg, #D62828, #D62828);
             color: white;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
@@ -1663,7 +1663,7 @@
                         View my work
                     </a>
                     <a href="#about"
-                        class="px-8 py-4 rounded-full border border-border text-text-main font-bold text-lg hover:bg-[#f8f7f3] transition-all">
+                        class="px-8 py-4 rounded-full border border-border text-text-main font-bold text-lg hover:bg-[#FFFFFF] transition-all">
                         Learn more
                     </a>
                 </div>
@@ -1686,7 +1686,7 @@
                 style="perspective: 1200px;">
                 <!-- Subtle studio grid background -->
                 <div class="absolute inset-0 opacity-[0.05] pointer-events-none"
-                    style="background-image: radial-gradient(#2c3440 1px, transparent 1px); background-size: 20px 20px;">
+                    style="background-image: radial-gradient(#111827 1px, transparent 1px); background-size: 20px 20px;">
                 </div>
 
                 <!-- SVG Lanyard Shadow (Renders behind the card) -->
@@ -1697,13 +1697,13 @@
 
                 <!-- Lanyard wall hook anchor at the top (z-25 sits on top of everything) -->
                 <div id="lanyard-anchor-point"
-                    class="absolute top-4 left-1/2 -translate-x-1/2 w-4.5 h-4.5 bg-[#2c3440] rounded-full border border-white shadow-[0_2px_6px_rgba(0,0,0,0.15)] z-25 flex items-center justify-center">
-                    <div class="w-1.5 h-1.5 bg-[#446e9a] rounded-full"></div>
+                    class="absolute top-4 left-1/2 -translate-x-1/2 w-4.5 h-4.5 bg-[#111827] rounded-full border border-white shadow-[0_2px_6px_rgba(0,0,0,0.15)] z-25 flex items-center justify-center">
+                    <div class="w-1.5 h-1.5 bg-[#D62828] rounded-full"></div>
                 </div>
 
                 <!-- Interactive ID Card Badge (absolute top-0 left-0 coordinates perfectly matches lanyard SVG space) -->
                 <div id="id-card"
-                    class="border-beam absolute top-0 left-0 w-[350px] h-[560px] rounded-[2.2rem] bg-white border border-[#e6e4d9] shadow-2xl flex flex-col items-center p-6 z-10 select-none cursor-grab active:cursor-grabbing hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.18)]"
+                    class="border-beam absolute top-0 left-0 w-[350px] h-[560px] rounded-[2.2rem] bg-white border border-[#E5E7EB] shadow-2xl flex flex-col items-center p-6 z-10 select-none cursor-grab active:cursor-grabbing hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.18)]"
                     style="width: min(350px, calc(100vw - 2rem)); transform-style: preserve-3d; will-change: transform;">
 
                     <!-- Shiny Holographic Reflection Overlay (softened to 12% to keep profile image completely natural) -->
@@ -1720,11 +1720,11 @@
                     <!-- Badge Holder Slot -->
                     <div
                         class="w-14 h-3.5 bg-neutral-100 rounded-full mb-5 border border-neutral-200 flex items-center justify-center shadow-[inset_0_1px_3px_rgba(0,0,0,0.06)] relative z-20 shrink-0">
-                        <div class="w-8 h-1 bg-[#2c3440]/30 rounded-full"></div>
+                        <div class="w-8 h-1 bg-[#111827]/30 rounded-full"></div>
                         <!-- Chrome Lanyard Clip -->
                         <div
                             class="absolute -top-3 w-4 h-5.5 bg-gradient-to-b from-[#b0b0b0] via-[#eaeaea] to-[#888888] rounded-t-sm rounded-b border border-neutral-400 shadow-sm flex items-center justify-center">
-                            <div class="w-2 h-2 bg-[#446e9a] rounded-full border border-white/20"></div>
+                            <div class="w-2 h-2 bg-[#D62828] rounded-full border border-white/20"></div>
                         </div>
                     </div>
 
@@ -1751,14 +1751,14 @@
                         <!-- Name & Role -->
                         <div class="text-center mb-4">
                             <h2
-                                class="text-xl font-bold tracking-tight text-[#2c3440] leading-tight mb-0.5 select-none">
+                                class="text-xl font-bold tracking-tight text-[#111827] leading-tight mb-0.5 select-none">
                                 <span class="shiny-text">Charan B.S.</span></h2>
-                            <p class="text-[10px] font-bold text-[#446e9a] uppercase tracking-wider select-none">AI
+                            <p class="text-[10px] font-bold text-[#D62828] uppercase tracking-wider select-none">AI
                                 &amp; Full-Stack Developer</p>
                         </div>
 
                         <!-- Specs Grid (Golden Chip & Details) -->
-                        <div class="grid grid-cols-5 gap-3 items-center mt-auto border-t border-[#f1efe6] pt-3">
+                        <div class="grid grid-cols-5 gap-3 items-center mt-auto border-t border-[#E5E7EB] pt-3">
                             <!-- Golden Silicon Chip -->
                             <div class="col-span-2 flex items-center">
                                 <svg class="w-10 h-7 rounded bg-gradient-to-br from-[#ffe082] via-[#ffd54f] to-[#ffb300] p-1 border border-[#ffb300]/50 shadow-sm"
@@ -1786,15 +1786,15 @@
                                     Hassan</div>
                                 <div><span
                                         class="font-bold text-text-main text-[8px] uppercase tracking-wide">DOB:</span>
-                                    2004.12.20</div>
+                                    20.12.2004</div>
                             </div>
                         </div>
 
                         <!-- Barcode Area -->
-                        <div class="w-full flex flex-col items-center mt-3 pt-3 border-t border-[#f1efe6]">
+                        <div class="w-full flex flex-col items-center mt-3 pt-3 border-t border-[#E5E7EB]">
                             <svg class="w-full h-7 opacity-80" viewBox="0 0 200 30" xmlns="http://www.w3.org/2000/svg">
                                 <rect x="0" width="200" height="30" fill="transparent" />
-                                <g fill="#2c3440">
+                                <g fill="#111827">
                                     <rect x="10" y="2" width="2" height="20" />
                                     <rect x="14" y="2" width="3" height="20" />
                                     <rect x="19" y="2" width="1" height="20" />
@@ -1848,7 +1848,7 @@
 
                 <!-- SVG Lanyard String (Renders in front of the card, connecting directly to the clip) -->
                 <svg id="lanyard-svg" class="absolute inset-0 w-full h-full pointer-events-none z-20">
-                    <path id="lanyard-string" d="" fill="none" stroke="#446e9a" stroke-width="3.5"
+                    <path id="lanyard-string" d="" fill="none" stroke="#D62828" stroke-width="3.5"
                         stroke-linecap="round" stroke-dasharray="1 5" stroke-linejoin="round" />
                 </svg>
             </div>
@@ -1864,7 +1864,7 @@
             </div>
 
             <div class="about-proof-grid mb-12">
-                <div class="proof-card p-7 lg:p-8 hover:shadow-[0_20px_50px_rgba(68,110,154,0.08)] hover:border-accent-blue/30 transition-all">
+                <div class="proof-card p-7 lg:p-8 hover:shadow-[0_20px_50px_rgba(214,40,40,0.08)] hover:border-accent-blue/30 transition-all">
                     <div class="relative z-10">
                         <p class="text-[10px] font-black uppercase tracking-[0.24em] text-accent-blue mb-5">What I can do for a team</p>
                         <div class="grid sm:grid-cols-2 gap-5">
@@ -1891,41 +1891,36 @@
                         </div>
                     </div>
                 </div>
-                <div class="proof-card p-7 lg:p-8 hover:shadow-[0_20px_50px_rgba(68,110,154,0.08)] hover:border-accent-sky/40 transition-all">
+                <div class="proof-card p-7 lg:p-8 hover:shadow-[0_20px_50px_rgba(214,40,40,0.08)] hover:border-accent-sky/40 transition-all">
                     <div class="relative z-10 h-full flex flex-col justify-between gap-8">
                         <div>
                             <p class="text-[10px] font-black uppercase tracking-[0.24em] text-accent-blue mb-4">Role fit</p>
                             <h3 class="font-headline text-3xl font-extrabold leading-tight text-text-main mb-4">Best fit for AI/ML, frontend, full-stack, and data-product roles.</h3>
                             <p class="text-text-muted font-medium">I bring the rare mix companies usually want in early talent: curiosity around AI, enough engineering range to build, and enough design taste to make the work feel credible.</p>
                         </div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="stack-pill border-accent-blue/25 bg-accent-mist/40 text-accent-blue hover:bg-accent-mist hover:border-accent-blue/40 hover:scale-105 transition-all cursor-default"><span class="material-symbols-outlined text-accent-blue text-lg">check_circle</span> Internship-ready</span>
-                            <span class="stack-pill border-accent-blue/25 bg-accent-mist/40 text-accent-blue hover:bg-accent-mist hover:border-accent-blue/40 hover:scale-105 transition-all cursor-default"><span class="material-symbols-outlined text-accent-blue text-lg">check_circle</span> Product-minded</span>
-                            <span class="stack-pill border-accent-blue/25 bg-accent-mist/40 text-accent-blue hover:bg-accent-mist hover:border-accent-blue/40 hover:scale-105 transition-all cursor-default"><span class="material-symbols-outlined text-accent-blue text-lg">check_circle</span> Build-first</span>
-                        </div>
+                        <div class="flex flex-wrap gap-2"></div>
                     </div>
                 </div>
             </div>
 
-            <div class="flex flex-col xl:flex-row gap-6 justify-center items-stretch mb-10">
-                <img src="https://github-readme-stats.vercel.app/api?username=CharanBS18&show_icons=true&title_color=2c3440&icon_color=446e9a&text_color=5f6b7a&bg_color=f8f7f3&hide_border=true"
-                    alt="GitHub Stats"
-                    class="w-full xl:w-1/2 object-contain bg-[#f8f7f3] p-2 rounded-[2rem] border border-black/5" />
-                <div class="w-full xl:w-1/2 flex flex-col gap-6">
-                    <img src="https://github-readme-streak-stats.herokuapp.com/?user=CharanBS18&theme=default&background=f8f7f3&border=00000000&stroke=446e9a&ring=9ec0e8&fire=446e9a&currStreakNum=2c3440&currStreakLabel=446e9a&sideNums=2c3440&sideLabels=5f6b7a&dates=5f6b7a&hide_border=true"
+            <div class="flex flex-col md:flex-row gap-6 justify-center items-stretch mb-10">
+                <div class="w-full md:w-1/2 flex flex-col gap-6">
+                    <img src="https://github-readme-streak-stats.herokuapp.com/?user=CharanBS18&theme=default&background=FFFFFF&border=00000000&stroke=D62828&ring=FFFFFF&fire=D62828&currStreakNum=111827&currStreakLabel=D62828&sideNums=111827&sideLabels=6B7280&dates=6B7280&hide_border=true"
                         alt="GitHub Streak"
-                        class="w-full object-contain bg-[#f8f7f3] p-2 rounded-[2rem] border border-black/5" />
-                    <div id="pretrained-bot-root" class="w-full overflow-visible border border-black/5 rounded-[2rem]"></div>
+                        class="w-full object-contain bg-[#FFFFFF] p-2 rounded-[2rem] border border-black/5 h-64 md:h-80" />
+                </div>
+                <div class="w-full md:w-1/2">
+                    <div id="pretrained-bot-root" class="w-full h-full overflow-visible border border-black/5 rounded-[2rem]"></div>
                 </div>
             </div>
-            <div class="w-full flex justify-center bg-[#f8f7f3] p-8 rounded-[2rem] border border-black/5">
-                <img src="https://ghchart.rshah.org/446e9a/CharanBS18" alt="GitHub Contributions Graph"
+            <div class="w-full flex justify-center bg-[#FFFFFF] p-8 rounded-[2rem] border border-black/5">
+                <img src="https://ghchart.rshah.org/D62828/CharanBS18" alt="GitHub Contributions Graph"
                     class="w-full opacity-90 hover:opacity-100 transition-all mix-blend-multiply" />
             </div>
         </section>
 
         <!-- Tech Stack Globe Section -->
-        <section id="stack" class="framer-card wow-card p-10 lg:p-16 shadow-sm bg-[#f8f7f3] reveal-on-scroll">
+        <section id="stack" class="framer-card wow-card p-10 lg:p-16 shadow-sm bg-[#FFFFFF] reveal-on-scroll">
             <div class="grid lg:grid-cols-[0.85fr_1.15fr] gap-8 items-center">
                 <div>
                     <div
@@ -2043,7 +2038,7 @@
         </section>
 
         <!-- Creative Systems Section -->
-        <section id="capabilities" class="framer-card wow-card p-10 lg:p-16 shadow-sm bg-[#f8f7f3] reveal-on-scroll">
+        <section id="capabilities" class="framer-card wow-card p-10 lg:p-16 shadow-sm bg-[#FFFFFF] reveal-on-scroll">
             <div class="max-w-3xl mx-auto text-center mb-12">
                 <div
                     class="inline-block px-4 py-1.5 rounded-full bg-white border border-border text-accent-blue text-xs font-bold tracking-wide uppercase mb-6">
@@ -2081,11 +2076,11 @@
                                     <span class="w-2.5 h-2.5 rounded-full bg-[#ffd166]"></span>
                                     <span class="w-2.5 h-2.5 rounded-full bg-[#7bd88f]"></span>
                                 </div>
-                                <span class="text-[10px] uppercase tracking-[0.2em] text-white/40 font-bold">21st.dev · AI Prompt</span>
+                                <span class="text-[10px] uppercase tracking-[0.2em] text-white/40 font-bold">AI Prompt</span>
                             </div>
                             <div class="prompt-box-21st-body">
                                 <p class="command-line font-mono text-sm md:text-base leading-relaxed text-white/90">
-                                    <span class="text-[#9ec0e8]">~/portfolio</span>
+                                    <span class="text-[#D62828]">~/portfolio</span>
                                     <span class="text-white/40"> $ </span>
                                     <span data-command-text>Design an AI-ready portfolio experience</span><span
                                         class="command-caret"></span>
@@ -2173,7 +2168,7 @@
         </section>
 
         <!-- Projects Grid Section -->
-        <section id="work" class="framer-card p-10 lg:p-16 border-none shadow-sm bg-[#f8f7f3]">
+        <section id="work" class="framer-card p-10 lg:p-16 border-none shadow-sm bg-[#FFFFFF]">
             <div class="max-w-3xl mx-auto text-center mb-16">
                 <h2 class="font-headline text-4xl lg:text-5xl font-extrabold tracking-tight text-text-main mb-6">
                     Selected Works</h2>
@@ -2209,29 +2204,29 @@
 
                 <div class="project-modal-preview" data-project-modal>
                     <div class="project-modal-track" data-project-track>
-                        <div class="project-modal-slide" style="background-color: #dbead7;">
+                        <div class="project-modal-slide" style="background-color: #FFFFFF;">
                             <div class="project-modal-card">
                                 <div class="plant-leaf"></div>
                                 <div class="absolute left-5 bottom-5 right-5 rounded-xl bg-white/75 border border-white px-4 py-3">
                                     <div class="h-2 w-2/3 bg-accent-blue/70 rounded-full mb-2"></div>
-                                    <div class="h-2 w-full bg-[#e6e4d9] rounded-full"></div>
+                                    <div class="h-2 w-full bg-[#FFFFFF] rounded-full"></div>
                                 </div>
                             </div>
                         </div>
-                        <div class="project-modal-slide" style="background-color: #dfe8f5;">
+                        <div class="project-modal-slide" style="background-color: #FFFFFF;">
                             <div class="project-modal-card">
                                 <div class="route-map"></div>
                                 <span class="material-symbols-outlined absolute left-[24%] top-[61%] text-accent-blue text-3xl">ev_station</span>
                                 <span class="material-symbols-outlined absolute right-[24%] top-[29%] text-text-main text-3xl">location_on</span>
                             </div>
                         </div>
-                        <div class="project-modal-slide" style="background-color: #efe8d3;">
+                        <div class="project-modal-slide" style="background-color: #FFFFFF;">
                             <div class="project-modal-card">
                                 <div class="preview-car"></div>
                                 <div class="absolute bottom-9 left-1/2 h-3 w-3/4 -translate-x-1/2 rounded-full bg-text-main/10"></div>
                             </div>
                         </div>
-                        <div class="project-modal-slide" style="background-color: #e5e7eb;">
+                        <div class="project-modal-slide" style="background-color: #FFFFFF;">
                             <div class="project-modal-card">
                                 <div class="drone-arm" style="--arm-rot: 22deg;"></div>
                                 <div class="drone-arm" style="--arm-rot: -22deg;"></div>
@@ -2287,7 +2282,7 @@
 
 
         <!-- Certificates Section -->
-        <section class="framer-card wow-card p-10 lg:p-16 shadow-sm mt-8 bg-[#f8f7f3] overflow-hidden reveal-on-scroll" id="certificates">
+        <section class="framer-card wow-card p-10 lg:p-16 shadow-sm mt-8 bg-[#FFFFFF] overflow-hidden reveal-on-scroll" id="certificates">
             <div class="max-w-3xl mx-auto text-center flex flex-col items-center">
                 <div
                     class="inline-block px-4 py-1.5 rounded-full bg-accent-sky/20 text-accent-blue text-xs font-bold tracking-wide uppercase mb-6">
@@ -2373,7 +2368,7 @@
             </div>
             <div class="relative z-10">
             <div
-                class="inline-block px-4 py-1.5 rounded-full bg-white/10 border border-white/15 text-accent-sky text-xs font-bold tracking-wide uppercase mb-7">
+                class="inline-block px-4 py-1.5 rounded-full bg-white/10 border border-border text-primary text-xs font-bold tracking-wide uppercase mb-7">
                 Open to roles
             </div>
             <h2 class="font-headline text-5xl md:text-7xl font-extrabold tracking-tight mb-6">Let me bring this energy to your team.</h2>
@@ -2386,13 +2381,13 @@
                         class="material-symbols-outlined ml-3 group-hover:translate-x-1 transition-transform">arrow_forward</span>
                 </a>
                 <a href="https://www.linkedin.com/in/charan-b-s-25a70b35a/" target="_blank"
-                    class="inline-flex border border-white/20 bg-white/10 text-white px-8 py-4 rounded-full font-bold text-base hover:bg-white/15 hover:scale-105 transition-all shadow-lg group">
+                    class="inline-flex border border-border bg-white/10 text-text-main px-8 py-4 rounded-full font-bold text-base hover:bg-white/15 hover:scale-105 transition-all shadow-lg group">
                     LinkedIn
                     <span
                         class="material-symbols-outlined ml-3 group-hover:translate-x-1 transition-transform">arrow_outward</span>
                 </a>
                 <a href="https://github.com/CharanBS18" target="_blank"
-                    class="inline-flex border border-white/20 bg-white/10 text-white px-8 py-4 rounded-full font-bold text-base hover:bg-white/15 hover:scale-105 transition-all shadow-lg group">
+                    class="inline-flex border border-border bg-white/10 text-text-main px-8 py-4 rounded-full font-bold text-base hover:bg-white/15 hover:scale-105 transition-all shadow-lg group">
                     GitHub
                     <span
                         class="material-symbols-outlined ml-3 group-hover:translate-x-1 transition-transform">arrow_outward</span>
@@ -2415,48 +2410,48 @@
 
         <!-- Sliding Mechanical Indicator Bead -->
         <div id="scroll-bead"
-            class="absolute w-2.5 h-2.5 bg-[#446e9a] rounded-full left-1/2 -translate-x-1/2 shadow-sm z-20"
+            class="absolute w-2.5 h-2.5 bg-[#D62828] rounded-full left-1/2 -translate-x-1/2 shadow-sm z-20"
             style="top: 24px; transition: transform 0.3s ease;"></div>
 
         <!-- Section Tracker Anchors -->
         <button onclick="scrollToSection('top')"
-            class="scroll-anchor w-3 h-3 bg-white border-2 border-neutral-300 rounded-full hover:border-[#446e9a] hover:scale-125 transition-all duration-300 relative z-10 group"
+            class="scroll-anchor w-3 h-3 bg-white border-2 border-neutral-300 rounded-full hover:border-[#D62828] hover:scale-125 transition-all duration-300 relative z-10 group"
             data-target="top">
             <span
                 class="absolute left-6 top-1/2 -translate-y-1/2 px-2 py-1 bg-white border border-neutral-100 rounded text-[9px] font-bold text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-sm whitespace-nowrap uppercase tracking-widest">Start</span>
         </button>
         <button onclick="scrollToSection('about')"
-            class="scroll-anchor w-3 h-3 bg-white border-2 border-neutral-300 rounded-full hover:border-[#446e9a] hover:scale-125 transition-all duration-300 relative z-10 group"
+            class="scroll-anchor w-3 h-3 bg-white border-2 border-neutral-300 rounded-full hover:border-[#D62828] hover:scale-125 transition-all duration-300 relative z-10 group"
             data-target="about">
             <span
                 class="absolute left-6 top-1/2 -translate-y-1/2 px-2 py-1 bg-white border border-neutral-100 rounded text-[9px] font-bold text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-sm whitespace-nowrap uppercase tracking-widest">About</span>
         </button>
         <button onclick="scrollToSection('stack')"
-            class="scroll-anchor w-3 h-3 bg-white border-2 border-neutral-300 rounded-full hover:border-[#446e9a] hover:scale-125 transition-all duration-300 relative z-10 group"
+            class="scroll-anchor w-3 h-3 bg-white border-2 border-neutral-300 rounded-full hover:border-[#D62828] hover:scale-125 transition-all duration-300 relative z-10 group"
             data-target="stack">
             <span
                 class="absolute left-6 top-1/2 -translate-y-1/2 px-2 py-1 bg-white border border-neutral-100 rounded text-[9px] font-bold text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-sm whitespace-nowrap uppercase tracking-widest">Stack</span>
         </button>
         <button onclick="scrollToSection('capabilities')"
-            class="scroll-anchor w-3 h-3 bg-white border-2 border-neutral-300 rounded-full hover:border-[#446e9a] hover:scale-125 transition-all duration-300 relative z-10 group"
+            class="scroll-anchor w-3 h-3 bg-white border-2 border-neutral-300 rounded-full hover:border-[#D62828] hover:scale-125 transition-all duration-300 relative z-10 group"
             data-target="capabilities">
             <span
                 class="absolute left-6 top-1/2 -translate-y-1/2 px-2 py-1 bg-white border border-neutral-100 rounded text-[9px] font-bold text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-sm whitespace-nowrap uppercase tracking-widest">Skills</span>
         </button>
         <button onclick="scrollToSection('work')"
-            class="scroll-anchor w-3 h-3 bg-white border-2 border-neutral-300 rounded-full hover:border-[#446e9a] hover:scale-125 transition-all duration-300 relative z-10 group"
+            class="scroll-anchor w-3 h-3 bg-white border-2 border-neutral-300 rounded-full hover:border-[#D62828] hover:scale-125 transition-all duration-300 relative z-10 group"
             data-target="work">
             <span
                 class="absolute left-6 top-1/2 -translate-y-1/2 px-2 py-1 bg-white border border-neutral-100 rounded text-[9px] font-bold text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-sm whitespace-nowrap uppercase tracking-widest">Works</span>
         </button>
         <button onclick="scrollToSection('certificates')"
-            class="scroll-anchor w-3 h-3 bg-white border-2 border-neutral-300 rounded-full hover:border-[#446e9a] hover:scale-125 transition-all duration-300 relative z-10 group"
+            class="scroll-anchor w-3 h-3 bg-white border-2 border-neutral-300 rounded-full hover:border-[#D62828] hover:scale-125 transition-all duration-300 relative z-10 group"
             data-target="certificates">
             <span
                 class="absolute left-6 top-1/2 -translate-y-1/2 px-2 py-1 bg-white border border-neutral-100 rounded text-[9px] font-bold text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-sm whitespace-nowrap uppercase tracking-widest">Credentials</span>
         </button>
         <button onclick="scrollToSection('contact')"
-            class="scroll-anchor w-3 h-3 bg-white border-2 border-neutral-300 rounded-full hover:border-[#446e9a] hover:scale-125 transition-all duration-300 relative z-10 group"
+            class="scroll-anchor w-3 h-3 bg-white border-2 border-neutral-300 rounded-full hover:border-[#D62828] hover:scale-125 transition-all duration-300 relative z-10 group"
             data-target="contact">
             <span
                 class="absolute left-6 top-1/2 -translate-y-1/2 px-2 py-1 bg-white border border-neutral-100 rounded text-[9px] font-bold text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-sm whitespace-nowrap uppercase tracking-widest">Contact</span>
@@ -2465,7 +2460,7 @@
 
     <!-- Tactile 3D Paper-Peel Certificate Lightbox Overlay -->
     <div id="cert-lightbox"
-        class="fixed inset-0 bg-[#2c3440]/65 backdrop-blur-md flex items-center justify-center z-50 opacity-0 pointer-events-none transition-opacity duration-300">
+        class="fixed inset-0 bg-[#111827]/65 backdrop-blur-md flex items-center justify-center z-50 opacity-0 pointer-events-none transition-opacity duration-300">
         <div class="absolute inset-0 cursor-pointer" onclick="closeCertLightbox()"></div>
 
         <!-- Perspective Wrapper -->
@@ -2488,7 +2483,7 @@
                         <!-- Mechanical Rivet / Eyelet -->
                         <div
                             class="w-5 h-5 bg-gradient-to-tr from-neutral-400 via-neutral-100 to-neutral-500 rounded-full border border-neutral-300 flex items-center justify-center shadow-inner">
-                            <div class="w-2.5 h-2.5 bg-[#446e9a] rounded-full"></div>
+                            <div class="w-2.5 h-2.5 bg-[#D62828] rounded-full"></div>
                         </div>
                         <div>
                             <h3 id="cert-lightbox-title"
@@ -2510,23 +2505,23 @@
 
                 <!-- PDF Viewer / Container -->
                 <div
-                    class="flex-1 rounded-2xl bg-[#f8f7f3] border border-neutral-200/60 overflow-hidden relative shadow-[inset_0_2px_8px_rgba(0,0,0,0.03)] z-10">
+                    class="flex-1 rounded-2xl bg-[#FFFFFF] border border-neutral-200/60 overflow-hidden relative shadow-[inset_0_2px_8px_rgba(0,0,0,0.03)] z-10">
                     <!-- Overlay to prevent iframe mouse stealing during drag -->
                     <div id="cert-iframe-mask" class="absolute inset-0 z-20 hidden"></div>
                     <iframe id="cert-lightbox-iframe" src="" class="w-full h-full border-none relative z-10"
-                        style="background-color: #f8f7f3;"></iframe>
+                        style="background-color: #FFFFFF;"></iframe>
                 </div>
 
                 <!-- Action Footer -->
                 <div
                     class="flex justify-between items-center mt-4 pt-4 border-t border-neutral-100 shrink-0 relative z-20">
                     <span
-                        class="text-[10px] font-bold text-[#446e9a] tracking-widest uppercase flex items-center gap-1.5">
-                        <span class="w-1.5 h-1.5 bg-[#446e9a] rounded-full animate-ping"></span>
+                        class="text-[10px] font-bold text-[#D62828] tracking-widest uppercase flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 bg-[#D62828] rounded-full animate-ping"></span>
                         DRAG TO TILT SHEET IN 3D
                     </span>
                     <a id="cert-lightbox-link" href="" target="_blank"
-                        class="px-5 py-2 rounded-xl bg-text-main hover:bg-[#446e9a] text-white text-xs font-bold transition-all duration-300 shadow-sm flex items-center gap-1.5 group">
+                        class="px-5 py-2 rounded-xl bg-text-main hover:bg-[#D62828] text-white text-xs font-bold transition-all duration-300 shadow-sm flex items-center gap-1.5 group">
                         Open in New Tab
                         <span
                             class="material-symbols-outlined text-xs group-hover:translate-x-0.5 transition-transform">arrow_outward</span>
@@ -3060,7 +3055,7 @@
                     targetY = e.clientY;
                 });
 
-                const rowColors = ['#446e9a', '#6b8fbd', '#5a8aad', '#7a9cb8'];
+                const rowColors = ['#D62828', '#D62828', '#D62828', '#D62828'];
                 projectRows.forEach(row => {
                     const index = Number(row.dataset.projectIndex) || 0;
                     const title = row.querySelector('.project-row-title');
@@ -3076,7 +3071,7 @@
                         projectCursor.style.backgroundColor = rowColors[index];
                         projectCursor.style.boxShadow = `0 16px 40px ${rowColors[index]}55`;
                         if (title) title.style.color = rowColors[index];
-                        if (meta) meta.style.color = '#2c3440';
+                        if (meta) meta.style.color = '#111827';
 
                         SoundEffects.projectHover();
                     });
@@ -3244,16 +3239,16 @@
 
                     // Node specific colors map
                     const nodeColors = {
-                        react: '#06b6d4',
-                        javascript: '#f59e0b',
-                        python: '#3b82f6',
-                        java: '#ef4444',
-                        databases: '#10b981',
-                        backend: '#8b5cf6',
-                        design: '#ec4899',
-                        '3d': '#f97316',
-                        analytics: '#14b8a6',
-                        video: '#a855f7'
+                        react: '#D62828',
+                        javascript: '#D62828',
+                        python: '#D62828',
+                        java: '#D62828',
+                        databases: '#D62828',
+                        backend: '#D62828',
+                        design: '#D62828',
+                        '3d': '#D62828',
+                        analytics: '#D62828',
+                        video: '#D62828'
                     };
 
                     arcs.forEach((arc, index) => {
@@ -3272,8 +3267,8 @@
                         
                         // Linear gradient along the arc
                         const grad = ctx.createLinearGradient(a.point.x, a.point.y, b.point.x, b.point.y);
-                        const colorA = nodeColors[arc.from] || '#446e9a';
-                        const colorB = nodeColors[arc.to] || '#ec4899';
+                        const colorA = nodeColors[arc.from] || '#D62828';
+                        const colorB = nodeColors[arc.to] || '#D62828';
                         grad.addColorStop(0, colorA);
                         grad.addColorStop(1, colorB);
                         
@@ -3299,7 +3294,7 @@
 
                     nodes.forEach(node => {
                         const point = nodeMap.get(node.id).point;
-                        const color = nodeColors[node.id] || '#446e9a';
+                        const color = nodeColors[node.id] || '#D62828';
                         
                         ctx.beginPath();
                         ctx.arc(point.x, point.y, 4.0 + Math.max(0, point.z) * 2.5, 0, Math.PI * 2);
@@ -3682,14 +3677,14 @@
 
                     // Style active section anchors
                     anchors.forEach((anc, idx) => {
-                        if (idx === activeIndex) {
-                            anc.classList.add('border-[#446e9a]', 'bg-[#446e9a]/10');
-                            anc.classList.remove('border-neutral-300');
-                        } else {
-                            anc.classList.remove('border-[#446e9a]', 'bg-[#446e9a]/10');
-                            anc.classList.add('border-neutral-300');
-                        }
-                    });
+                            if (idx === activeIndex) {
+                                anc.classList.add('border-[#D62828]', 'bg-[#D62828]/10');
+                                anc.classList.remove('border-neutral-300');
+                            } else {
+                                anc.classList.remove('border-[#D62828]', 'bg-[#D62828]/10');
+                                anc.classList.add('border-neutral-300');
+                            }
+                        });
 
                     requestAnimationFrame(updateScrollBead);
                 }
@@ -3763,6 +3758,7 @@
             }, true);
 
             // Add sound to any anchor links (external links, etc)
+            // Also prevent native hash navigation for in-page anchors so refresh doesn't jump
             document.addEventListener('click', (e) => {
                 if (e.target.tagName === 'A' || e.target.closest('a')) {
                     const link = e.target.tagName === 'A' ? e.target : e.target.closest('a');
@@ -3770,29 +3766,52 @@
                     if (!link.href.includes('#scrollToSection')) {
                         SoundEffects.navClick();
                     }
+
+                    // If this is an in-page anchor (href starts with '#'), handle smooth scroll
+                    // ourselves and remove the hash so a page refresh won't jump to it.
+                    const href = link.getAttribute && link.getAttribute('href');
+                    if (href && href.startsWith('#')) {
+                        e.preventDefault();
+                        const id = href.slice(1);
+                        if (id) {
+                            if (typeof window.scrollToSection === 'function') {
+                                window.scrollToSection(id);
+                            } else {
+                                const el = document.getElementById(id);
+                                if (el) el.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        }
+
+                        // Remove the hash from the URL to avoid anchor jump on refresh
+                        try {
+                            history.replaceState(null, document.title, window.location.pathname + window.location.search);
+                        } catch (err) {
+                            // ignore
+                        }
+                    }
                 }
             }, true);
 
             // Dynamic colorful highlights for tech stack marquee chips
             const chips = document.querySelectorAll('.stack-chip');
             const brandColors = {
-                'java': { border: 'rgba(68, 110, 154, 0.35)', text: '#446e9a', bg: 'rgba(216, 230, 244, 0.45)' },
-                'javascript': { border: 'rgba(90, 138, 173, 0.35)', text: '#5a8aad', bg: 'rgba(216, 230, 244, 0.4)' },
-                'python': { border: 'rgba(68, 110, 154, 0.35)', text: '#446e9a', bg: 'rgba(216, 230, 244, 0.45)' },
-                'html': { border: 'rgba(107, 143, 189, 0.35)', text: '#6b8fbd', bg: 'rgba(216, 230, 244, 0.4)' },
-                'react': { border: 'rgba(122, 156, 184, 0.35)', text: '#7a9cb8', bg: 'rgba(216, 230, 244, 0.4)' },
-                'netlify': { border: 'rgba(90, 138, 173, 0.35)', text: '#5a8aad', bg: 'rgba(216, 230, 244, 0.4)' },
-                'nodejs': { border: 'rgba(68, 110, 154, 0.35)', text: '#446e9a', bg: 'rgba(216, 230, 244, 0.45)' },
-                'flask': { border: 'rgba(95, 107, 122, 0.3)', text: '#5f6b7a', bg: 'rgba(228, 226, 218, 0.5)' },
-                'mysql': { border: 'rgba(107, 143, 189, 0.35)', text: '#6b8fbd', bg: 'rgba(216, 230, 244, 0.4)' },
-                'mongodb': { border: 'rgba(90, 138, 173, 0.35)', text: '#5a8aad', bg: 'rgba(216, 230, 244, 0.4)' },
-                'figma': { border: 'rgba(122, 156, 184, 0.35)', text: '#7a9cb8', bg: 'rgba(216, 230, 244, 0.4)' },
-                'blender': { border: 'rgba(68, 110, 154, 0.35)', text: '#446e9a', bg: 'rgba(216, 230, 244, 0.45)' },
-                'canva': { border: 'rgba(107, 143, 189, 0.35)', text: '#6b8fbd', bg: 'rgba(216, 230, 244, 0.4)' },
-                'davinci': { border: 'rgba(90, 138, 173, 0.35)', text: '#5a8aad', bg: 'rgba(216, 230, 244, 0.4)' },
-                'power bi': { border: 'rgba(122, 156, 184, 0.35)', text: '#7a9cb8', bg: 'rgba(216, 230, 244, 0.4)' },
-                'tableau': { border: 'rgba(68, 110, 154, 0.35)', text: '#446e9a', bg: 'rgba(216, 230, 244, 0.45)' },
-                'adobe': { border: 'rgba(107, 143, 189, 0.35)', text: '#6b8fbd', bg: 'rgba(216, 230, 244, 0.4)' }
+                'java': { border: 'rgba(214,40,40,0.35)', text: '#D62828', bg: 'rgba(255,255,255,0.45)' },
+                'javascript': { border: 'rgba(214,40,40,0.35)', text: '#D62828', bg: 'rgba(255,255,255,0.4)' },
+                'python': { border: 'rgba(214,40,40,0.35)', text: '#D62828', bg: 'rgba(255,255,255,0.45)' },
+                'html': { border: 'rgba(214,40,40,0.35)', text: '#D62828', bg: 'rgba(255,255,255,0.4)' },
+                'react': { border: 'rgba(214,40,40,0.35)', text: '#D62828', bg: 'rgba(255,255,255,0.4)' },
+                'netlify': { border: 'rgba(214,40,40,0.35)', text: '#D62828', bg: 'rgba(255,255,255,0.4)' },
+                'nodejs': { border: 'rgba(214,40,40,0.35)', text: '#D62828', bg: 'rgba(255,255,255,0.45)' },
+                'flask': { border: 'rgba(17,24,39,0.3)', text: '#6B7280', bg: 'rgba(255,255,255,0.5)' },
+                'mysql': { border: 'rgba(214,40,40,0.35)', text: '#D62828', bg: 'rgba(255,255,255,0.4)' },
+                'mongodb': { border: 'rgba(214,40,40,0.35)', text: '#D62828', bg: 'rgba(255,255,255,0.4)' },
+                'figma': { border: 'rgba(214,40,40,0.35)', text: '#D62828', bg: 'rgba(255,255,255,0.4)' },
+                'blender': { border: 'rgba(214,40,40,0.35)', text: '#D62828', bg: 'rgba(255,255,255,0.45)' },
+                'canva': { border: 'rgba(214,40,40,0.35)', text: '#D62828', bg: 'rgba(255,255,255,0.4)' },
+                'davinci': { border: 'rgba(214,40,40,0.35)', text: '#D62828', bg: 'rgba(255,255,255,0.4)' },
+                'power bi': { border: 'rgba(214,40,40,0.35)', text: '#D62828', bg: 'rgba(255,255,255,0.4)' },
+                'tableau': { border: 'rgba(214,40,40,0.35)', text: '#D62828', bg: 'rgba(255,255,255,0.45)' },
+                'adobe': { border: 'rgba(214,40,40,0.35)', text: '#D62828', bg: 'rgba(255,255,255,0.4)' }
             };
 
             chips.forEach(chip => {
