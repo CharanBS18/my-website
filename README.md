@@ -203,7 +203,7 @@ Feel free to fork this project and customize it for your own portfolio. If you f
 - **LinkedIn**: [Charan BS](https://www.linkedin.com/in/charan-bs-b34975391)
 - **GitHub**: [CharanBS18](https://github.com/CharanBS18)
 - **Twitter**: [CharanBS114](https://twitter.com/CharanBS114)
-- **Instagram**: [charan._._25](https://www.instagram.com/charan._._25)
+- **Instagram**: [charanbs666](https://www.instagram.com/charanbs666?igsh=YWU2OWJpNHdpZHZp&utm_source=qr)
 - **Discord**: [charan00002](https://discord.com/users/charan00002)
 
 ---
