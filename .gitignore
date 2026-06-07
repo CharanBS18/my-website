@@ -1,0 +1,23 @@
+### Local dev artifacts
+# Node modules (avoid committing large deps)
+node_modules/
+**/node_modules/
+
+# Vite temp/cache
+.vite-temp/
+**/.vite-temp/
+
+# Claude cache
+.claude/
+**/.claude/
+
+# Build outputs
+/dist/
+/build/
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+*.log
