@@ -6,7 +6,7 @@ const SOCIAL_LINKS = [
   { label: 'GitHub', href: 'https://github.com/CharanBS18' },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/charan-b-s-25a70b35a/' },
   { label: 'Twitter', href: 'https://twitter.com/CharanBS114' },
-  { label: 'Instagram', href: 'https://www.instagram.com/charan._._25' },
+  { label: 'Instagram', href: 'https://www.instagram.com/charanbs666?igsh=YWU2OWJpNHdpZHZp&utm_source=qr' },
   { label: 'Discord', href: 'https://discord.com/users/charan00002' },
 ] as const;
 
