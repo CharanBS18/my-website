@@ -1,0 +1,448 @@
+--- robot.js ---
+[85-90]
+85: 
+86:   // Proximity detection
+87:   function collectTargets(){
+88:     const targets = [];
+89:     const addTarget = (el, key, msg) => {
+90:       if (!el) return;
+
+[94-99]
+94:         key,
+95:         msg,
+96:         pageX: r.left + window.scrollX + r.width/2,
+97:         pageY: r.top + window.scrollY + r.height/2
+98:       });
+99:     };
+
+[95-100]
+95:         msg,
+96:         pageX: r.left + window.scrollX + r.width/2,
+97:         pageY: r.top + window.scrollY + r.height/2
+98:       });
+99:     };
+100: 
+
+[187-192]
+187:         }
+188:         if (text.includes('drone showcase') || href.includes('drone-website')) {
+189:           return "Open Cinematic Drone Showcase: an interactive 3D drone rendering with scroll motion.";
+190:         }
+191:         if (href.includes('AWS certificate.pdf')) {
+192:           return "Open my verified Amazon Web Services Cloud Practitioner certification PDF.";
+
+[205-210]
+205:         }
+206: 
+207:         // Side dot scroll indicator or individual scroll anchors
+208:         if (onclick.includes("scrollToSection('top')") || text === 'start') {
+209:           return "Scroll smoothly back to the top of the page.";
+210:         }
+
+[206-211]
+206: 
+207:         // Side dot scroll indicator or individual scroll anchors
+208:         if (onclick.includes("scrollToSection('top')") || text === 'start') {
+209:           return "Scroll smoothly back to the top of the page.";
+210:         }
+211:         if (onclick.includes("scrollToSection('about')") || (onclick === '' && href === '#about') || text === 'about') {
+
+[209-214]
+209:           return "Scroll smoothly back to the top of the page.";
+210:         }
+211:         if (onclick.includes("scrollToSection('about')") || (onclick === '' && href === '#about') || text === 'about') {
+212:           return "Scroll to the About section to read about my background and role fit.";
+213:         }
+214:         if (onclick.includes("scrollToSection('stack')") || (onclick === '' && href === '#stack') || text === 'stack') {
+
+[212-217]
+212:           return "Scroll to the About section to read about my background and role fit.";
+213:         }
+214:         if (onclick.includes("scrollToSection('stack')") || (onclick === '' && href === '#stack') || text === 'stack') {
+215:           return "Scroll down to my interactive 3D tech stack globe.";
+216:         }
+217:         if (onclick.includes("scrollToSection('capabilities')") || (onclick === '' && href === '#capabilities') || text === 'skills' || text === 'capabilities') {
+
+[215-220]
+215:           return "Scroll down to my interactive 3D tech stack globe.";
+216:         }
+217:         if (onclick.includes("scrollToSection('capabilities')") || (onclick === '' && href === '#capabilities') || text === 'skills' || text === 'capabilities') {
+218:           return "Scroll to the Capabilities section to check my developer skills.";
+219:         }
+220:         if (onclick.includes("scrollToSection('work')") || (onclick === '' && href === '#work') || text === 'works' || text === 'projects') {
+
+[218-223]
+218:           return "Scroll to the Capabilities section to check my developer skills.";
+219:         }
+220:         if (onclick.includes("scrollToSection('work')") || (onclick === '' && href === '#work') || text === 'works' || text === 'projects') {
+221:           return "Scroll to the Projects section to explore my applications and prototypes.";
+222:         }
+223:         if (onclick.includes("scrollToSection('certificates')") || (onclick === '' && href === '#certificates') || text === 'credentials' || text === 'certificates') {
+
+[221-226]
+221:           return "Scroll to the Projects section to explore my applications and prototypes.";
+222:         }
+223:         if (onclick.includes("scrollToSection('certificates')") || (onclick === '' && href === '#certificates') || text === 'credentials' || text === 'certificates') {
+224:           return "Scroll to the Certificates section to view my verified credentials.";
+225:         }
+226:         if (onclick.includes("scrollToSection('contact')") || (onclick === '' && href === '#contact') || text === 'contact') {
+
+[224-229]
+224:           return "Scroll to the Certificates section to view my verified credentials.";
+225:         }
+226:         if (onclick.includes("scrollToSection('contact')") || (onclick === '' && href === '#contact') || text === 'contact') {
+227:           return "Scroll to the Contact section to get in touch with me.";
+228:         }
+229: 
+
+[261-266]
+261:         activeHoveredElement = el;
+262:         const r = el.getBoundingClientRect();
+263:         hoveredPageX = r.left + window.scrollX + r.width/2;
+264:         hoveredPageY = r.top + window.scrollY + r.height/2;
+265:         targetX = r.left + r.width/2 + 30; targetY = r.top + r.height/2 + 20;
+266:       };
+
+[262-267]
+262:         const r = el.getBoundingClientRect();
+263:         hoveredPageX = r.left + window.scrollX + r.width/2;
+264:         hoveredPageY = r.top + window.scrollY + r.height/2;
+265:         targetX = r.left + r.width/2 + 30; targetY = r.top + r.height/2 + 20;
+266:       };
+267:       const leave = ()=>{
+
+[275-280]
+275:   }
+276: 
+277:   let targets = collectTargets();
+278:   // refresh targets on resize or DOM changes
+279:   window.addEventListener('resize', ()=> targets = collectTargets());
+280:   // collect interactive targets too
+
+[276-281]
+276: 
+277:   let targets = collectTargets();
+278:   // refresh targets on resize or DOM changes
+279:   window.addEventListener('resize', ()=> targets = collectTargets());
+280:   // collect interactive targets too
+281:   collectInteractiveTargets();
+
+[277-282]
+277:   let targets = collectTargets();
+278:   // refresh targets on resize or DOM changes
+279:   window.addEventListener('resize', ()=> targets = collectTargets());
+280:   // collect interactive targets too
+281:   collectInteractiveTargets();
+282:   window.addEventListener('resize', collectInteractiveTargets);
+
+[280-285]
+280:   // collect interactive targets too
+281:   collectInteractiveTargets();
+282:   window.addEventListener('resize', collectInteractiveTargets);
+283: 
+284:   // Mutation observer to capture dynamic elements
+285:   if ('MutationObserver' in window) {
+
+[283-288]
+283: 
+284:   // Mutation observer to capture dynamic elements
+285:   if ('MutationObserver' in window) {
+286:     let debounceTimer;
+287:     const observer = new MutationObserver(() => {
+288:       clearTimeout(debounceTimer);
+
+[285-290]
+285:   if ('MutationObserver' in window) {
+286:     let debounceTimer;
+287:     const observer = new MutationObserver(() => {
+288:       clearTimeout(debounceTimer);
+289:       debounceTimer = setTimeout(() => {
+290:         collectInteractiveTargets();
+
+[289-294]
+289:       debounceTimer = setTimeout(() => {
+290:         collectInteractiveTargets();
+291:         targets = collectTargets();
+292:       }, 200);
+293:     });
+294:     observer.observe(document.body, { childList: true, subtree: true });
+
+[306-311]
+306:   function updatePosition(){
+307:     if (activeHoveredElement) {
+308:       targetX = hoveredPageX - window.scrollX + 30;
+309:       targetY = hoveredPageY - window.scrollY + 20;
+310:     }
+311:     robotX = lerp(robotX, targetX, speed);
+
+[307-312]
+307:     if (activeHoveredElement) {
+308:       targetX = hoveredPageX - window.scrollX + 30;
+309:       targetY = hoveredPageY - window.scrollY + 20;
+310:     }
+311:     robotX = lerp(robotX, targetX, speed);
+312:     robotY = lerp(robotY, targetY, speed);
+
+[312-317]
+312:     robotY = lerp(robotY, targetY, speed);
+313:     root.style.transform = `translate3d(${robotX - window.innerWidth + 120}px, ${robotY - window.innerHeight + 120}px, 0)`;
+314:     requestAnimationFrame(updatePosition);
+315:   }
+316:   requestAnimationFrame(updatePosition);
+317: 
+
+[314-319]
+314:     requestAnimationFrame(updatePosition);
+315:   }
+316:   requestAnimationFrame(updatePosition);
+317: 
+318:   // Throttled mousemove
+319:   let last = 0;
+
+[316-321]
+316:   requestAnimationFrame(updatePosition);
+317: 
+318:   // Throttled mousemove
+319:   let last = 0;
+320:   window.addEventListener('mousemove', (e)=>{
+321:     if (!enabled) return;
+
+[318-323]
+318:   // Throttled mousemove
+319:   let last = 0;
+320:   window.addEventListener('mousemove', (e)=>{
+321:     if (!enabled) return;
+322:     const now = Date.now();
+323:     if (now - last < 40) return; last = now;
+
+[327-332]
+327:       targetY = e.clientY + 40;
+328:       
+329:       // proximity check using page-relative caches adjusted for scroll
+330:       let nearest = null; let nearestDist = Infinity;
+331:       for (const t of targets){
+332:         const cx = t.pageX - window.scrollX;
+
+[330-335]
+330:       let nearest = null; let nearestDist = Infinity;
+331:       for (const t of targets){
+332:         const cx = t.pageX - window.scrollX;
+333:         const cy = t.pageY - window.scrollY;
+334:         const d = Math.hypot(e.clientX - cx, e.clientY - cy);
+335:         if (d < nearestDist){ nearestDist = d; nearest = t; }
+
+[331-336]
+331:       for (const t of targets){
+332:         const cx = t.pageX - window.scrollX;
+333:         const cy = t.pageY - window.scrollY;
+334:         const d = Math.hypot(e.clientX - cx, e.clientY - cy);
+335:         if (d < nearestDist){ nearestDist = d; nearest = t; }
+336:       }
+
+--- robot.css ---
+[12-17]
+12:   transform: scaleX(-1);
+13: }
+14: .eva {
+15:   --EVA-ROTATION-DURATION: 4s;
+16:   transform-style: preserve-3d;
+17:   animation: rotateRight var(--EVA-ROTATION-DURATION) linear infinite alternate;
+
+[15-20]
+15:   --EVA-ROTATION-DURATION: 4s;
+16:   transform-style: preserve-3d;
+17:   animation: rotateRight var(--EVA-ROTATION-DURATION) linear infinite alternate;
+18: }
+19: .head {
+20:   position: relative;
+
+[23-28]
+23:   border-radius: 48% 53% 45% 55% / 79% 79% 20% 22%;
+24:   background: linear-gradient(to right, #111827 45%, #374151);
+25:   box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+26: }
+27: .eyeChamber {
+28:   width: 1.8rem;
+
+[33-38]
+33:   border-radius: 45% 53% 45% 48% / 62% 59% 35% 34%;
+34:   background-color: #0c203c;
+35:   box-shadow: 0px 0px 2px 2px #374151, inset 0px 0px 0px 2px black;
+36:   transform: translate(-50%, -50%);
+37:   animation: moveRight var(--EVA-ROTATION-DURATION) linear infinite alternate;
+38: }
+
+[35-40]
+35:   box-shadow: 0px 0px 2px 2px #374151, inset 0px 0px 0px 2px black;
+36:   transform: translate(-50%, -50%);
+37:   animation: moveRight var(--EVA-ROTATION-DURATION) linear infinite alternate;
+38: }
+39: .eye {
+40:   width: 0.48rem;
+
+[52-57]
+52:     white 2px
+53:   );
+54:   box-shadow: inset 0px 0px 5px #D62828, 0px 0px 15px 1px #ff4d4d;
+55:   transform: translate(0, -50%) rotate(-65deg);
+56: }
+57: .eye:nth-child(2) {
+
+[64-69]
+64:     white 2px
+65:   );
+66:   box-shadow: inset 0px 0px 5px #D62828, 0px 0px 15px 1px #ff4d4d;
+67:   transform: translate(0, -50%) rotate(65deg);
+68: }
+69: .body {
+
+[74-79]
+74:   border-radius: 47% 53% 45% 55% / 12% 9% 90% 88%;
+75:   background: linear-gradient(to right, #111827 35%, #374151);
+76:   box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+77: }
+78: .hand {
+79:   position: absolute;
+
+[84-89]
+84:   border-radius: 40%;
+85:   background: linear-gradient(to left, #111827 15%, #374151);
+86:   box-shadow: 5px 0px 5px rgba(0, 0, 0, 0.2);
+87:   transform: rotateY(55deg) rotateZ(10deg);
+88: }
+89: .hand:first-child {
+
+[88-93]
+88: }
+89: .hand:first-child {
+90:   animation: compensateRotation var(--EVA-ROTATION-DURATION) linear infinite alternate;
+91: }
+92: .hand:nth-child(2) {
+93:   left: 92%;
+
+[94-99]
+94:   background: linear-gradient(to right, #111827 15%, #374151);
+95:   transform: rotateY(55deg) rotateZ(-10deg);
+96:   animation: compensateRotationRight var(--EVA-ROTATION-DURATION) linear infinite alternate;
+97: }
+98: .scannerThing {
+99:   width: 0;
+
+[108-113]
+108:   mask: linear-gradient(to right, white, transparent 35%);
+109:   -webkit-mask: linear-gradient(to right, white, transparent 35%);
+110:   animation: glow 2s cubic-bezier(0.86, 0, 0.07, 1) infinite;
+111: }
+112: .scannerOrigin {
+113:   position: absolute;
+
+[118-123]
+118:   top: 10%;
+119:   background: #D62828;
+120:   box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.5);
+121:   animation: moveRight var(--EVA-ROTATION-DURATION) linear infinite;
+122: }
+123: @keyframes rotateRight { from { transform: rotateY(0deg); } to { transform: rotateY(25deg); } }
+
+[119-124]
+119:   background: #D62828;
+120:   box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.5);
+121:   animation: moveRight var(--EVA-ROTATION-DURATION) linear infinite;
+122: }
+123: @keyframes rotateRight { from { transform: rotateY(0deg); } to { transform: rotateY(25deg); } }
+124: @keyframes moveRight { from { transform: translate(-50%, -50%); } to { transform: translate(-40%, -50%); } }
+
+[121-126]
+121:   animation: moveRight var(--EVA-ROTATION-DURATION) linear infinite;
+122: }
+123: @keyframes rotateRight { from { transform: rotateY(0deg); } to { transform: rotateY(25deg); } }
+124: @keyframes moveRight { from { transform: translate(-50%, -50%); } to { transform: translate(-40%, -50%); } }
+125: @keyframes compensateRotation { from { transform: rotateY(55deg) rotateZ(10deg); } to { transform: rotatey(30deg) rotateZ(10deg); } }
+126: @keyframes compensateRotationRight { from { transform: rotateY(55deg) rotateZ(-10deg); } to { transform: rotateY(70deg) rotateZ(-10deg); } }
+
+[122-127]
+122: }
+123: @keyframes rotateRight { from { transform: rotateY(0deg); } to { transform: rotateY(25deg); } }
+124: @keyframes moveRight { from { transform: translate(-50%, -50%); } to { transform: translate(-40%, -50%); } }
+125: @keyframes compensateRotation { from { transform: rotateY(55deg) rotateZ(10deg); } to { transform: rotatey(30deg) rotateZ(10deg); } }
+126: @keyframes compensateRotationRight { from { transform: rotateY(55deg) rotateZ(-10deg); } to { transform: rotateY(70deg) rotateZ(-10deg); } }
+127: @keyframes glow { from { opacity: 0; } 20% { opacity: 1; } 45% { transform: rotate(-25deg); } 75% { transform: rotate(5deg); } 100% { opacity: 0; } }
+
+[123-128]
+123: @keyframes rotateRight { from { transform: rotateY(0deg); } to { transform: rotateY(25deg); } }
+124: @keyframes moveRight { from { transform: translate(-50%, -50%); } to { transform: translate(-40%, -50%); } }
+125: @keyframes compensateRotation { from { transform: rotateY(55deg) rotateZ(10deg); } to { transform: rotatey(30deg) rotateZ(10deg); } }
+126: @keyframes compensateRotationRight { from { transform: rotateY(55deg) rotateZ(-10deg); } to { transform: rotateY(70deg) rotateZ(-10deg); } }
+127: @keyframes glow { from { opacity: 0; } 20% { opacity: 1; } 45% { transform: rotate(-25deg); } 75% { transform: rotate(5deg); } 100% { opacity: 0; } }
+128: 
+
+[124-129]
+124: @keyframes moveRight { from { transform: translate(-50%, -50%); } to { transform: translate(-40%, -50%); } }
+125: @keyframes compensateRotation { from { transform: rotateY(55deg) rotateZ(10deg); } to { transform: rotatey(30deg) rotateZ(10deg); } }
+126: @keyframes compensateRotationRight { from { transform: rotateY(55deg) rotateZ(-10deg); } to { transform: rotateY(70deg) rotateZ(-10deg); } }
+127: @keyframes glow { from { opacity: 0; } 20% { opacity: 1; } 45% { transform: rotate(-25deg); } 75% { transform: rotate(5deg); } 100% { opacity: 0; } }
+128: 
+129: /* Robot root + bubble */
+
+[125-130]
+125: @keyframes compensateRotation { from { transform: rotateY(55deg) rotateZ(10deg); } to { transform: rotatey(30deg) rotateZ(10deg); } }
+126: @keyframes compensateRotationRight { from { transform: rotateY(55deg) rotateZ(-10deg); } to { transform: rotateY(70deg) rotateZ(-10deg); } }
+127: @keyframes glow { from { opacity: 0; } 20% { opacity: 1; } 45% { transform: rotate(-25deg); } 75% { transform: rotate(5deg); } 100% { opacity: 0; } }
+128: 
+129: /* Robot root + bubble */
+130: #robot-root { position: fixed; right: 18px; bottom: 18px; width: 120px; height: 120px; z-index: 9999; pointer-events: none; }
+
+[129-134]
+129: /* Robot root + bubble */
+130: #robot-root { position: fixed; right: 18px; bottom: 18px; width: 120px; height: 120px; z-index: 9999; pointer-events: none; }
+131: .robot-widget { pointer-events: none; position: absolute; right: 0; bottom: 0; display:flex; align-items:center; justify-content:center; }
+132: 
+133: .robot-bubble {
+134:   position: absolute;
+
+[141-146]
+141:   padding: 10px 14px;
+142:   border-radius: 12px;
+143:   box-shadow: 0 10px 25px rgba(17, 24, 39, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+144:   font-size: 13px;
+145:   font-weight: 500;
+146:   line-height: 1.4;
+
+[148-153]
+148:   pointer-events: none;
+149:   transform: scale(0.9) translateY(10px);
+150:   transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+151:   border-left: 3px solid #D62828;
+152: }
+153: .robot-bubble.show {
+
+[166-171]
+166:   justify-content: center;
+167:   background: rgba(17, 24, 39, 0.65);
+168:   backdrop-filter: blur(4px);
+169:   z-index: 10000;
+170: }
+171: .robot-modal .card {
+
+[176-181]
+176:   width: 340px;
+177:   max-width: 90%;
+178:   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+179:   border-left: 4px solid #D62828;
+180: }
+181: .robot-modal input {
+
+[207-212]
+207:   cursor: pointer;
+208:   font-weight: 600;
+209:   transition: transform 0.15s ease, background 0.15s ease;
+210: }
+211: .robot-modal button:hover {
+212:   background: #b52020;
+
+[224-227]
+224: /* Respect reduced motion */
+225: @media (prefers-reduced-motion: reduce) {
+226:   .eva, .eyeChamber, .hand { animation: none !important; }
+227: }
+

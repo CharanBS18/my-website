@@ -1,0 +1,18 @@
+{
+  "id": "a31cb303-dc42-4b80-941b-5d6078a421b3",
+  "runtime": "python",
+  "purpose": "line-numbered robot performance hotspots",
+  "script_chars": 609,
+  "started_at": "2026-06-17T09:42:38.771Z",
+  "finished_at": "2026-06-17T09:42:38.875Z",
+  "exit_code": 0,
+  "signal": null,
+  "timed_out": false,
+  "duration_ms": 104,
+  "stdout_bytes": 17538,
+  "stderr_bytes": 0,
+  "stdout_truncated": false,
+  "stderr_truncated": false,
+  "stdout_path": "/Users/charanbs/Documents/my/.gsd/exec/a31cb303-dc42-4b80-941b-5d6078a421b3.stdout",
+  "stderr_path": "/Users/charanbs/Documents/my/.gsd/exec/a31cb303-dc42-4b80-941b-5d6078a421b3.stderr"
+}

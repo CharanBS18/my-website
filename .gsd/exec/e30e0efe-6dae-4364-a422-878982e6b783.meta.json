@@ -1,0 +1,18 @@
+{
+  "id": "e30e0efe-6dae-4364-a422-878982e6b783",
+  "runtime": "python",
+  "purpose": "revert tooltip edits in VaultShieldHero.tsx",
+  "script_chars": 6002,
+  "started_at": "2026-06-17T09:36:30.678Z",
+  "finished_at": "2026-06-17T09:36:31.791Z",
+  "exit_code": 0,
+  "signal": null,
+  "timed_out": false,
+  "duration_ms": 1113,
+  "stdout_bytes": 46,
+  "stderr_bytes": 0,
+  "stdout_truncated": false,
+  "stderr_truncated": false,
+  "stdout_path": "/Users/charanbs/Documents/my/.gsd/exec/e30e0efe-6dae-4364-a422-878982e6b783.stdout",
+  "stderr_path": "/Users/charanbs/Documents/my/.gsd/exec/e30e0efe-6dae-4364-a422-878982e6b783.stderr"
+}
