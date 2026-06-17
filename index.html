@@ -90,10 +90,6 @@
                 osc.start(now);
                 osc.stop(now + duration);
             };
-
-    </script>
-    <script defer src="/robot.js"></script>
-
             // Helper function to create a frequency sweep
             const playSweep = (startFreq, endFreq, duration, volume = 0.1) => {
                 if (!initAudioContext()) return;
@@ -208,6 +204,7 @@
             };
         })();
     </script>
+    <script defer src="robot.js"></script>
     <style>
         :root {
             --bg: #FFFFFF; /* Background - White */
@@ -1560,7 +1557,7 @@
             }
         }
     </style>
-    <link rel="stylesheet" href="/robot.css">
+    <link rel="stylesheet" href="robot.css">
 </head>
 
 <body class="font-body selection:bg-accent-sky/30 selection:text-text-main text-text-main leading-relaxed relative">
